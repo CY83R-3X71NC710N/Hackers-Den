@@ -15,7 +15,7 @@ jobs:
           git config --global user.name "CY83R-3X71NC710N"
           git add **
           git commit -am "Daily Update"
-          git remote set-url --push origin https://your_username:$GITHUB_TOKEN@github.com/your/repo
+          git remote set-url --push origin https://CY83R-3X71NC710N:$GITHUB_TOKEN@github.com/Hackers-Den
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_TOKEN: ${{ secrets.EMAIL }}
+      EMAIL: ${{ secrets.EMAIL }}
