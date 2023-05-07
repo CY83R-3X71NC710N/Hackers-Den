@@ -1,0 +1,12 @@
+# Change the title, it's for you. Maybe you see "My newspaper"?
+title: RSSPAPER
+
+# Options: light, dark, sepia or clojure 
+theme: light
+
+# Options: daily, weekly or all
+edition: weekly
+
+feeds:
+  - https://programadorwebvalencia.com/feed/
+  - https://republicaweb.es/feed/
