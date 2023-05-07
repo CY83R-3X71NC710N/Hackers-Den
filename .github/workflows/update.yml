@@ -13,7 +13,7 @@ jobs:
         run: |
           git config --global user.name CY83R-3X71NC710N
           git config --global user.email $EMAIL
-          git add .
+          git add **
           git commit -m 'Build'
           git push
     env:
