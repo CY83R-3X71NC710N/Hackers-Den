@@ -17,5 +17,5 @@ jobs:
           git commit -am "Daily Update"
           git remote set-url --push origin https://CY83R-3X71NC710N:$GITHUB_TOKEN@github.com/Hackers-Den
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.TOKEN }}
       EMAIL: ${{ secrets.EMAIL }}
