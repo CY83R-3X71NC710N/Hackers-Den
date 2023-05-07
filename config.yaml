@@ -1,11 +1,11 @@
 # Change the title, it's for you. Maybe you see "My newspaper"?
-title: RSSPAPER
+title: "Hacker's Den"
 
 # Options: light, dark, sepia or clojure 
-theme: light
+theme: dark
 
 # Options: daily, weekly or all
-edition: weekly
+edition: daily
 
 feeds:
   - https://programadorwebvalencia.com/feed/
