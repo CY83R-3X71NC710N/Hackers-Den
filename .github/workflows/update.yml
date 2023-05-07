@@ -9,5 +9,13 @@ jobs:
       - uses: actions/checkout@v3
       - name: Update newspaper
         run: java -jar ./rsspaper-1.2.4-standalone.jar
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+      - name: Commit report
+        run: |
+          git config --global user.email $EMAIL
+          git config --global user.name "CY83R-3X71NC710N"
+          git add **
+          git commit -am "Daily Update"
+          git remote set-url --push origin https://CY83R-3X71NC710N:$GITHUB_TOKEN@github.com/Hackers-Den
+    env:
+      GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      EMAIL: ${{ secrets.EMAIL }}
