@@ -8,6 +8,7 @@ theme: dark
 edition: all
 
 feeds:
+  - https://cy83r-3x71nc710n.github.io/feed.xml
   - https://programadorwebvalencia.com/feed/index.xml
   - https://static.fsf.org/fsforg/rss/news.xml
   - https://hakibenita.com/feeds/all.atom.xml
