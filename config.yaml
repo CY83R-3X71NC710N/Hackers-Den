@@ -9,16 +9,3 @@ edition: all
 
 feeds:
   - https://cy83r-3x71nc710n.github.io/feed.xml
-  - https://programadorwebvalencia.com/feed/index.xml
-  - https://static.fsf.org/fsforg/rss/news.xml
-  - https://hakibenita.com/feeds/all.atom.xml
-  - https://tonsky.me/blog/atom.xml
-  - https://github.blog/feed/
-  - https://twobithistory.org/feed.xml
-  - https://nosinmiscookies.com/feed/
-  - https://evilmartians.com/chronicles.atom
-  - https://www.monkeyuser.com/feed.xml
-  - https://www.debian.org/News/news
-  - https://clojure.org/feed.xml
-  - http://planet.clojure.in/atom.xml
-  - https://www.freecodecamp.org/news/rss/
