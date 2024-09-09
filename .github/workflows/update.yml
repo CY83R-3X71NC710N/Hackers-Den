@@ -14,8 +14,10 @@ jobs:
         run: rm -rf ./dist
       - name: Update newspaper
         run: java -jar ./rsspaper-1.2.4-standalone.jar
-      - name: move files for overwrite
-        run: mv -f ./manifest.json ./dist/static/manifest.json && mv -f ./newsreader-not-cover.png ./dist/static/img/newsreader-not-cover.png
+      - name: move files for overwrite & update index.html with changes
+        run: | 
+          mv -f ./manifest.json ./dist/static/manifest.json && mv -f ./newsreader-not-cover.png ./dist/static/img/newsreader-not-cover.png
+          sed -i 's|href="https://github.com/tanrax/RSSpaper">RSSpaper<\/a> and a lot of <span class="footer__heard">❤️<\/span>️|href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N<\/a>|' ./dist/static/index.html
       - name: Push
         run: |
           git config --global user.name CY83R-3X71NC710N
