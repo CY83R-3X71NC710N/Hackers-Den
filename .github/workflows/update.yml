@@ -17,7 +17,7 @@ jobs:
       - name: move files for overwrite & update index.html with changes
         run: | 
           mv -f ./manifest.json ./dist/static/manifest.json && mv -f ./newsreader-not-cover.png ./dist/static/img/newsreader-not-cover.png
-          sed -i 's|href="https://github.com/tanrax/RSSpaper">RSSpaper<\/a> and a lot of <span class="footer__heard">❤️<\/span>️|href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N<\/a>|; s|<meta name="description" content="My static news generator">|<meta name="description" content="Hackers-Den Publishing">|; s|<meta name="theme-color" content="#2e3440">|<meta name="theme-color" content="#000000">|' ./dist/index.html
+          sed -i 's|href="https://github.com/tanrax/RSSpaper">RSSpaper<\/a> and a lot of <span class="footer__heard">❤️<\/span>️|href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N<\/a>|; s|<meta name="description" content="My static news generator">|<meta name="description" content="Hackers-Den Publishing">|; s|<meta name="theme-color" content="#2e3440">|<meta name="theme-color" content="#000000">|; s|<meta name="theme-color" content="#5e81ac" />|<meta name="theme-color" content="#000000" />|; s|<h2 class="subtitle"><span class="subtitle__separator">~<\/span> <span class="subtitle__text">My static generate newspaper<\/span> <span class="subtitle__separator">~<\/span><\/h2>|<h2 class="subtitle"><span class="subtitle__separator">~<\/span> <span class="subtitle__text">Latest Hacking News<\/span> <span class="subtitle__separator">~<\/span><\/h2>|' ./dist/index.html
       - name: Push
         run: |
           git config --global user.name CY83R-3X71NC710N
