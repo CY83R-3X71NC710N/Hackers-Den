@@ -1,4 +1,5 @@
 https://tldr.tech/infosec + https://kill-the-newsletter.com/ (Daily Summary)
 https://tldrsec.com/ (Weekly Summary)
+https://buttondown.com/cyberfacts (Handpicked Readings)
 # https://notifycyber.com/rss?sources=caisa%2Cisg%2Cthn%2Cdr%2Ccve (not used, found to be ineffective in condensing information down. Images also failed to work with our RSS Feed Reader)
 https://isc.sans.edu/dailypodcast.xml (SANS Daily Stormcast) (Good Podcast for listening to each day)
