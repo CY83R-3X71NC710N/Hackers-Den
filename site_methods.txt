@@ -1,1 +1,2 @@
 https://tldr.tech/infosec + https://kill-the-newsletter.com/
+https://notifycyber.com/rss?sources=caisa%2Cisg%2Cthn%2Cdr%2Ccve
