@@ -5,7 +5,7 @@ title: "Hacker's Den"
 theme: dark
 
 # Options: daily, weekly or all
-edition: all
+edition: weekly
 
 feeds:
   - https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99.xml
