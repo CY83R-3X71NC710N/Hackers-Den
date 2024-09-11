@@ -7,4 +7,4 @@ https://github.com/tanrax/RSSPAPER (Update JAR as needed in this directory)
 ```
 
 # TODO:
-Use Regex to change HTML labels after running the RSSPAPER jar. + update favicon.ico
+update favicon.ico + maybe dp cloudpages
