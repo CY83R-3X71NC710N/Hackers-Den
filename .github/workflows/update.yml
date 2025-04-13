@@ -24,98 +24,413 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'maven'
       
       - name: Clean previous builds
         run: |
           rm -rf ./dist
           echo "🧹 Cleaned previous build artifacts"
       
-      - name: Generate RSS newspaper
+      - name: Setup Matrix theme
         run: |
-          echo "🔄 Generating Hacker's Den RSS feed..."
-          java -jar ./rsspaper-1.2.4-standalone.jar
-          echo "✅ RSS feed generated successfully"
-      
-      - name: Download Matrix font
-        run: |
-          mkdir -p ./dist/static/fonts
-          curl -L -o ./matrix-code.zip https://www.dafont.com/download.php?f=matrix-code-nfi
-          unzip -j matrix-code.zip "*.ttf" -d ./temp_fonts
+          echo "🔄 Setting up Matrix theme..."
+          # Create Matrix theme directory in the base directory
+          mkdir -p ./matrix_theme/static/{css,fonts,img/icons}
           
-          # Convert TTF to WOFF2 for better performance
+          # Install fonts
           sudo apt-get update
-          sudo apt-get install -y fontforge
+          sudo apt-get install -y fonts-dejavu
+          cp /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf ./matrix_theme/static/fonts/matrix-code.ttf
           
-          echo "Converting fonts to WOFF2 format..."
-          for font in ./temp_fonts/*.ttf; do
-            fontforge -lang=ff -c 'Open($1); Generate($2); Close();' "$font" "${font%.ttf}.woff2"
-          done
+          # Copy default image
+          cp ./newsreader-not-cover.png ./matrix_theme/static/img/newsreader-not-cover.png
           
-          mv ./temp_fonts/*.woff2 ./dist/static/fonts/matrix-code.woff2
-          rm -rf ./temp_fonts matrix-code.zip
-          echo "✅ Matrix font downloaded and converted"
-      
-      - name: Optimize site
-        run: |
-          # Copy custom assets
-          cp -f ./manifest.json ./dist/static/manifest.json
-          cp -f ./newsreader-not-cover.png ./dist/static/img/newsreader-not-cover.png
-          
-          # Add service worker for better PWA experience
-          cat > ./dist/static/service-worker.js << 'EOL'
-          // Hackers Den Service Worker
-          const CACHE_NAME = 'hackers-den-cache-v1';
-          const urlsToCache = [
-            '/',
-            '/index.html',
-            '/static/css/main.css',
-            '/static/css/matrix.css',
-            '/static/css/desktop.css',
-            '/static/css/mobile.css',
-            '/static/css/normalize.css',
-            '/static/fonts/matrix-code.woff2',
-            '/static/fonts/Newsreader-VariableFont_opsz,wght.woff2',
-            '/static/img/newsreader-not-cover.png'
-          ];
+          # Create Matrix theme CSS files
+          cat > ./matrix_theme/static/css/main.css << 'EOL'
+          :root {
+            --height-img: 10rem;
+            --height-img-mobile: 12rem;
+            --color__nord-dark: #000000;
+            --color__nord-light: #d8dee9;
+            --color__nord-medium: #00ff00;
+            --matrix-green: #00ff00;
+            --matrix-dark-green: #003300;
+            --terminal-bg: #000000;
+          }
 
-          self.addEventListener('install', event => {
-            event.waitUntil(
-              caches.open(CACHE_NAME)
-                .then(cache => {
-                  console.log('Opened cache');
-                  return cache.addAll(urlsToCache);
-                })
-            );
-          });
+          @font-face {
+            font-family: Newsreader;
+            src: url("../fonts/Newsreader-VariableFont_opsz,wght.woff2");
+            font-display: swap;
+          }
 
-          self.addEventListener('fetch', event => {
-            event.respondWith(
-              caches.match(event.request)
-                .then(response => {
-                  if (response) {
-                    return response;
-                  }
-                  return fetch(event.request).then(
-                    response => {
-                      if(!response || response.status !== 200 || response.type !== 'basic') {
-                        return response;
-                      }
-                      const responseToCache = response.clone();
-                      caches.open(CACHE_NAME)
-                        .then(cache => {
-                          cache.put(event.request, responseToCache);
-                        });
-                      return response;
-                    }
-                  );
-                })
-            );
-          });
+          @font-face {
+            font-family: 'Matrix Code';
+            src: url('../fonts/matrix-code.ttf') format('truetype');
+            font-display: swap;
+          }
+
+          body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            color: var(--matrix-green);
+            background-color: var(--color__nord-dark);
+            background-size: 100%;
+            position: relative;
+          }
+
+          img {
+            object-fit: cover;
+            object-position: center;
+            filter: sepia(50%) hue-rotate(80deg);
+            border: 1px solid var(--matrix-green);
+          }
+
+          img,
+          video,
+          iframe {
+            width: 100%;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+          }
+
+          a {
+            color: var(--matrix-green);
+            text-decoration: none;
+            transition: all 0.2s ease;
+          }
+
+          a:hover {
+            text-shadow: 0 0 8px var(--matrix-green);
+          }
+
+          pre {
+            overflow-x: auto;
+            background-color: rgba(0, 20, 0, 0.7);
+            border: 1px solid var(--matrix-green);
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            color: var(--matrix-green);
+          }
+
+          .container {
+            max-width: 62rem;
+            margin: 0 auto;
+            padding: 1rem;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--matrix-dark-green);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+          }
+
+          .header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--matrix-green);
+            padding-bottom: 1rem;
+            text-align: center;
+          }
+
+          .title {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: normal;
+            margin-bottom: 0;
+            margin-top: 1rem;
+            font-family: 'Matrix Code', 'Courier New', monospace;
+            letter-spacing: 2px;
+            animation: flicker 3s infinite;
+            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+          }
+
+          .subtitle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -1rem;
+            font-weight: normal;
+            font-size: 1.5rem;
+            font-family: 'Courier New', monospace;
+          }
+
+          .subtitle__separator {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--matrix-green);
+            animation: pulse 2s infinite;
+          }
+
+          .separator {
+            border: 0;
+            background: var(--matrix-green);
+            height: 1px;
+            box-shadow: 0 0 10px var(--matrix-green);
+          }
+
+          .footer__text {
+            text-align: center;
+            padding: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+          }
+
+          .footer__link {
+            font-weight: bold;
+            color: var(--matrix-green);
+          }
+
+          .article__title,
+          .article__feed {
+            font-weight: normal;
+            font-family: 'Courier New', monospace;
+          }
+
+          .article__title a {
+            color: var(--matrix-green);
+            text-shadow: 0 0 2px #0f0;
+            transition: all 0.3s ease;
+          }
+
+          .article__title a:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0;
+          }
+
+          .article__feed a {
+            color: #aaffaa;
+          }
+
+          .article__header {
+            margin-bottom: 2rem;
+            background: rgba(0, 20, 0, 0.5);
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid #0f0;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transition: all 0.3s ease;
+          }
+
+          .article__header:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            transform: translateY(-5px);
+          }
+
+          .article__header-img > a > img {
+            height: var(--height-img);
+            object-position: top;
+            object-fit: cover;
+          }
+
+          .article__random-background {
+            height: 100%;
+            width: 100%;
+          }
+
+          .article__date {
+            font-style: italic;
+            color: #aaffaa;
+            font-size: 0.9rem;
+          }
+
+          .feed__article {
+            position: relative;
+            transition: all 0.3s ease;
+          }
+
+          .feed__article::before {
+            content: "[INBOUND-SIGNAL]";
+            color: var(--matrix-green);
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            position: absolute;
+            top: -15px;
+            left: 10px;
+          }
+
+          /* Matrix animations */
+          @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+              opacity: 0.99;
+              text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0, 0 0 20px #0f0;
+            }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+              opacity: 0.4;
+              text-shadow: none;
+            }
+          }
+
+          @keyframes pulse {
+            0% {
+              text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+            }
+            50% {
+              text-shadow: 0 0 20px #0f0, 0 0 30px #0f0;
+            }
+            100% {
+              text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+            }
+          }
+
+          /* Terminal Styling */
+          .terminal {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 5px;
+          }
+
+          .terminal__header {
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+          }
+
+          .terminal__prompt {
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            margin-right: 5px;
+          }
+
+          .terminal__date {
+            margin-left: auto;
+            color: #0f0;
+            font-size: 0.8em;
+          }
+
+          /* Custom scrollbar */
+          ::-webkit-scrollbar {
+            width: 8px;
+          }
+
+          ::-webkit-scrollbar-track {
+            background-color: #000;
+          }
+
+          ::-webkit-scrollbar-thumb {
+            background-color: #0f0;
+            border-radius: 4px;
+          }
+
+          ::-webkit-scrollbar-thumb:hover {
+            background-color: #00ff00aa;
+          }
+          
+          /* Matrix Background Effect */
+          .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+          }
+          
+          .matrix-rain {
+            position: relative;
+            height: 100%;
+            width: 100%;
+          }
+          
+          .matrix-drop {
+            position: absolute;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 0 0 5px #0f0;
+            opacity: 0;
+            animation: matrix-rain 8s linear infinite;
+          }
+          
+          @keyframes matrix-rain {
+            0% {
+              top: -10%;
+              opacity: 0;
+            }
+            20% {
+              opacity: 0.8;
+            }
+            80% {
+              opacity: 0.8;
+            }
+            100% {
+              top: 110%;
+              opacity: 0;
+            }
+          }
           EOL
           
-          # Update manifest.json for proper PWA support
-          cat > ./dist/static/manifest.json << 'EOL'
+          cat > ./matrix_theme/static/css/mobile.css << 'EOL'
+          .article__header {
+            display: grid;
+            grid-auto-flow: row;
+            grid-template-columns: 100%;
+          }
+
+          .article__header-img > a > img {
+            height: var(--height-img-mobile);
+          }
+
+          .title {
+            font-size: 2.5rem;
+          }
+
+          .subtitle {
+            font-size: 1rem;
+            flex-wrap: wrap;
+          }
+
+          .subtitle__separator {
+            font-size: 2rem;
+          }
+
+          .matrix-drop {
+            font-size: 1rem;
+          }
+
+          .terminal__header {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          .terminal__date {
+            margin-left: 0;
+            margin-top: 5px;
+          }
+          EOL
+          
+          cat > ./matrix_theme/static/css/desktop.css << 'EOL'
+          .article__header {
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-columns: 30% 70%;
+            column-gap: 1rem;
+          }
+
+          .article__header-img {
+            width: 100%;
+          }
+
+          .feed__article {
+            margin-bottom: 3rem;
+            transform: perspective(1000px) rotateX(0deg);
+            transition: transform 0.3s ease;
+          }
+
+          .feed__article:hover {
+            transform: perspective(1000px) rotateX(2deg) translateY(-5px);
+          }
+          EOL
+          
+          cat > ./matrix_theme/static/css/normalize.css << 'EOL'
+          /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+          html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
+          EOL
+          
+          # Create manifest.json file for PWA support
+          cat > ./matrix_theme/static/manifest.json << 'EOL'
           {
             "name": "Hacker's Den",
             "short_name": "Hackers-Den",
@@ -169,13 +484,235 @@ jobs:
           }
           EOL
           
-          # Register service worker in index.html
-          sed -i 's|</body>|<script>\nif ("serviceWorker" in navigator) {\n  navigator.serviceWorker.register("/static/service-worker.js")\n    .then(reg => console.log("Service worker registered"))\n    .catch(err => console.log("Service worker not registered", err));\n}\n</script>\n</body>|' ./dist/index.html
+          # Now create the index.html template that will feed into RSSpaper
+          cat > ./matrix_theme/index.html << 'EOL'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="utf-8">
+              <title>{{ title }}</title>
+              <meta name="description" content="Matrix-themed hacker news aggregator">
+              <meta name="generator" content="RSSPAPER">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+              <link rel="icon" type="image/png" href="static/img/icons/favicon.png">
+              <meta name="theme-color" content="#000000">
+              <!-- PWA -->
+              <link rel="manifest" href="static/manifest.json" />
+              <link rel="apple-touch-icon" href="static/img/icons/apple-icon-180.png">
+              <meta name="apple-mobile-web-app-capable" content="yes">
+              <!-- iOS support -->
+              <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+              <meta name="theme-color" content="#00ff00" />
+              <!-- End PWA -->
+              <!-- Opengraph -->
+              <meta property="og:image" content="img/screenshot.png">
+              <meta property="og:title" content="{{ title }}">
+              <meta property="og:type" content="website">
+              <!-- End Opengraph -->
+              <!-- Preload Font -->
+              <link rel="preload" href="static/fonts/matrix-code.ttf" as="font" type="font/ttf" crossorigin>
+              <!-- CSS -->
+              <link rel="stylesheet" type="text/css" href="static/css/normalize.css">
+              <link rel="stylesheet" href="static/css/main.css">
+              <link href="static/css/mobile.css" rel="stylesheet" media="all and (max-width: 600px)">
+              <link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">
+              <!-- End CSS -->
+          </head>
+          <body>
+              <!-- Matrix Background -->
+              <div class="matrix-bg">
+                  <div class="matrix-rain" id="matrix-rain"></div>
+              </div>
+
+              <div class="container">
+                  <header class="header">
+                      <h1 class="title">{{ title }}</h1>
+                      <h2 class="subtitle"><span class="subtitle__separator">[</span> <span class="subtitle__text">Latest Hacking News</span> <span class="subtitle__separator">]</span></h2>
+                      <hr class="separator">
+                  </header>
+                  <main class="main">
+                      {% for article in articles %}
+                          <article class="feed__article article">
+                              <header class="article__header terminal">
+                                  <div class="terminal__header">
+                                      <span class="terminal__prompt">root@hackers-den:~$ cat article_{{ forloop.counter }}.txt</span>
+                                      <span class="terminal__date">{{ article.published-date-formatter }}</span>
+                                  </div>
+                                  <p class="article__header-img">
+                                      <a target="_blank" href="{{ article.link }}">
+                                          {% if article.cover %}
+                                          <img loading="lazy" class="lazy-load" src="{{ article.cover }}" alt="{{ article.title }}">
+                                          {% else %}
+                                          <img loading="lazy" class="lazy-load" src="static/img/newsreader-not-cover.png" alt="Not cover">
+                                          {% endif %}
+                                      </a>
+                                  </p>
+                                  <div class="article__titles">
+                                      <h1 class="article__title">
+                                          <a target="_blank" href="{{ article.link }}">{{ article.title }}</a>
+                                      </h1>
+                                      <h2 class="article__feed"><a target="_blank" href="{{ article.feed.link }}">{{ article.feed.title }}</a></h2>
+                                  </div>
+                              </header>
+                          </article>
+                      {% endfor %}
+                  </main>
+              </div>
+              <footer class="footer">
+                  <hr class="separator">
+                  <p class="footer__text">
+                      <a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>
+                  </p>
+              </footer>
+
+              <!-- Add Matrix Rain Animation -->
+              <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                      // Matrix rain animation
+                      const matrixRain = document.getElementById('matrix-rain');
+                      const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                      const numDrops = 35;
+
+                      // Create matrix drops
+                      for (let i = 0; i < numDrops; i++) {
+                          const drop = document.createElement('div');
+                          drop.className = 'matrix-drop';
+                          drop.style.left = `${Math.random() * 100}%`;
+                          drop.style.animationDelay = `${Math.random() * 5}s`;
+                          drop.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                          drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+                          matrixRain.appendChild(drop);
+                      }
+
+                      // Update matrix drops with new characters periodically
+                      setInterval(() => {
+                          document.querySelectorAll('.matrix-drop').forEach(drop => {
+                              drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+                          });
+                      }, 1000);
+
+                      // Lazy load images
+                      document.querySelectorAll('img.lazy-load').forEach(img => {
+                          img.onload = function() {
+                              this.classList.add('lazy-loaded');
+                          }
+                      });
+                  });
+              </script>
+              
+              <!-- Service Worker Registration for PWA -->
+              <script>
+                  if ('serviceWorker' in navigator) {
+                      window.addEventListener('load', function() {
+                          navigator.serviceWorker.register('static/service-worker.js')
+                              .then(function(registration) {
+                                  console.log('ServiceWorker registration successful');
+                              })
+                              .catch(function(error) {
+                                  console.log('ServiceWorker registration failed: ', error);
+                              });
+                      });
+                  }
+              </script>
+          </body>
+          </html>
+          EOL
           
-          # Update theme colors and customize content
-          sed -i 's|href="https://github.com/tanrax/RSSpaper">RSSpaper</a> and a lot of <span class="footer__heard">❤️</span>️|href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>|; s|<meta name="description" content="My static news generator">|<meta name="description" content="Hackers-Den Publishing - Latest cybersecurity and hacking news">|; s|<meta name="theme-color" content="#2e3440">|<meta name="theme-color" content="#000000">|; s|<meta name="theme-color" content="#5e81ac" />|<meta name="theme-color" content="#00ff00" />|; s|<h2 class="subtitle"><span class="subtitle__separator">~</span> <span class="subtitle__text">My static generate newspaper</span> <span class="subtitle__separator">~</span></h2>|<h2 class="subtitle"><span class="subtitle__separator">[</span> <span class="subtitle__text">Latest Hacking News</span> <span class="subtitle__separator">]</span></h2>|' ./dist/index.html
+          # Create the static.tar archive
+          cd ./matrix_theme && tar cf static.tar static && cd ..
           
-          echo "✅ Site optimized successfully"
+          # Create a temporary copy of the config to point to the new theme
+          cp config.yaml config.yaml.bak
+          sed -i 's/theme: matrix/theme: dark/' config.yaml
+          
+          echo "✅ Matrix theme setup completed"
+      
+      - name: Generate RSS newspaper
+        run: |
+          echo "🔄 Generating Hacker's Den RSS feed..."
+          java -jar ./rsspaper-1.2.4-standalone.jar
+          echo "✅ RSS feed generated successfully"
+      
+      - name: Apply custom Matrix theme
+        run: |
+          echo "🔄 Applying custom Matrix theme..."
+          
+          # Create service worker for PWA support
+          cat > ./dist/static/service-worker.js << 'EOL'
+          // Hackers Den Service Worker
+          const CACHE_NAME = 'hackers-den-cache-v1';
+          const urlsToCache = [
+            '/',
+            '/index.html',
+            '/static/css/main.css',
+            '/static/css/desktop.css',
+            '/static/css/mobile.css',
+            '/static/css/normalize.css',
+            '/static/fonts/matrix-code.ttf',
+            '/static/img/newsreader-not-cover.png'
+          ];
+
+          self.addEventListener('install', event => {
+            event.waitUntil(
+              caches.open(CACHE_NAME)
+                .then(cache => {
+                  console.log('Opened cache');
+                  return cache.addAll(urlsToCache);
+                })
+            );
+          });
+
+          self.addEventListener('fetch', event => {
+            event.respondWith(
+              caches.match(event.request)
+                .then(response => {
+                  if (response) {
+                    return response;
+                  }
+                  return fetch(event.request).then(
+                    response => {
+                      if(!response || response.status !== 200 || response.type !== 'basic') {
+                        return response;
+                      }
+                      const responseToCache = response.clone();
+                      caches.open(CACHE_NAME)
+                        .then(cache => {
+                          cache.put(event.request, responseToCache);
+                        });
+                      return response;
+                    }
+                  );
+                })
+            );
+          });
+          EOL
+          
+          # Replace CSS files with our custom Matrix theme
+          cp -rf ./matrix_theme/static/css/* ./dist/static/css/
+          
+          # Copy the Matrix font
+          cp ./matrix_theme/static/fonts/matrix-code.ttf ./dist/static/fonts/
+          
+          # Update the index.html with our Matrix theme
+          cat ./matrix_theme/index.html | sed "s|{{ title }}|Hacker's Den|g" > ./index.html.template
+          
+          # Extract article content from the original output
+          grep -A 10000 -B 0 '<main class="main">' ./dist/index.html | grep -A 10000 -B 0 '{% for article in articles %}' | grep -B 10000 -A 0 '</main>' > ./articles.html.fragment
+          
+          # Replace article section in our template with actual content
+          sed -i -e '/{% for article in articles %}/,/{% endfor %}/d' ./index.html.template
+          sed -i -e '/<main class="main">/r ./articles.html.fragment' ./index.html.template
+          
+          # Use our modified template
+          mv ./index.html.template ./dist/index.html
+          
+          # Update meta description for better SEO
+          sed -i 's|<meta name="description" content="My static news generator">|<meta name="description" content="Hackers-Den Publishing - Latest cybersecurity and hacking news">|' ./dist/index.html
+          
+          # Restore original config
+          mv config.yaml.bak config.yaml
+          
+          echo "✅ Custom Matrix theme applied successfully"
       
       - name: Commit and push changes
         run: |

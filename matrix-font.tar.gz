@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="html-devise-layout gl-light" lang="en">
+<head prefix="og: http://ogp.me/ns#">
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Sign in · GitLab</title>
+<script>
+//<![CDATA[
+window.gon={};
+//]]>
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/application-f3a46613d0c62857b36ab461ec6c150580272b96dd876596e93bbc5cf6371923.css" />
+<link rel="stylesheet" href="/assets/page_bundles/login-c86aaeb732c7cd4528094f168b9ad4a0408b971bd952f45a9a4dd714d1c9ecb1.css" /><link rel="stylesheet" href="/assets/page_bundles/commit_description-1e2cba4dda3c7b30dd84924809020c569f1308dea51520fe1dd5d4ce31403195.css" /><link rel="stylesheet" href="/assets/page_bundles/work_items-f8b0433a074a1464d564be96c61f98abba72c32c594f4624f237b4e41b1a5679.css" /><link rel="stylesheet" href="/assets/page_bundles/notes_shared-8b38073ba71abd72b511b161ac1c0567ac634b689428f7c74591325093229970.css" />
+<link rel="stylesheet" href="/assets/application_utilities-7844decc020ce5472253adae1ee2b329cdb6ddd08043b91daa3c9ed5530f5142.css" />
+<link rel="stylesheet" href="/assets/tailwind-18b323869d1bc4b21818cb0e7f501054cab3084c92dc5d4f272982507e17363f.css" />
+
+
+<link rel="stylesheet" href="/assets/fonts-fae5d3f79948bd85f18b6513a025f863b19636e85b09a1492907eb4b1bb0557b.css" />
+<link rel="stylesheet" href="/assets/highlight/themes/white-99cce4f4b362f6840d7134d4129668929fde49c4da11d6ebf17f99768adbd868.css" />
+
+
+<link rel="preload" href="/assets/application_utilities-7844decc020ce5472253adae1ee2b329cdb6ddd08043b91daa3c9ed5530f5142.css" as="style" type="text/css">
+<link rel="preload" href="/assets/application-f3a46613d0c62857b36ab461ec6c150580272b96dd876596e93bbc5cf6371923.css" as="style" type="text/css">
+<link rel="preload" href="/assets/highlight/themes/white-99cce4f4b362f6840d7134d4129668929fde49c4da11d6ebf17f99768adbd868.css" as="style" type="text/css">
+
+
+
+
+<script src="/assets/webpack/runtime.c217ba1f.bundle.js" defer="defer"></script>
+<script src="/assets/webpack/main.aa4dbbdf.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.groups.new-pages.import.gitlab_projects.new-pages.import.manifest.new-pages.projects.n-a0973272.dc791a28.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.groups.new-pages.import.gitlab_projects.new-pages.import.manifest.new-pages.projects.n-44c6c18e.5694c6d6.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.search.show-super_sidebar.09c5c921.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/super_sidebar.b794a9c8.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.registrations.new-pages.sessions.new-pages.user_settings.profiles.show.139c2496.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.admin.sessions-pages.sessions-pages.sessions.new.43e84c19.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/pages.sessions.new.3e5231cb.chunk.js" defer="defer"></script>
+
+
+
+<meta content="object" property="og:type">
+<meta content="GitLab" property="og:site_name">
+<meta content="Sign in · GitLab" property="og:title">
+<meta content="freedesktop.org GitLab login" property="og:description">
+<meta content="https://gitlab.freedesktop.org/assets/twitter_card-570ddb06edf56a2312253c5872489847a0f385112ddbcd71ccfa1570febab5d2.jpg" property="og:image">
+<meta content="64" property="og:image:width">
+<meta content="64" property="og:image:height">
+<meta content="https://gitlab.freedesktop.org/users/sign_in" property="og:url">
+<meta content="summary" property="twitter:card">
+<meta content="Sign in · GitLab" property="twitter:title">
+<meta content="freedesktop.org GitLab login" property="twitter:description">
+<meta content="https://gitlab.freedesktop.org/assets/twitter_card-570ddb06edf56a2312253c5872489847a0f385112ddbcd71ccfa1570febab5d2.jpg" property="twitter:image">
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="8Ym7nZJs2XxrmoKu-sIvCVB_PIdKsaMpIhiWjmQouyBEj4UpaYC3uiQjTXxWeXu4OVAzIbKnK8lDTd8GPBx4og" />
+<meta name="csp-nonce" />
+<meta name="action-cable-url" content="/-/cable" />
+<link href="/-/manifest.json" rel="manifest">
+<link rel="icon" type="image/png" href="/uploads/-/system/appearance/favicon/1/fdo-favicon.ico" id="favicon" data-original-href="/uploads/-/system/appearance/favicon/1/fdo-favicon.ico" />
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/apple-touch-icon-b049d4bc0dd9626f31db825d61880737befc7835982586d015bded10b4435460.png" />
+<link href="/search/opensearch.xml" rel="search" title="Search GitLab" type="application/opensearchdescription+xml">
+
+
+
+
+<meta content="freedesktop.org GitLab login" name="description">
+<meta content="#ececef" name="theme-color">
+</head>
+
+<body class="gl-h-full login-page gl-browser-generic gl-platform-other" data-page="sessions:new" data-testid="login-page">
+
+<script>
+//<![CDATA[
+gl = window.gl || {};
+gl.client = {"isGeneric":true,"isOther":true};
+
+
+//]]>
+</script>
+<div class="gl-broadcast-message banner js-broadcast-notification-10 light-red" data-broadcast-banner data-testid="banner-broadcast-message" role="alert">
+<div class="gl-broadcast-message-content">
+<div class="gl-broadcast-message-icon">
+<svg class="s16" data-testid="bullhorn-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#bullhorn"></use></svg>
+</div>
+<div class="gl-broadcast-message-text">
+<h2 class="gl-sr-only">Admin message</h2>
+<p>Due to an influx of spam, we have had to impose restrictions on new accounts. Please see <a href="https://gitlab.freedesktop.org/freedesktop/freedesktop/-/wikis/home">this wiki page</a> for instructions on how to get full permissions. Sorry for the inconvenience.</p>
+</div>
+</div>
+<button class="gl-button btn btn-icon btn-sm btn-default btn-default-tertiary gl-broadcast-message-dismiss js-dismiss-current-broadcast-notification" aria-label="Close" data-id="10" data-expire-date="2030-12-01T21:21:05Z" data-cookie-key="hide_broadcast_message_10" type="button"><svg class="s16 gl-icon gl-button-icon " data-testid="close-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#close"></use></svg>
+
+</button>
+</div>
+
+
+<div class="gl-broadcast-message banner js-broadcast-notification-55 light-green" data-broadcast-banner data-testid="banner-broadcast-message" role="alert">
+<div class="gl-broadcast-message-content">
+<div class="gl-broadcast-message-icon">
+<svg class="s16" data-testid="bullhorn-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#bullhorn"></use></svg>
+</div>
+<div class="gl-broadcast-message-text">
+<h2 class="gl-sr-only">Admin message</h2>
+<p>The migration is almost done, at least the rest should happen in the background. There are still a few technical difference between the old cluster and the new ones, and they are summarized in <a href="https://gitlab.freedesktop.org/freedesktop/freedesktop/-/issues/2076#note_2831847">this issue</a>. Please pay attention to the TL:DR at the end of the comment.</p>
+</div>
+</div>
+<button class="gl-button btn btn-icon btn-sm btn-default btn-default-tertiary gl-broadcast-message-dismiss js-dismiss-current-broadcast-notification" aria-label="Close" data-id="55" data-expire-date="2025-04-15T17:24:20Z" data-cookie-key="hide_broadcast_message_55" type="button"><svg class="s16 gl-icon gl-button-icon " data-testid="close-icon"><use href="/assets/icons-aa2c8ddf99d22b77153ca2bb092a23889c12c597fc8b8de94b0f730eb53513f6.svg#close"></use></svg>
+
+</button>
+</div>
+
+
+
+
+
+
+<div class="gl-h-full gl-flex gl-flex-wrap">
+<div class="container gl-self-center">
+<div class="content">
+<div class="flash-container flash-container-page sticky" data-testid="flash-container">
+<div id="js-global-alerts"></div>
+</div>
+
+<div class="row gl-mt-5 gl-gap-y-5">
+<div class="col-md order-12 sm-bg-gray">
+<div class="col-sm-12">
+<h1 class="gl-mb-5 gl-text-size-h2">
+freedesktop.org GitLab login
+</h1>
+<div id="js-custom-sign-in-description"><p data-sourcepos="1:1-1:271" dir="auto">freedesktop.org is a community of open-source projects dedicated to advancing the open-source desktop ecosystem. If you would like to contribute code, bug reports, or ideas to our existing member projects, you can register or log in here and contribute to these projects.</p>&#x000A;<p data-sourcepos="3:1-3:487" dir="auto"><strong data-sourcepos="3:1-3:487">When creating a new account, you will be sent an email to confirm and validate your account. Please check your inbox (including spam) to ensure that you receive this message and follow the link to confirm your account. Once this is done, you will be able to report issues in existing projects. To fork projects, you will need to <a data-sourcepos="3:332-3:485" href="https://gitlab.freedesktop.org/freedesktop/freedesktop/-/wikis/home#how-can-i-contribute-to-an-existing-project-or-create-a-new-one">request permissions</a></strong></p>&#x000A;<p data-sourcepos="5:1-5:295" dir="auto"><strong data-sourcepos="5:1-5:295">When creating a new account, you will be sent an email to confirm and validate your account. Please check your inbox (including spam) to ensure that you receive this message and follow the link to confirm your account. Once this is done, your account will become active within 10-15 minutes.</strong></p>&#x000A;<p data-sourcepos="7:1-7:292" dir="auto">Please conduct yourself in a polite and respectful way when using these services, per our <a data-sourcepos="7:91-7:155" href="https://www.freedesktop.org/wiki/CodeOfConduct" rel="nofollow noreferrer noopener" target="_blank">Code of Conduct</a>. The information we collect and how we use it is also described in our <a data-sourcepos="7:228-7:291" href="https://www.freedesktop.org/wiki/PrivacyPolicy" rel="nofollow noreferrer noopener" target="_blank">Privacy Policy</a>.</p></div>
+</div>
+</div>
+<div class="col-md order-md-12">
+<div class="col-sm-12 bar">
+<div class="gl-text-center gl-mb-5">
+<img alt="freedesktop.org GitLab login" class="gl-invisible gl-h-10 js-portrait-logo-detection lazy" data-src="/assets/logo-911de323fa0def29aaf817fca33916653fc92f3ff31647ac41d2c39bbe243edb.svg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+</div>
+
+<div class="js-non-oauth-login">
+<form class="gl-show-field-errors js-arkose-labs-form" aria-live="assertive" data-testid="sign-in-form" action="/users/sign_in" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="-mTfbX3Mir7pBvhRGnUS5OPgDUuH_xSgeAsKrgw1GvxPYuHZhiDkeKa_N4O2zkZVis8C7X_pnEAZXkMmVAHZfg" autocomplete="off" /><div class="form-group">
+<label for="user_login">Username or primary email</label>
+<input class="form-control gl-form-input js-username-field" autocomplete="username" autofocus="autofocus" autocapitalize="off" autocorrect="off" required="required" title="Username or primary email is required." data-testid="username-field" type="text" name="user[login]" id="user_login" />
+</div>
+<div class="form-group">
+<label for="user_password">Password</label>
+<input class="form-control gl-form-input js-password" data-id="user_password" data-required="true" data-title="Password is required." data-name="user[password]" data-testid="password-field" type="password" name="user[password]" id="user_password" />
+<div class="form-text gl-text-right">
+<a href="/users/password/new">Forgot your password?</a>
+</div>
+</div>
+<div class="form-group">
+</div>
+<div class="gl-mb-3">
+<div class="gl-form-checkbox custom-control custom-checkbox">
+<input name="user[remember_me]" type="hidden" value="0" autocomplete="off" /><input autocomplete="off" class="custom-control-input" type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" />
+<label class="custom-control-label" for="user_remember_me"><span>Remember me</span></label>
+</div>
+
+</div>
+<button class="gl-button btn btn-block btn-md btn-confirm js-sign-in-button" data-testid="sign-in-button" type="submit"><span class="gl-button-text">
+Sign in
+
+</span>
+
+</button></form>
+</div>
+<div class="gl-mt-3">
+By signing in you accept the <a href='/-/users/terms' target='_blank' rel='noreferrer noopener'>Terms of Use and acknowledge the Privacy Statement and Cookie Policy</a>.
+</div>
+<div class="gl-mt-3 gl-text-center">
+Don&#39;t have an account yet?
+<a data-testid="register-link" data-track-action="click_register_from_sign_in_page" href="/users/sign_up">Register now</a>
+</div>
+<div class="gl-flex gl-items-center gl-gap-5" data-testid="divider">
+<hr class="gl-grow gl-border-default">
+or sign in with
+<hr class="gl-grow gl-border-default">
+</div>
+
+<div class="gl-mt-5 gl-text-center gl-flex gl-flex-col gl-gap-3 js-oauth-login">
+<form class="js-omniauth-form" method="post" action="/users/auth/google_oauth2"><button class="gl-button btn btn-block btn-md btn-default " type="submit"><span class="gl-button-text">
+<img alt="Google" title="Sign in with Google" class="gl-button-icon lazy" data-src="/assets/auth_buttons/google_64-9ab7462cd2115e11f80171018d8c39bd493fc375e83202fbb6d37a487ad01908.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+<span class="gl-button-text">
+Google
+</span>
+
+</span>
+
+</button><input type="hidden" name="authenticity_token" value="DRYL6Dyn5Smxm-HlhXaHEZ0O4rEhy1drVeyn2Pxgl2a4EDVcx0uL7_4iLjcpzdOg9CHtF9nd34s0ue5QpFRU5A" autocomplete="off" /></form>
+<form class="js-omniauth-form" method="post" action="/users/auth/github"><button class="gl-button btn btn-block btn-md btn-default " data-testid="github-login-button" type="submit"><span class="gl-button-text">
+<img alt="GitHub" title="Sign in with GitHub" class="gl-button-icon lazy" data-src="/assets/auth_buttons/github_64-84041cd0ea392220da96f0fb9b9473c08485c4924b98c776be1bd33b0daab8c0.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+<span class="gl-button-text">
+GitHub
+</span>
+
+</span>
+
+</button><input type="hidden" name="authenticity_token" value="dRSxAX4DsHsDzIp0okEK9822AGAa54yk0ZGPp5Q7jZnAEo-1he_evUx1RaYO-l5GpJkPxuLxBESwxMYvzA9OGw" autocomplete="off" /></form>
+<form class="js-omniauth-form" method="post" action="/users/auth/gitlab"><button class="gl-button btn btn-block btn-md btn-default " data-testid="gitlab-oauth-login-button" type="submit"><span class="gl-button-text">
+<img alt="GitLab" title="Sign in with GitLab" class="gl-button-icon lazy" data-src="/assets/auth_buttons/gitlab_64-2808a5fce900f4cb87b4dce9f9907bf68ac00a39086aa3a125e3250652f9967f.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+<span class="gl-button-text">
+GitLab
+</span>
+
+</span>
+
+</button><input type="hidden" name="authenticity_token" value="WaalMehoXgr6MqC-OWH7-QYYc80yMtxRfbyGlRxN3VzsoJuFE4QwzLWLb2yV2q9Ibzd8a8okVLEc6c8dRHke3g" autocomplete="off" /></form>
+<div class="gl-form-checkbox custom-control custom-checkbox">
+<input type="checkbox" name="js-remember-me-omniauth" id="js-remember-me-omniauth" class="custom-control-input" />
+<label class="custom-control-label" for="js-remember-me-omniauth"><span>Remember me
+</span></label>
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer-container gl-w-full gl-self-end">
+<hr class="gl-m-0">
+<div class="container gl-py-5 gl-flex gl-justify-between gl-items-start">
+<div class="gl-hidden md:gl-flex gl-gap-5 gl-flex-wrap">
+<a href="/explore">Explore</a>
+<a href="/help">Help</a>
+<a href="https://about.gitlab.com">About GitLab</a>
+<a target="_blank" class="text-nowrap" rel="noopener noreferrer" href="https://forum.gitlab.com">Community forum</a>
+</div>
+<div class="js-language-switcher" data-locales="[{&quot;value&quot;:&quot;en&quot;,&quot;percentage&quot;:100,&quot;text&quot;:&quot;English&quot;},{&quot;value&quot;:&quot;fr&quot;,&quot;percentage&quot;:98,&quot;text&quot;:&quot;français&quot;},{&quot;value&quot;:&quot;de&quot;,&quot;percentage&quot;:96,&quot;text&quot;:&quot;Deutsch&quot;},{&quot;value&quot;:&quot;zh_CN&quot;,&quot;percentage&quot;:95,&quot;text&quot;:&quot;简体中文&quot;},{&quot;value&quot;:&quot;ja&quot;,&quot;percentage&quot;:94,&quot;text&quot;:&quot;日本語&quot;},{&quot;value&quot;:&quot;pt_BR&quot;,&quot;percentage&quot;:92,&quot;text&quot;:&quot;português (Brasil)&quot;}]"></div>
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>
