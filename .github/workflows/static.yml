@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy to GitHub Pages
+name: Deploy Hackers-Den to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -52,5 +52,5 @@ jobs:
         
       - name: Verify deployment
         run: |
-          echo "🚀 Deployment successful! Your site is now available at: ${{ steps.deployment.outputs.page_url }}"
+          echo "🚀 Hackers-Den deployed successfully! Your site is now available at: ${{ steps.deployment.outputs.page_url }}"
           curl -s -I ${{ steps.deployment.outputs.page_url }} | grep -q "200 OK" && echo "✅ Site is responding correctly" || echo "❌ Site verification failed"
