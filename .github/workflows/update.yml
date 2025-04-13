@@ -15,9 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch all history for proper versioning
+          submodules: false  # Do not attempt to checkout submodules
       
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -52,16 +53,20 @@ jobs:
           # Copy default image
           cp media/newsreader-not-cover.png resources/themes/matrix/static/img/
           
-          # Create Matrix theme CSS files (similar to the existing ones)
-          cp -r ../matrix_theme/static/css/* resources/themes/matrix/static/css/
+          # Copy Matrix theme CSS files from previous setup if available
+          if [ -d "../matrix_theme/static/css" ]; then
+            cp -r ../matrix_theme/static/css/* resources/themes/matrix/static/css/
+          fi
           
-          # Create manifest.json file for PWA support
-          cp ../matrix_theme/static/manifest.json resources/themes/matrix/static/
+          # Create manifest.json file for PWA support if exists
+          if [ -f "../matrix_theme/static/manifest.json" ]; then
+            cp ../matrix_theme/static/manifest.json resources/themes/matrix/static/
+          fi
           
-          # Create the index.html template
-          cp ../matrix_theme/index.html resources/themes/matrix/
-          
-          # Update the Makefile to include our Matrix theme (ensure it's already updated)
+          # Copy the index.html template if exists
+          if [ -f "../matrix_theme/index.html" ]; then
+            cp ../matrix_theme/index.html resources/themes/matrix/
+          fi
           
           # Create the static.tar archive for the Matrix theme
           cd resources/themes/matrix && tar cf static.tar --directory=./static . && cd ../../..
@@ -266,11 +271,14 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           
-          # Include RSSPAPER directory in the commit to ensure it's on GitHub
+          # Stage changes
           git add dist/** 
-          git add RSSPAPER/**
+          git add RSSPAPER/** || echo "Could not add RSSPAPER directory (may not have changed)"
           git add README.md config.yaml manifest.json
-          git add rsspaper-latest.jar
+          git add rsspaper-latest.jar || echo "Could not add JAR file"
           
+          # Commit with conditional message
           git commit -m "🔒 Hackers-Den: Daily update $(date +%Y-%m-%d)" || echo "No changes to commit"
+          
+          # Push changes
           git push
