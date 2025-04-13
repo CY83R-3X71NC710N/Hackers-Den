@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Hacker&#39;s Den</title>
+    <title>Hacker's Den</title>
     <meta name="description" content="Hackers-Den Publishing">
     <meta name="generator" content="RSSPAPER">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
@@ -18,364 +18,99 @@
     <!-- End PWA -->
     <!-- Opengraph -->
     <meta property="og:image" content="img/screenshot.png">
-    <meta property="og:title" content="Hacker&#39;s Den">
+    <meta property="og:title" content="Hacker's Den">
     <meta property="og:type" content="website">
     <!-- End Opengraph -->
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/normalize.css">
     <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/matrix.css">
     <link href="static/css/mobile.css" rel="stylesheet" media="all and (max-width: 600px)">
     <link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">
     <!-- End CSS -->
+    <!-- Preload Font -->
+    <link rel="preload" href="static/fonts/Newsreader-VariableFont_opsz,wght.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
+    <!-- Matrix Background -->
+    <div class="matrix-bg">
+        <div class="matrix-rain" id="matrix-rain"></div>
+    </div>
+
     <div class="container">
         <header class="header">
-            <h1 class="title">Hacker&#39;s Den</h1>
-            <h2 class="subtitle"><span class="subtitle__separator">~</span> <span class="subtitle__text">Latest Hacking News</span> <span class="subtitle__separator">~</span></h2>
+            <h1 class="title">Hacker's Den</h1>
+            <h2 class="subtitle"><span class="subtitle__separator">[</span> <span class="subtitle__text">Latest Hacking News</span> <span class="subtitle__separator">]</span></h2>
             <hr class="separator">
         </header>
         <main class="main">
-            
+            {% for article in articles %}
                 <article class="feed__article article">
-                    <header class="article__header">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article_{{ forloop.counter }}.txt</span>
+                            <span class="terminal__date">{{ article.published-date-formatter }}</span>
+                        </div>
                         <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/t8ery490b20q4yd6eloa.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
+                            <a target="_blank" href="{{ article.link }}">
+                                {% if article.cover %}
+                                <img loading="lazy" class="lazy-load" src="{{ article.cover }}" alt="{{ article.title }}">
+                                {% else %}
+                                <img loading="lazy" class="lazy-load" src="static/img/newsreader-not-cover.png" alt="Not cover">
+                                {% endif %}
                             </a>
                         </p>
                         <div class="article__titles">
                             <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/t8ery490b20q4yd6eloa.html">Fortinet Releases Advisory on New Post-Exploitation Technique for Known Vulnerabilities</a>
+                                <a target="_blank" href="{{ article.link }}">{{ article.title }}</a>
                             </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">CISA Cybersecurity Feed</a> <span class="article__date">11 04 2025</span></h2>
+                            <h2 class="article__feed"><a target="_blank" href="{{ article.feed.link }}">{{ article.feed.title }}</a> <span class="article__date">{{ article.published-date-formatter }}</span></h2>
                         </div>
                     </header>
                 </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/aqkswt9ubtoxxu8i19c6.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/aqkswt9ubtoxxu8i19c6.html">WordPress Plugin Auth Bypass 🔓, Repairing Corrupt Ransomware Files 🛠️, Natural Language Browser History 🧠</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">Cybersecurity Updates</a> <span class="article__date">11 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://isc.sans.edu/podcastdetail/9404">
-                                
-                                <img loading="lazy" src="https://isc.sans.edu/images/podcast1400.jpg" alt="SANS Stormcast Friday April 11th: Network Infraxploit; Windows Hello Broken; Dell Update; Langflow Exploit
-">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://isc.sans.edu/podcastdetail/9404">SANS Stormcast Friday April 11th: Network Infraxploit; Windows Hello Broken; Dell Update; Langflow Exploit
-</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://isc.sans.edu/podcast.html#stormcast">SANS Internet Stormcenter Daily Cyber Security Podcast (Stormcast)</a> <span class="article__date">11 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/j714o0ij5hianknv00sj.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/j714o0ij5hianknv00sj.html">CISA Releases Ten Industrial Control Systems Advisories</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">CISA Cybersecurity Feed</a> <span class="article__date">10 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/yz1olmn3cz6i3w7v30at/entries/tcnj45le5c5t5otcagc7.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/yz1olmn3cz6i3w7v30at/entries/tcnj45le5c5t5otcagc7.html">[tl;dr sec] #274 - Model Context Protocol + Security Part Deux, Securing GitHub Actions, S3 Scanner</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">tl;dr sec</a> <span class="article__date">10 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/uk4uezvfv71m4dazati4.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/uk4uezvfv71m4dazati4.html">Fake Office Add-In 💼, Rust Kernel Rootkit 👾, Malaysia Rejects Ransomware ❌</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">Cybersecurity Updates</a> <span class="article__date">10 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://thecyberwire.com/podcasts/hacking-humans/333/notes">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://thecyberwire.com/podcasts/hacking-humans/333/notes">You get a million dollars, and you get a million dollars!</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://thecyberwire.com/podcasts/hacking-humans">Hacking Humans</a> <span class="article__date">10 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://isc.sans.edu/podcastdetail/9402">
-                                
-                                <img loading="lazy" src="https://isc.sans.edu/images/podcast1400.jpg" alt="SANS Stormcast ThursdayApril 10th: Getting Past PyArmor; CenterStack RCE; Android 0-Day Patch; VMware Tanzu Patches; Odd Win11 Directory; WhatsApp File Confusion; SANS AI Guide;
-">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://isc.sans.edu/podcastdetail/9402">SANS Stormcast ThursdayApril 10th: Getting Past PyArmor; CenterStack RCE; Android 0-Day Patch; VMware Tanzu Patches; Odd Win11 Directory; WhatsApp File Confusion; SANS AI Guide;
-</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://isc.sans.edu/podcast.html#stormcast">SANS Internet Stormcenter Daily Cyber Security Podcast (Stormcast)</a> <span class="article__date">10 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/tmgz4kx6fb64vd4bs3ky.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/tmgz4kx6fb64vd4bs3ky.html">CISA Adds Two Known Exploited Vulnerabilities to Catalog</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">CISA Cybersecurity Feed</a> <span class="article__date">09 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/e8gagopoco9uam2920lz.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/e8gagopoco9uam2920lz.html">US Bank Regulator Breached Since 2023 🏦, Ghidra MCP 🐉, VPNs with China Military Links 🇨🇳</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">Cybersecurity Updates</a> <span class="article__date">09 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://isc.sans.edu/podcastdetail/9400">
-                                
-                                <img loading="lazy" src="https://isc.sans.edu/images/podcast1400.jpg" alt="SANS Stormcast Wednesday, April 10th: Microsoft Patch Tuesday; Adobe Patches; OpenSSL 3.5 with PQC; Fortinet">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://isc.sans.edu/podcastdetail/9400">SANS Stormcast Wednesday, April 10th: Microsoft Patch Tuesday; Adobe Patches; OpenSSL 3.5 with PQC; Fortinet</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://isc.sans.edu/podcast.html#stormcast">SANS Internet Stormcenter Daily Cyber Security Podcast (Stormcast)</a> <span class="article__date">09 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/a8k3lc1c1tcodjy1wisl.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/a8k3lc1c1tcodjy1wisl.html">CISA Adds Two Known Exploited Vulnerabilities to Catalog</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">CISA Cybersecurity Feed</a> <span class="article__date">08 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/5b63nyagjjh9v11suz7c.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/5b63nyagjjh9v11suz7c.html">Texas State Bar Breach👩‍⚖️, Outlaw Linux Malware 🐧, Scattered Spider Members Pleads Guilty 🕷️</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">Cybersecurity Updates</a> <span class="article__date">08 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://thecyberwire.com/podcasts/word-notes/78/notes">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://thecyberwire.com/podcasts/word-notes/78/notes">OWASP cryptographic failures (noun) [Word Notes]</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://thecyberwire.com/podcasts/hacking-humans">Hacking Humans</a> <span class="article__date">08 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://isc.sans.edu/podcastdetail/9398">
-                                
-                                <img loading="lazy" src="https://isc.sans.edu/images/podcast1400.jpg" alt="SANS Stormcast Tuesday, April 8th:
-">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://isc.sans.edu/podcastdetail/9398">SANS Stormcast Tuesday, April 8th:
-</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://isc.sans.edu/podcast.html#stormcast">SANS Internet Stormcenter Daily Cyber Security Podcast (Stormcast)</a> <span class="article__date">08 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/71l548a20nov4sh86039.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d/entries/71l548a20nov4sh86039.html">CISA Adds One Known Exploited Vulnerability to Catalog</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">CISA Cybersecurity Feed</a> <span class="article__date">07 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/1mjmod29mqxbkzqenm2r.html">
-                                
-                                <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99/entries/1mjmod29mqxbkzqenm2r.html">Oracle Second Hack 👁️‍🗨️, Taming ML Wild West 🤠, ChatGPT Creates Fake Passport 🛂</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="">Cybersecurity Updates</a> <span class="article__date">07 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
-                <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
-                            <a target="_blank" href="https://isc.sans.edu/podcastdetail/9396">
-                                
-                                <img loading="lazy" src="https://isc.sans.edu/images/podcast1400.jpg" alt="SANS Stormcast Monday April 7th 2025: New Username Report; Quickshell Vulnerability; Apache Traffic Director Request Smuggeling
-">
-                                
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="https://isc.sans.edu/podcastdetail/9396">SANS Stormcast Monday April 7th 2025: New Username Report; Quickshell Vulnerability; Apache Traffic Director Request Smuggeling
-</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="https://isc.sans.edu/podcast.html#stormcast">SANS Internet Stormcenter Daily Cyber Security Podcast (Stormcast)</a> <span class="article__date">07 04 2025</span></h2>
-                        </div>
-                    </header>
-                </article>
-            
+            {% endfor %}
         </main>
     </div>
     <footer class="footer">
         <hr class="separator">
         <p class="footer__text">
-            Generated with <a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>
+            <a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>
         </p>
     </footer>
+
+    <!-- Add Matrix Rain Animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Matrix rain animation
+            const matrixRain = document.getElementById('matrix-rain');
+            const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numDrops = 35;
+
+            // Create matrix drops
+            for (let i = 0; i < numDrops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'matrix-drop';
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.animationDelay = `${Math.random() * 5}s`;
+                drop.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+                matrixRain.appendChild(drop);
+            }
+
+            // Update matrix drops with new characters periodically
+            setInterval(() => {
+                document.querySelectorAll('.matrix-drop').forEach(drop => {
+                    drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+                });
+            }, 1000);
+
+            // Lazy load images
+            document.querySelectorAll('img.lazy-load').forEach(img => {
+                img.onload = function() {
+                    this.classList.add('lazy-loaded');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

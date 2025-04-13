@@ -1,31 +1,186 @@
-name: update newspaper
+name: Update Hackers Den
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 3 * * *"  # Run daily at 3 AM for less server load
   push:
+    branches:
+      - main
+  workflow_dispatch:    # Allow manual triggering
+
 permissions:
   contents: write
+
 jobs:
-  report:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: remove existing
-        run: rm -rf ./dist
-      - name: Update newspaper
-        run: java -jar ./rsspaper-1.2.4-standalone.jar
-      - name: move files for overwrite & update index.html with changes
-        run: | 
-          mv -f ./manifest.json ./dist/static/manifest.json && mv -f ./newsreader-not-cover.png ./dist/static/img/newsreader-not-cover.png
-          sed -i 's|href="https://github.com/tanrax/RSSpaper">RSSpaper<\/a> and a lot of <span class="footer__heard">❤️<\/span>️|href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N<\/a>|; s|<meta name="description" content="My static news generator">|<meta name="description" content="Hackers-Den Publishing">|; s|<meta name="theme-color" content="#2e3440">|<meta name="theme-color" content="#000000">|; s|<meta name="theme-color" content="#5e81ac" />|<meta name="theme-color" content="#000000" />|; s|<h2 class="subtitle"><span class="subtitle__separator">~<\/span> <span class="subtitle__text">My static generate newspaper<\/span> <span class="subtitle__separator">~<\/span><\/h2>|<h2 class="subtitle"><span class="subtitle__separator">~<\/span> <span class="subtitle__text">Latest Hacking News<\/span> <span class="subtitle__separator">~<\/span><\/h2>|' ./dist/index.html
-          sed -i 's|--color__nord-dark: #2e3440;|--color__nord-dark: #000000;|; s|--color__nord-light: #d8dee9;|--color__nord-light: #d8dee9;|; s|--color__nord-medium: #5e81ac;|--color__nord-medium: #b0b0b0;|' ./dist/static/css/main.css
-      - name: Push
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for proper versioning
+      
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      
+      - name: Clean previous builds
         run: |
-          git config --global user.name CY83R-3X71NC710N
-          git config --global user.email $EMAIL
-          git add **
-          git commit -m 'Build'
+          rm -rf ./dist
+          echo "🧹 Cleaned previous build artifacts"
+      
+      - name: Generate RSS newspaper
+        run: |
+          echo "🔄 Generating Hacker's Den RSS feed..."
+          java -jar ./rsspaper-1.2.4-standalone.jar
+          echo "✅ RSS feed generated successfully"
+      
+      - name: Download Matrix font
+        run: |
+          mkdir -p ./dist/static/fonts
+          curl -L -o ./matrix-code.zip https://www.dafont.com/download.php?f=matrix-code-nfi
+          unzip -j matrix-code.zip "*.ttf" -d ./temp_fonts
+          
+          # Convert TTF to WOFF2 for better performance
+          sudo apt-get update
+          sudo apt-get install -y fontforge
+          
+          echo "Converting fonts to WOFF2 format..."
+          for font in ./temp_fonts/*.ttf; do
+            fontforge -lang=ff -c 'Open($1); Generate($2); Close();' "$font" "${font%.ttf}.woff2"
+          done
+          
+          mv ./temp_fonts/*.woff2 ./dist/static/fonts/matrix-code.woff2
+          rm -rf ./temp_fonts matrix-code.zip
+          echo "✅ Matrix font downloaded and converted"
+      
+      - name: Optimize site
+        run: |
+          # Copy custom assets
+          cp -f ./manifest.json ./dist/static/manifest.json
+          cp -f ./newsreader-not-cover.png ./dist/static/img/newsreader-not-cover.png
+          
+          # Add service worker for better PWA experience
+          cat > ./dist/static/service-worker.js << 'EOL'
+          // Hackers Den Service Worker
+          const CACHE_NAME = 'hackers-den-cache-v1';
+          const urlsToCache = [
+            '/',
+            '/index.html',
+            '/static/css/main.css',
+            '/static/css/matrix.css',
+            '/static/css/desktop.css',
+            '/static/css/mobile.css',
+            '/static/css/normalize.css',
+            '/static/fonts/matrix-code.woff2',
+            '/static/fonts/Newsreader-VariableFont_opsz,wght.woff2',
+            '/static/img/newsreader-not-cover.png'
+          ];
+
+          self.addEventListener('install', event => {
+            event.waitUntil(
+              caches.open(CACHE_NAME)
+                .then(cache => {
+                  console.log('Opened cache');
+                  return cache.addAll(urlsToCache);
+                })
+            );
+          });
+
+          self.addEventListener('fetch', event => {
+            event.respondWith(
+              caches.match(event.request)
+                .then(response => {
+                  if (response) {
+                    return response;
+                  }
+                  return fetch(event.request).then(
+                    response => {
+                      if(!response || response.status !== 200 || response.type !== 'basic') {
+                        return response;
+                      }
+                      const responseToCache = response.clone();
+                      caches.open(CACHE_NAME)
+                        .then(cache => {
+                          cache.put(event.request, responseToCache);
+                        });
+                      return response;
+                    }
+                  );
+                })
+            );
+          });
+          EOL
+          
+          # Update manifest.json for proper PWA support
+          cat > ./dist/static/manifest.json << 'EOL'
+          {
+            "name": "Hacker's Den",
+            "short_name": "Hackers-Den",
+            "description": "Latest cybersecurity and hacking news in a Matrix-inspired interface",
+            "start_url": "/",
+            "display": "standalone",
+            "background_color": "#000000",
+            "theme_color": "#00FF00",
+            "icons": [
+              {
+                "src": "img/icons/icon-72x72.png",
+                "sizes": "72x72",
+                "type": "image/png"
+              },
+              {
+                "src": "img/icons/icon-96x96.png",
+                "sizes": "96x96",
+                "type": "image/png"
+              },
+              {
+                "src": "img/icons/icon-128x128.png",
+                "sizes": "128x128",
+                "type": "image/png"
+              },
+              {
+                "src": "img/icons/icon-144x144.png",
+                "sizes": "144x144",
+                "type": "image/png"
+              },
+              {
+                "src": "img/icons/icon-152x152.png",
+                "sizes": "152x152",
+                "type": "image/png"
+              },
+              {
+                "src": "img/icons/icon-192x192.png",
+                "sizes": "192x192",
+                "type": "image/png"
+              },
+              {
+                "src": "img/icons/icon-384x384.png",
+                "sizes": "384x384",
+                "type": "image/png"
+              },
+              {
+                "src": "img/icons/icon-512x512.png",
+                "sizes": "512x512",
+                "type": "image/png"
+              }
+            ]
+          }
+          EOL
+          
+          # Register service worker in index.html
+          sed -i 's|</body>|<script>\nif ("serviceWorker" in navigator) {\n  navigator.serviceWorker.register("/static/service-worker.js")\n    .then(reg => console.log("Service worker registered"))\n    .catch(err => console.log("Service worker not registered", err));\n}\n</script>\n</body>|' ./dist/index.html
+          
+          # Update theme colors and customize content
+          sed -i 's|href="https://github.com/tanrax/RSSpaper">RSSpaper</a> and a lot of <span class="footer__heard">❤️</span>️|href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>|; s|<meta name="description" content="My static news generator">|<meta name="description" content="Hackers-Den Publishing - Latest cybersecurity and hacking news">|; s|<meta name="theme-color" content="#2e3440">|<meta name="theme-color" content="#000000">|; s|<meta name="theme-color" content="#5e81ac" />|<meta name="theme-color" content="#00ff00" />|; s|<h2 class="subtitle"><span class="subtitle__separator">~</span> <span class="subtitle__text">My static generate newspaper</span> <span class="subtitle__separator">~</span></h2>|<h2 class="subtitle"><span class="subtitle__separator">[</span> <span class="subtitle__text">Latest Hacking News</span> <span class="subtitle__separator">]</span></h2>|' ./dist/index.html
+          
+          echo "✅ Site optimized successfully"
+      
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add dist/**
+          git commit -m "🤖 Daily update: $(date +%Y-%m-%d)" || echo "No changes to commit"
           git push
-    env:
-      GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      EMAIL: ${{ secrets.EMAIL }}

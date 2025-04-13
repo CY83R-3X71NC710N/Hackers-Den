@@ -1,16 +1,30 @@
-# Change the title, it's for you. Maybe you see "My newspaper"?
+# Hacker's Den - Matrix-themed RSS feed
 title: "Hacker's Den"
 
-# Options: light, dark, sepia or clojure 
+# Using custom matrix theme via CSS overrides
 theme: dark
 
-# Options: daily, weekly or all
-edition: weekly
+# Update frequency
+edition: daily
 
+# Cybersecurity and hacking-focused feeds
 feeds:
+  # Current feeds
   - https://kill-the-newsletter.com/feeds/oozrzxtg7nxieettty99.xml
   - https://kill-the-newsletter.com/feeds/nzaowh59yejdvcx52y6d.xml
   - https://kill-the-newsletter.com/feeds/yz1olmn3cz6i3w7v30at.xml
   - https://isc.sans.edu/dailypodcast.xml
   - https://feeds.megaphone.fm/hacking-humans
   - https://podcast.darknetdiaries.com
+  
+  # Additional top security feeds
+  - https://krebsonsecurity.com/feed/
+  - https://feeds.feedburner.com/TheHackersNews
+  - https://www.schneier.com/blog/atom.xml
+  - https://threatpost.com/feed/
+  - https://www.zdnet.com/topic/security/rss.xml
+  - https://nakedsecurity.sophos.com/feed
+  - https://www.securityweek.com/feed/
+  - https://www.darkreading.com/rss.xml
+  - https://www.bleepingcomputer.com/feed/
+  - https://www.helpnetsecurity.com/feed/
