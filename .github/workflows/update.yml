@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for proper versioning
+          fetch-depth: 1  # Fetch all history for proper versioning
           submodules: false  # Do not attempt to checkout submodules
       
       - name: Setup Java
