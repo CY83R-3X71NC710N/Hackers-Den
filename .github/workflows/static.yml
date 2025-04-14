@@ -2,13 +2,13 @@
 name: Deploy Hackers-Den to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Only run after the Update workflow completes successfully
   workflow_run:
     workflows: ["Update Hackers Den"]
     branches: ["main"]
     types:
       - completed
-
+    
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -27,15 +27,28 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
+    # Only run this job if the Update workflow succeeded
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
           ref: main  # Ensure we're using the latest content from main branch
+      
+      - name: Verify dist directory exists
+        run: |
+          if [ -d "./dist" ]; then
+            echo "✅ Found dist directory for deployment"
+            ls -la ./dist
+          else
+            echo "❌ dist directory not found! Make sure the update workflow has run successfully."
+            exit 1
+          fi
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

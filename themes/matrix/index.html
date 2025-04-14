@@ -20,6 +20,7 @@
     <meta property="og:image" content="img/screenshot.png">
     <meta property="og:title" content="{{ title }}">
     <meta property="og:type" content="website">
+    <meta property="og:description" content="Matrix-themed cybersecurity and hacking news aggregator">
     <!-- End Opengraph -->
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/normalize.css">
@@ -52,20 +53,22 @@
                             <span class="terminal__prompt">root@hackers-den:~$ cat article_{{ forloop.counter }}.txt</span>
                             <span class="terminal__date">{{ article.published-date-formatter }}</span>
                         </div>
-                        <p class="article__header-img">
-                            <a target="_blank" href="{{ article.link }}">
-                                {% if article.cover %}
-                                <img loading="lazy" class="lazy-load" src="{{ article.cover }}" alt="{{ article.title }}">
-                                {% else %}
-                                <img loading="lazy" class="lazy-load" src="static/img/newsreader-not-cover.png" alt="Not cover">
-                                {% endif %}
-                            </a>
-                        </p>
-                        <div class="article__titles">
-                            <h1 class="article__title">
-                                <a target="_blank" href="{{ article.link }}">{{ article.title }}</a>
-                            </h1>
-                            <h2 class="article__feed"><a target="_blank" href="{{ article.feed.link }}">{{ article.feed.title }}</a> <span class="article__date">{{ article.published-date-formatter }}</span></h2>
+                        <div class="article__content-wrapper">
+                            <div class="article__header-img">
+                                <a target="_blank" href="{{ article.link }}">
+                                    {% if article.cover %}
+                                    <img loading="lazy" class="lazy-load" src="{{ article.cover }}" alt="{{ article.title }}">
+                                    {% else %}
+                                    <img loading="lazy" class="lazy-load" src="static/img/newsreader-not-cover.png" alt="Not cover">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="article__titles">
+                                <h1 class="article__title">
+                                    <a target="_blank" href="{{ article.link }}">{{ article.title }}</a>
+                                </h1>
+                                <h2 class="article__feed"><a target="_blank" href="{{ article.feed.link }}">{{ article.feed.title }}</a> <span class="article__date">{{ article.published-date-formatter }}</span></h2>
+                            </div>
                         </div>
                     </header>
                 </article>

@@ -35,13 +35,13 @@ jobs:
         run: |
           echo "🔄 Updating Hackers-Den branding throughout the project..."
           
-          # Update config.yaml to use our Matrix theme and Hackers-Den branding
+          # Update config.yaml to use our dark theme and Hackers-Den branding
           cat > ./config.yaml << 'EOL'
           # Hackers-Den - Matrix-themed RSS feed
           title: "Hackers-Den"
 
-          # Use our custom Matrix theme
-          theme: matrix
+          # Use the built-in dark theme (we'll apply Matrix styling after generation)
+          theme: dark
 
           # Update frequency for fresher content
           edition: daily
