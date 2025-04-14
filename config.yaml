@@ -1,8 +1,8 @@
 # Hacker's Den - Matrix-themed RSS feed
 title: "Hacker's Den"
 
-# Use our new custom Matrix theme
-theme: matrix
+# Use the built-in dark theme (we'll apply Matrix styling after generation)
+theme: dark
 
 # Update frequency for fresher content
 edition: daily

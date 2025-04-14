@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <meta name="description" content="Hackers-Den - Matrix-themed cybersecurity and hacking news aggregator">
+    <meta name="generator" content="Hackers-Den">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="static/img/icons/favicon.png">
+    <meta name="theme-color" content="#000000">
+    <!-- PWA -->
+    <link rel="manifest" href="static/manifest.json" />
+    <link rel="apple-touch-icon" href="static/img/icons/apple-icon-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- ios support -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000" />
+    <!-- End PWA -->
+    <!-- Opengraph -->
+    <meta property="og:image" content="img/screenshot.png">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:type" content="website">
+    <!-- End Opengraph -->
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/normalize.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link href="static/css/mobile.css" rel="stylesheet" media="all and (max-width: 600px)">
+    <link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">
+    <link rel="stylesheet" href="static/css/matrix.css">
+    <link rel="stylesheet" href="static/css/custom-matrix.css">
+    <!-- End CSS -->
+    <!-- Preload Font -->
+    <link rel="preload" href="static/fonts/Newsreader-VariableFont_opsz,wght.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+    <!-- Matrix Background -->
+    <div class="matrix-bg">
+        <div class="matrix-rain" id="matrix-rain"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">{{ title }}</h1>
+            <h2 class="subtitle"><span class="subtitle__separator">[</span> <span class="subtitle__text">Cybersecurity Intelligence</span> <span class="subtitle__separator">]</span></h2>
+            <hr class="separator">
+        </header>
+        <main class="main">
+            {% for article in articles %}
+                <article class="feed__article article">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article_{{ forloop.counter }}.txt</span>
+                            <span class="terminal__date">{{ article.published-date-formatter }}</span>
+                        </div>
+                        <p class="article__header-img">
+                            <a target="_blank" href="{{ article.link }}">
+                                {% if article.cover %}
+                                <img loading="lazy" class="lazy-load" src="{{ article.cover }}" alt="{{ article.title }}">
+                                {% else %}
+                                <img loading="lazy" class="lazy-load" src="static/img/newsreader-not-cover.png" alt="Not cover">
+                                {% endif %}
+                            </a>
+                        </p>
+                        <div class="article__titles">
+                            <h1 class="article__title">
+                                <a target="_blank" href="{{ article.link }}">{{ article.title }}</a>
+                            </h1>
+                            <h2 class="article__feed"><a target="_blank" href="{{ article.feed.link }}">{{ article.feed.title }}</a> <span class="article__date">{{ article.published-date-formatter }}</span></h2>
+                        </div>
+                    </header>
+                </article>
+            {% endfor %}
+        </main>
+    </div>
+    <footer class="footer">
+        <hr class="separator">
+        <p class="footer__text">
+            <a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>
+        </p>
+    </footer>
+
+    <!-- Add Matrix Rain Animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Matrix rain animation
+            const matrixRain = document.getElementById('matrix-rain');
+            const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const numDrops = 35;
+
+            // Create matrix drops
+            for (let i = 0; i < numDrops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'matrix-drop';
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.animationDelay = `${Math.random() * 5}s`;
+                drop.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+                matrixRain.appendChild(drop);
+            }
+
+            // Update matrix drops with new characters periodically
+            setInterval(() => {
+                document.querySelectorAll('.matrix-drop').forEach(drop => {
+                    drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+                });
+            }, 1000);
+
+            // Lazy load images
+            document.querySelectorAll('img.lazy-load').forEach(img => {
+                img.onload = function() {
+                    this.classList.add('lazy-loaded');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hacker&#39;s Den</title>
+    <meta name="description" content="My static news generator">
+    <meta name="generator" content="RSSPAPER">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="static/img/icons/favicon.png">
+    <meta name="theme-color" content="#2e3440">
+    <!-- PWA -->
+    <link rel="manifest" href="static/manifest.json" />
+    <link rel="apple-touch-icon" href="static/img/icons/apple-icon-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- ios support -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#5e81ac" />
+    <!-- End PWA -->
+    <!-- Opengraph -->
+    <meta property="og:image" content="img/screenshot.png">
+    <meta property="og:title" content="Hacker&#39;s Den">
+    <meta property="og:type" content="website">
+    <!-- End Opengraph -->
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/normalize.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link href="static/css/mobile.css" rel="stylesheet" media="all and (max-width: 600px)">
+    <link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">
+    <link rel="stylesheet" href="static/css/matrix.css">
+    <link rel="stylesheet" href="static/css/custom-matrix.css">
+    <!-- End CSS -->
+</head>
+<body>
+    <!-- Matrix Background -->
+    <div class="matrix-bg">
+        <div class="matrix-rain" id="matrix-rain"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Hacker&#39;s Den</h1>
+            <h2 class="subtitle"><span class="subtitle__separator">~</span> <span class="subtitle__text">My static generate newspaper</span> <span class="subtitle__separator">~</span></h2>
+            <hr class="separator">
+        </header>
+        <main class="main">
+            
+                <article class="feed__article article">
+                    <header class="article__header">
+                        <p class="article__header-img">
+                            <a target="_blank" href="https://isc.sans.edu/podcastdetail/9406">
+                                
+                                <img loading="lazy" src="https://isc.sans.edu/images/podcast1400.jpg" alt="SANS Stormcast Monday April 14th: Langlow AI Attacks; Fortinet Attack Cleanup; MSFT Inetpub; 
+">
+                                
+                            </a>
+                        </p>
+                        <div class="article__titles">
+                            <h1 class="article__title">
+                                <a target="_blank" href="https://isc.sans.edu/podcastdetail/9406">SANS Stormcast Monday April 14th: Langlow AI Attacks; Fortinet Attack Cleanup; MSFT Inetpub; 
+</a>
+                            </h1>
+                            <h2 class="article__feed"><a target="_blank" href="https://isc.sans.edu/podcast.html#stormcast">SANS Internet Stormcenter Daily Cyber Security Podcast (Stormcast)</a> <span class="article__date">14 04 2025</span></h2>
+                        </div>
+                    </header>
+                </article>
+            
+                <article class="feed__article article">
+                    <header class="article__header">
+                        <p class="article__header-img">
+                            <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/13/week-in-review-microsoft-patches-exploited-windows-clfs-0-day-winrar-motw-bypass-flaw-fixed/">
+                                
+                                <img loading="lazy" src="https://img.helpnetsecurity.com/wp-content/uploads/2024/03/25124830/cybersecurity-week-review-1-1500.webp" alt="Week in review: Microsoft patches exploited Windows CLFS 0-day, WinRAR MotW bypass flaw fixed">
+                                
+                            </a>
+                        </p>
+                        <div class="article__titles">
+                            <h1 class="article__title">
+                                <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/13/week-in-review-microsoft-patches-exploited-windows-clfs-0-day-winrar-motw-bypass-flaw-fixed/">Week in review: Microsoft patches exploited Windows CLFS 0-day, WinRAR MotW bypass flaw fixed</a>
+                            </h1>
+                            <h2 class="article__feed"><a target="_blank" href="https://www.helpnetsecurity.com/">Help Net Security</a> <span class="article__date">13 04 2025</span></h2>
+                        </div>
+                    </header>
+                </article>
+            
+        </main>
+    </div>
+    <footer class="footer">
+        <hr class="separator">
+        <p class="footer__text">
+            Generated with <a class="footer__link" href="https://github.com/tanrax/RSSpaper">RSSpaper</a> and a lot of <span class="footer__heard">❤️</span>️
+        </p>
+    </footer>
+    <!-- Add Matrix Rain Animation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Matrix rain animation
+            const matrixRain = document.getElementById("matrix-rain");
+            const characters = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numDrops = 35;
+
+            // Create matrix drops
+            for (let i = 0; i < numDrops; i++) {
+                const drop = document.createElement("div");
+                drop.className = "matrix-drop";
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.animationDelay = `${Math.random() * 5}s`;
+                drop.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+                matrixRain.appendChild(drop);
+            }
+
+            // Update matrix drops with new characters periodically
+            setInterval(() => {
+                document.querySelectorAll(".matrix-drop").forEach(drop => {
+                    drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+                });
+            }, 1000);
+
+            // Lazy load images
+            document.querySelectorAll("img.lazy-load").forEach(img => {
+                img.onload = function() {
+                    this.classList.add("lazy-loaded");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
