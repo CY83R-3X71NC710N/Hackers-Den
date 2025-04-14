@@ -27,7 +27,7 @@ concurrency:
 jobs:
   # Single deploy job since we're just deploying
   deploy:
-    # Only run this job if the Update workflow succeeded
+    # Only run this job if the Update workflow succeeded or it was manually triggered
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     
     environment:
@@ -36,10 +36,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: main  # Ensure we're using the latest content from main branch
       
+      # Run the update_feed.sh script to ensure the dist directory is properly prepared
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      
+      - name: Execute update_feed.sh to generate Matrix-themed site
+        run: |
+          echo "🔄 Running update_feed.sh to generate Matrix-themed site..."
+          chmod +x ./update_feed.sh
+          ./update_feed.sh
+          
       - name: Verify dist directory exists
         run: |
           if [ -d "./dist" ]; then
