@@ -1,12 +1,34 @@
-# Static-RSS
-My custom Static RSS feed updated daily with Github Actions
+# Hackers-Den
 
-# Thanks To:
-```
-https://github.com/tanrax/RSSPAPER (Update JAR as needed in this directory)
-https://github.com/actions/upload-pages-artifact (Using version v3)
-```
+A Matrix-themed cybersecurity RSS feed updated daily with GitHub Actions
 
-# TODO:
-update favicon.ico + maybe dp cloudpages + add certain rss feeds to their own category to declutter homepage?
-Note: Updated actions/upload-pages-artifact to version v3 to resolve package version not found error.
+## About
+
+Hackers-Den is a customized implementation of the RSSpaper project, featuring:
+
+- Matrix-inspired hacker aesthetic with green text on dark background
+- Animated Matrix "digital rain" effect
+- Terminal-style article displays
+- Daily updates with the latest cybersecurity and hacking news
+- PWA (Progressive Web App) support for offline reading
+
+## Credits
+
+Based on:
+- [RSSPAPER](https://github.com/tanrax/RSSPAPER) - The core RSS feed generator
+- [GitHub Pages](https://pages.github.com/) - For hosting the static site
+
+## Features
+
+- Daily updates via GitHub Actions
+- Mobile-responsive design
+- Fast loading and performance optimizations
+- Matrix-themed animations and visual effects
+
+## License
+
+This project is licensed under the terms included in the LICENSE file.
+
+## Author
+
+Created and maintained by CY83R-3X71NC710N

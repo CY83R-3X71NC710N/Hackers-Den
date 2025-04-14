@@ -1,5 +1,5 @@
-# Hacker's Den - Matrix-themed RSS feed
-title: "Hacker's Den"
+# Hackers-Den - Matrix-themed RSS feed
+title: "Hackers-Den"
 
 # Use the built-in dark theme (we'll apply Matrix styling after generation)
 theme: dark
