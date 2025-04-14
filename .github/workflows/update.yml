@@ -218,6 +218,10 @@ jobs:
           # Add Hackers-Den manifest to the dist directory
           cp ./manifest.json ./dist/
           
+          # Create .nojekyll file to prevent GitHub Pages from using Jekyll processing
+          touch ./dist/.nojekyll
+          echo "✅ Created .nojekyll file to prevent GitHub Pages from processing with Jekyll"
+          
           echo "✅ Additional Hackers-Den branding applied successfully"
       
       - name: Commit and push changes

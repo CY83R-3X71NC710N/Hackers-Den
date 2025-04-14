@@ -103,6 +103,12 @@ jobs:
             echo "❌ dist directory not found! Make sure the update workflow has run successfully."
             exit 1
           fi
+          
+      - name: Create .nojekyll file
+        run: |
+          # Create a .nojekyll file in the dist directory to prevent Jekyll processing
+          touch ./dist/.nojekyll
+          echo "✅ Created .nojekyll file to prevent Jekyll processing"
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

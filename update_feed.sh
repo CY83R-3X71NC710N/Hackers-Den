@@ -143,6 +143,10 @@ if ! grep -q "manifest.json" dist/index.html; then
   sed -i '/<link rel="icon"/a \    <link rel="manifest" href="manifest.json">' dist/index.html
 fi
 
+# Create .nojekyll file to prevent GitHub Pages from using Jekyll processing
+echo "[+] Creating .nojekyll file to prevent GitHub Pages Jekyll processing..."
+touch ./dist/.nojekyll
+
 # Make sure the script is inside the body tag
 echo "[+] Ensuring script is inside body tag..."
 # First remove any existing script outside the body

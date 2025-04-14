@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title>Hackers-Den</title>
     <meta name="description" content="Hackers-Den - Matrix-themed cybersecurity and hacking news aggregator">
     <meta name="generator" content="Hackers-Den">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="static/img/icons/favicon.png">
-    <meta name="theme-color" content="#2e3440">
+    <meta name="theme-color" content="#000000">
     <!-- PWA -->
     <link rel="manifest" href="static/manifest.json" />
     <link rel="apple-touch-icon" href="static/img/icons/apple-icon-180.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- ios support -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#5e81ac" />
+    <meta name="theme-color" content="#00ff00" />
     <!-- End PWA -->
     <!-- Opengraph -->
     <meta property="og:image" content="img/screenshot.png">
@@ -26,729 +29,975 @@
     <link rel="stylesheet" href="static/css/main.css">
     <link href="static/css/mobile.css" rel="stylesheet" media="all and (max-width: 600px)">
     <link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">
+    <link rel="stylesheet" href="static/css/matrix.css">
+    <link rel="stylesheet" href="static/css/custom-matrix.css">
     <!-- End CSS -->
 </head>
 <body>
+    <!-- Matrix Background -->
+    <div class="matrix-bg">
+        <div class="matrix-rain" id="matrix-rain"></div>
+    </div>
     <div class="container">
         <header class="header">
             <h1 class="title">Hackers-Den</h1>
-            <h2 class="subtitle"><span class="subtitle__separator">~</span> <span class="subtitle__text">My static generate newspaper</span> <span class="subtitle__separator">~</span></h2>
+            <h2 class="subtitle"><span class="subtitle__separator">[</span> <span class="subtitle__text">Cybersecurity Intelligence</span> <span class="subtitle__separator">]</span></h2>
             <hr class="separator">
-        </header>
+        </div>
+                    </header>
         <main class="main">
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.darkreading.com/application-security/ai-code-tools-widely-hallucinate-packages">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.darkreading.com/application-security/ai-code-tools-widely-hallucinate-packages">AI Code Tools Widely Hallucinate Packages</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.darkreading.com">darkreading</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/security/govtech-giant-conduent-confirms-client-data-stolen-in-january-cyberattack/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/hl-images/2025/01/22/Conduent.jpg" alt="Govtech giant Conduent confirms client data stolen in January cyberattack">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/security/govtech-giant-conduent-confirms-client-data-stolen-in-january-cyberattack/">Govtech giant Conduent confirms client data stolen in January cyberattack</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.darkreading.com/threat-intelligence/threat-intel-firm-crypto-dark-web-accounts">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.darkreading.com/threat-intelligence/threat-intel-firm-crypto-dark-web-accounts">Threat Intel Firm Offers Crypto in Exchange for Dark Web Accounts</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.darkreading.com">darkreading</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/security/cybersecurity-firm-buying-hacker-forum-accounts-to-spy-on-cybercriminals/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/hl-images/2021/12/28/hacker.jpg" alt="Cybersecurity firm buying hacker forum accounts to spy on cybercriminals">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/security/cybersecurity-firm-buying-hacker-forum-accounts-to-spy-on-cybercriminals/">Cybersecurity firm buying hacker forum accounts to spy on cybercriminals</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/security/ssl-tls-certificate-lifespans-reduced-to-47-days-by-2029/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/hl-images/2024/01/29/padlock.jpg" alt="SSL/TLS certificate lifespans reduced to 47 days by 2029">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/security/ssl-tls-certificate-lifespans-reduced-to-47-days-by-2029/">SSL/TLS certificate lifespans reduced to 47 days by 2029</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.securityweek.com/huntress-documents-in-the-wild-exploitation-of-critical-gladinet-vulnerabilities/">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.securityweek.com/huntress-documents-in-the-wild-exploitation-of-critical-gladinet-vulnerabilities/">Huntress Documents In-The-Wild Exploitation of Critical Gladinet Vulnerabilities</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.securityweek.com/">SecurityWeek</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.darkreading.com/vulnerabilities-threats/fortinet-zero-day-arbitrary-code-execution">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.darkreading.com/vulnerabilities-threats/fortinet-zero-day-arbitrary-code-execution">Fortinet Zero-Day Bug May Lead to Arbitrary Code Execution</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.darkreading.com">darkreading</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.securityweek.com/trend-micro-flags-incomplete-nvidia-patch-that-leaves-ai-containers-exposed/">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.securityweek.com/trend-micro-flags-incomplete-nvidia-patch-that-leaves-ai-containers-exposed/">Trend Micro Flags Incomplete Nvidia Patch That Leaves AI Containers Exposed</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.securityweek.com/">SecurityWeek</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/security/new-resolverrat-malware-targets-pharma-and-healthcare-orgs-worldwide/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/hl-images/2025/04/14/RAT.jpg" alt="New ResolverRAT malware targets pharma and healthcare orgs worldwide">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/security/new-resolverrat-malware-targets-pharma-and-healthcare-orgs-worldwide/">New ResolverRAT malware targets pharma and healthcare orgs worldwide</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.darkreading.com/threat-intelligence/chinese-apt-exploit-edr-visibility-gap-cyber-espionage">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.darkreading.com/threat-intelligence/chinese-apt-exploit-edr-visibility-gap-cyber-espionage">Chinese APTs Exploit EDR &#39;Visibility Gap&#39; for Cyber Espionage</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.darkreading.com">darkreading</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://thehackernews.com/2025/04/resolverrat-campaign-targets-healthcare.html">
                                 
                                 <img loading="lazy" src="&#39;+r+&#39;" alt="ResolverRAT Campaign Targets Healthcare, Pharma via Phishing and DLL Side-Loading">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://thehackernews.com/2025/04/resolverrat-campaign-targets-healthcare.html">ResolverRAT Campaign Targets Healthcare, Pharma via Phishing and DLL Side-Loading</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://thehackernews.com">The Hacker News</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.schneier.com/blog/archives/2025/04/upcoming-speaking-engagements-45.html">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.schneier.com/blog/archives/2025/04/upcoming-speaking-engagements-45.html">Upcoming Speaking Engagements</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.schneier.com/">Schneier on Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/technology/meta-to-resume-ai-training-on-content-shared-by-europeans/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/hl-images/2025/04/14/Meta.jpg" alt="Meta to resume AI training on content shared by Europeans">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/technology/meta-to-resume-ai-training-on-content-shared-by-europeans/">Meta to resume AI training on content shared by Europeans</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.darkreading.com/cloud-security/it-rat-stealthy-resolver-malware">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.darkreading.com/cloud-security/it-rat-stealthy-resolver-malware">A New &#39;It RAT&#39;: Stealthy &#39;Resolver&#39; Malware Burrows In</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.darkreading.com">darkreading</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.zdnet.com/article/windows-warning-dont-delete-that-weird-inetpub-folder-already-did-heres-your-fix/">
                                 
                                 <img loading="lazy" src="https://www.zdnet.com/a/img/resize/07166eaa3c0489706f9025214022e2641bbfc77e/2025/04/14/a17fa8e8-1566-448e-b784-316aeb001bd2/microsoft-to-windows-users-dont-delete-that-odd-inetpub-folder.jpg?auto=webp&amp;amp;fit=crop&amp;amp;height=675&amp;amp;width=1200" alt="Windows warning: Don&#39;t delete that weird &#39;inetpub&#39; folder. Already did? Here&#39;s your fix">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.zdnet.com/article/windows-warning-dont-delete-that-weird-inetpub-folder-already-did-heres-your-fix/">Windows warning: Don&#39;t delete that weird &#39;inetpub&#39; folder. Already did? Here&#39;s your fix</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.zdnet.com/">Latest stories for ZDNET in Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/security/kidney-dialysis-firm-davita-hit-by-weekend-ransomware-attack/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/hl-images/2025/04/14/DaVita-sign.jpg" alt="Kidney dialysis firm DaVita hit by weekend ransomware attack">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/security/kidney-dialysis-firm-davita-hit-by-weekend-ransomware-attack/">Kidney dialysis firm DaVita hit by weekend ransomware attack</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/security/enhancing-your-devsecops-with-wazuh-the-open-source-xdr-platform/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/posts/2025/04/13/wazuh-devsecops.jpg" alt="Enhancing your DevSecOps with Wazuh, the open source XDR platform">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/security/enhancing-your-devsecops-with-wazuh-the-open-source-xdr-platform/">Enhancing your DevSecOps with Wazuh, the open source XDR platform</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.darkreading.com/cloud-security/7-rsac-2025-cloud-security-sessions">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.darkreading.com/cloud-security/7-rsac-2025-cloud-security-sessions">7 RSAC 2025 Cloud Security Sessions You Don&#39;t Want to Miss</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.darkreading.com">darkreading</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.securityweek.com/threat-actor-allegedly-selling-fortinet-firewall-zero-day-exploit/">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.securityweek.com/threat-actor-allegedly-selling-fortinet-firewall-zero-day-exploit/">Threat Actor Allegedly Selling Fortinet Firewall Zero-Day Exploit</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.securityweek.com/">SecurityWeek</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.securityweek.com/new-resolverrat-targeting-healthcare-pharmaceutical-organizations/">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.securityweek.com/new-resolverrat-targeting-healthcare-pharmaceutical-organizations/">New ‘ResolverRAT’ Targeting Healthcare, Pharmaceutical Organizations</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.securityweek.com/">SecurityWeek</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-tells-windows-users-to-ignore-winre-install-errors/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/hl-images/2025/03/26/Windows.jpg" alt="Microsoft tells Windows users to ignore 0x80070643 WinRE errors">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-tells-windows-users-to-ignore-winre-install-errors/">Microsoft tells Windows users to ignore 0x80070643 WinRE errors</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://thehackernews.com/2025/04/phishing-campaigns-use-real-time-checks.html">
                                 
                                 <img loading="lazy" src="&#39;+r+&#39;" alt="Phishing Campaigns Use Real-Time Checks to Validate Victim Emails Before Credential Theft">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://thehackernews.com/2025/04/phishing-campaigns-use-real-time-checks.html">Phishing Campaigns Use Real-Time Checks to Validate Victim Emails Before Credential Theft</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://thehackernews.com">The Hacker News</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.zdnet.com/article/openai-used-to-test-its-ai-models-for-months-now-its-days-why-that-matters/">
                                 
                                 <img loading="lazy" src="https://www.zdnet.com/a/img/resize/997907a3112647220071b14356a0eb1be07b61fd/2025/03/20/7a8eb777-71e1-4c83-9e64-0d42be7f9ee1/openai-will-struggle-to-survive-predicts-ai-expert.jpg?auto=webp&amp;amp;fit=crop&amp;amp;height=675&amp;amp;width=1200" alt="OpenAI used to test its AI models for months - now it&#39;s days. Why that matters">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.zdnet.com/article/openai-used-to-test-its-ai-models-for-months-now-its-days-why-that-matters/">OpenAI used to test its AI models for months - now it&#39;s days. Why that matters</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.zdnet.com/">Latest stories for ZDNET in Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.securityweek.com/ai-hallucinations-create-a-new-software-supply-chain-threat/">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.securityweek.com/ai-hallucinations-create-a-new-software-supply-chain-threat/">AI Hallucinations Create a New Software Supply Chain Threat</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.securityweek.com/">SecurityWeek</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/package-hallucination-slopsquatting-malicious-code/">
                                 
                                 <img loading="lazy" src="https://img.helpnetsecurity.com/wp-content/uploads/2024/12/09104420/malicious_package3-1500.webp" alt="Package hallucination: LLMs may deliver malicious code to careless devs">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/package-hallucination-slopsquatting-malicious-code/">Package hallucination: LLMs may deliver malicious code to careless devs</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.helpnetsecurity.com/">Help Net Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.darkreading.com/identity-access-management-security/how-digitalocean-moved-away-from-manual-identity-management">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.darkreading.com/identity-access-management-security/how-digitalocean-moved-away-from-manual-identity-management">How DigitalOcean Moved Away From Manual Identity Management</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.darkreading.com">darkreading</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-new-emergency-windows-updates-fix-ad-policy-issues/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/hl-images/2025/03/28/Windows_headpic.jpg" alt="Microsoft: New Windows updates fix Active Directory policy issues">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-new-emergency-windows-updates-fix-ad-policy-issues/">Microsoft: New Windows updates fix Active Directory policy issues</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/artificial-intelligence/openais-gpt-41-41-nano-and-41-mini-models-release-imminent/">
                                 
                                 <img loading="lazy" src="https://www.bleepstatic.com/content/hl-images/2023/03/24/ChatGPT_headpic.jpg" alt="OpenAI&#39;s GPT-4.1, 4.1 nano, and 4.1 mini models release imminent">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/artificial-intelligence/openais-gpt-41-41-nano-and-41-mini-models-release-imminent/">OpenAI&#39;s GPT-4.1, 4.1 nano, and 4.1 mini models release imminent</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://thehackernews.com/2025/04/weekly-recap-windows-0-day-vpn-exploits.html">
                                 
                                 <img loading="lazy" src="&#39;+r+&#39;" alt="⚡ Weekly Recap: Windows 0-Day, VPN Exploits, Weaponized AI, Hijacked Antivirus and More">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://thehackernews.com/2025/04/weekly-recap-windows-0-day-vpn-exploits.html">⚡ Weekly Recap: Windows 0-Day, VPN Exploits, Weaponized AI, Hijacked Antivirus and More</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://thehackernews.com">The Hacker News</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.schneier.com/blog/archives/2025/04/china-sort-of-admits-to-being-behind-volt-typhoon.html">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.schneier.com/blog/archives/2025/04/china-sort-of-admits-to-being-behind-volt-typhoon.html">China Sort of Admits to Being Behind Volt Typhoon</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.schneier.com/">Schneier on Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-windows-server-2025-restarts-break-services-on-domain-controllers/">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.bleepingcomputer.com/news/microsoft/microsoft-windows-server-2025-restarts-break-services-on-domain-controllers/">Microsoft: Windows Server 2025 restarts break connectivity on some DCs</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.bleepingcomputer.com/">BleepingComputer</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.securityweek.com/malicious-npm-packages-target-cryptocurrency-paypal-users/">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.securityweek.com/malicious-npm-packages-target-cryptocurrency-paypal-users/">Malicious NPM Packages Target Cryptocurrency, PayPal Users</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.securityweek.com/">SecurityWeek</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://thehackernews.com/2025/04/cybersecurity-in-ai-era-evolve-faster.html">
                                 
                                 <img loading="lazy" src="&#39;+r+&#39;" alt="Cybersecurity in the AI Era: Evolve Faster Than the Threats or Get Left Behind">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://thehackernews.com/2025/04/cybersecurity-in-ai-era-evolve-faster.html">Cybersecurity in the AI Era: Evolve Faster Than the Threats or Get Left Behind</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://thehackernews.com">The Hacker News</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://thehackernews.com/2025/04/pakistan-linked-hackers-expand-targets.html">
                                 
                                 <img loading="lazy" src="&#39;+r+&#39;" alt="Pakistan-Linked Hackers Expand Targets in India with CurlBack RAT and Spark RAT">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://thehackernews.com/2025/04/pakistan-linked-hackers-expand-targets.html">Pakistan-Linked Hackers Expand Targets in India with CurlBack RAT and Spark RAT</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://thehackernews.com">The Hacker News</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.darkreading.com/threat-intelligence/morocco-investigates-social-security-agency-data-leak">
                                 
                                 <img loading="lazy" src="static/img/newsreader-not-cover.png" alt="Not cover">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.darkreading.com/threat-intelligence/morocco-investigates-social-security-agency-data-leak">Morocco Investigates Social Security Agency Data Leak</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.darkreading.com">darkreading</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/quiet-data-breach-ai-workflows/">
                                 
                                 <img loading="lazy" src="https://img.helpnetsecurity.com/wp-content/uploads/2025/04/07202030/ai_threats-1500.webp" alt="The quiet data breach hiding in AI workflows">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/quiet-data-breach-ai-workflows/">The quiet data breach hiding in AI workflows</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.helpnetsecurity.com/">Help Net Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/tirreno-open-source-fraud-prevention-platform/">
                                 
                                 <img loading="lazy" src="https://img.helpnetsecurity.com/wp-content/uploads/2025/04/07210352/tirreno-1500.webp" alt="Tirreno: Open-source fraud prevention platform">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/tirreno-open-source-fraud-prevention-platform/">Tirreno: Open-source fraud prevention platform</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.helpnetsecurity.com/">Help Net Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/data-breaches-costs/">
                                 
                                 <img loading="lazy" src="https://img.helpnetsecurity.com/wp-content/uploads/2025/02/25185231/data_breach-1500.webp" alt="Sector by sector: How data breaches are wrecking bottom lines">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/data-breaches-costs/">Sector by sector: How data breaches are wrecking bottom lines</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.helpnetsecurity.com/">Help Net Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/regulatory-non-compliance-penalties/">
                                 
                                 <img loading="lazy" src="https://img.helpnetsecurity.com/wp-content/uploads/2023/09/26142115/compliance.jpg" alt="Organizations can’t afford to be non-compliant">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/regulatory-non-compliance-penalties/">Organizations can’t afford to be non-compliant</a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.helpnetsecurity.com/">Help Net Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
                 <article class="feed__article article">
-                    <header class="article__header">
-                        <p class="article__header-img">
+                    <header class="article__header terminal">
+                        <div class="terminal__header">
+                            <span class="terminal__prompt">root@hackers-den:~$ cat article</span>
+                            <span class="terminal__date"></span>
+                        </div>
+                        <div class="article__content-wrapper">
+                        <div class="article__header-img">
                             <a target="_blank" href="https://isc.sans.edu/podcastdetail/9406">
                                 
                                 <img loading="lazy" src="https://isc.sans.edu/images/podcast1400.jpg" alt="SANS Stormcast Monday April 14th: Langlow AI Attacks; Fortinet Attack Cleanup; MSFT Inetpub; 
 ">
                                 
                             </a>
-                        </p>
+                        </div>
                         <div class="article__titles">
                             <h1 class="article__title">
                                 <a target="_blank" href="https://isc.sans.edu/podcastdetail/9406">SANS Stormcast Monday April 14th: Langlow AI Attacks; Fortinet Attack Cleanup; MSFT Inetpub; 
@@ -756,6 +1005,7 @@
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://isc.sans.edu/podcast.html#stormcast">SANS Internet Stormcenter Daily Cyber Security Podcast (Stormcast)</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
+                    </div>
                     </header>
                 </article>
             
@@ -764,8 +1014,16 @@
     <footer class="footer">
         <hr class="separator">
         <p class="footer__text">
-            Generated with <a class="footer__link" href="https://github.com/tanrax/RSSpaper">RSSpaper</a> and a lot of <span class="footer__heard">❤️</span>️
-        </p>
+            <a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>
+        </div>
     </footer>
+<script src="static/js/matrix-effects.js"></script>
+    <!-- Matrix Animation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize Matrix theme
+            console.log("🔒 Initializing Hackers-Den Matrix theme...");
+        });
+    </script>
 </body>
 </html>
