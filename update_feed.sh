@@ -17,7 +17,7 @@ if [ -f "dist/index.html" ] && [ -f "dist/static/css/matrix.css" ]; then
   cp dist/static/manifest.json matrix-theme-backup/
 fi
 
-# Step 1: Run the RSSPAPER jar to generate the feed
+# Step 1: Run the existing RSSPAPER jar to generate the feed
 echo "[+] Running RSSPAPER jar to generate fresh content..."
 java -jar rsspaper-1.2.4-standalone.jar
 
@@ -205,7 +205,7 @@ fi
 # Add Matrix theme reference to the index.html if it doesn't exist
 if ! grep -q "matrix.css" dist/index.html; then
   echo "[+] Injecting Matrix CSS reference into index.html..."
-  sed -i 's|<link rel="stylesheet" href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">|<link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">\n    <link rel="stylesheet" href="static/css/matrix.css">|' dist/index.html
+  sed -i 's|<link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">|<link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">\n    <link rel="stylesheet" href="static/css/matrix.css">|' dist/index.html
 fi
 
 # Add custom Matrix theme reference to the index.html if it doesn't exist

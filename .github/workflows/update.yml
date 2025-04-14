@@ -26,59 +26,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       
-      - name: Setup Clojure tools
-        uses: DeLaGuardo/setup-clojure@12.1
-        with:
-          lein: 2.9.10
-      
       - name: Clean previous builds
         run: |
           rm -rf ./dist
           echo "🧹 Cleaned previous build artifacts"
-      
-      - name: Compile RSSpaper JAR from source
-        run: |
-          echo "🔄 Compiling RSSpaper JAR from source..."
-          cd RSSPAPER
-          
-          # Ensure the matrix theme is properly configured
-          echo "🔧 Setting up Matrix theme in RSSPAPER resources..."
-          mkdir -p resources/themes/matrix/static/{css,fonts,img/icons}
-          
-          # Install fonts
-          sudo apt-get update
-          sudo apt-get install -y fonts-dejavu
-          cp /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf resources/themes/matrix/static/fonts/matrix-code.ttf
-          
-          # Copy default image
-          cp media/newsreader-not-cover.png resources/themes/matrix/static/img/
-          
-          # Copy Matrix theme CSS files from previous setup if available
-          if [ -d "../matrix_theme/static/css" ]; then
-            cp -r ../matrix_theme/static/css/* resources/themes/matrix/static/css/
-          fi
-          
-          # Create manifest.json file for PWA support if exists
-          if [ -f "../matrix_theme/static/manifest.json" ]; then
-            cp ../matrix_theme/static/manifest.json resources/themes/matrix/static/
-          fi
-          
-          # Copy the index.html template if exists
-          if [ -f "../matrix_theme/index.html" ]; then
-            cp ../matrix_theme/index.html resources/themes/matrix/
-          fi
-          
-          # Create the static.tar archive for the Matrix theme
-          cd resources/themes/matrix && tar cf static.tar --directory=./static . && cd ../../..
-          
-          # Build the JAR file
-          make build
-          
-          # Copy the compiled JAR to the root directory
-          cp target/rsspaper-*-standalone.jar ../../rsspaper-latest.jar
-          cd ../
-          
-          echo "✅ RSSpaper JAR compilation completed"
       
       - name: Update Hackers-Den branding
         run: |
@@ -193,8 +144,11 @@ jobs:
       
       - name: Generate Hackers-Den RSS newspaper
         run: |
-          echo "🔄 Generating Hackers-Den RSS feed..."
-          java -jar ./rsspaper-latest.jar
+          echo "🔄 Generating Hackers-Den RSS feed using existing JAR..."
+          
+          # Use the existing JAR file in the repository
+          java -jar ./rsspaper-1.2.4-standalone.jar
+          
           echo "✅ RSS feed generated successfully"
       
       - name: Apply additional Hackers-Den branding
@@ -259,7 +213,7 @@ jobs:
           sed -i 's|<title>.*</title>|<title>Hackers-Den</title>|' ./dist/index.html
           
           # Update the subtitle text to be more Hackers-Den branded
-          sed -i 's|<span class="subtitle__text">Latest Hacking News</span>|<span class="subtitle__text">Cybersecurity Intelligence</span>|' ./dist/index.html
+          sed -i 's|<span class="subtitle__text">Latest Hacking News</span>|<span class="subtitle__text">Cybersecurity Intelligence</span>|' ./dist/index.html || echo "Could not update subtitle text"
           
           # Add Hackers-Den manifest to the dist directory
           cp ./manifest.json ./dist/
@@ -273,9 +227,7 @@ jobs:
           
           # Stage changes
           git add dist/** 
-          git add RSSPAPER/** || echo "Could not add RSSPAPER directory (may not have changed)"
           git add README.md config.yaml manifest.json
-          git add rsspaper-latest.jar || echo "Could not add JAR file"
           
           # Commit with conditional message
           git commit -m "🔒 Hackers-Den: Daily update $(date +%Y-%m-%d)" || echo "No changes to commit"
