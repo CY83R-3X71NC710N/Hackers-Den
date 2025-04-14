@@ -7,7 +7,7 @@ echo "[+] Starting RSS feed update process..."
 
 # Create backup directories if needed
 echo "[+] Ensuring theme backup is complete..."
-mkdir -p matrix-theme-backup/css matrix-theme-backup/img
+mkdir -p matrix-theme-backup/css matrix-theme-backup/img matrix-theme-backup/js
 
 # Backup matrices.css if we already have it
 if [ -f "dist/static/css/matrix.css" ]; then
@@ -20,12 +20,24 @@ if [ -f "dist/static/css/custom-matrix.css" ]; then
   cp -f dist/static/css/custom-matrix.css matrix-theme-backup/css/
 fi
 
+# Backup any JavaScript effects
+if [ -f "dist/static/js/matrix-effects.js" ]; then
+  echo "[+] Backing up JavaScript files..."
+  cp -f dist/static/js/matrix-effects.js matrix-theme-backup/js/
+fi
+
 # Step 1: Run the existing RSSPAPER jar to generate the feed
 echo "[+] Running RSSPAPER jar to generate fresh content..."
 java -jar rsspaper-1.2.4-standalone.jar
 
+# Create necessary directories
+mkdir -p dist/static/js
+
 # Step 2: Apply Matrix theme customizations
 echo "[+] Applying Matrix theme customizations..."
+
+# Ensure static directories exist
+mkdir -p dist/static/css dist/static/js dist/static/fonts
 
 # Copy matrix.css to dist folder
 cp -f matrix-theme-backup/css/matrix.css dist/static/css/
@@ -35,10 +47,33 @@ echo "[+] Matrix theme CSS copied"
 cp -f matrix-theme-backup/css/custom-matrix.css dist/static/css/
 echo "[+] Custom matrix theme CSS copied"
 
+# Copy matrix-effects.js to dist folder
+cp -f matrix-theme-backup/js/matrix-effects.js dist/static/js/
+echo "[+] Matrix theme JavaScript effects copied"
+
+# Extract and install Source Code Pro font if needed
+if [ ! -d "dist/static/fonts/source-code-pro" ]; then
+  echo "[+] Installing Source Code Pro font..."
+  mkdir -p dist/static/fonts/source-code-pro
+  
+  if [ -f "source-code-pro.zip" ]; then
+    unzip -o source-code-pro.zip -d dist/static/fonts/source-code-pro
+    echo "[+] Font installed"
+  else
+    echo "[!] Warning: source-code-pro.zip not found. Using web font instead."
+  fi
+fi
+
 # Add CSS references to head if they don't exist
 echo "[+] Updating stylesheet references..."
 if ! grep -q "matrix.css" dist/index.html; then
   sed -i 's|<link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">|<link href="static/css/desktop.css" rel="stylesheet" media="all and (min-width: 601px)">\n    <link rel="stylesheet" href="static/css/matrix.css">\n    <link rel="stylesheet" href="static/css/custom-matrix.css">|' dist/index.html
+fi
+
+# Add JavaScript references just before closing body tag
+echo "[+] Adding JavaScript references..."
+if ! grep -q "matrix-effects.js" dist/index.html; then
+  sed -i 's|</body>|<script src="static/js/matrix-effects.js"></script>\n</body>|' dist/index.html
 fi
 
 # Fix header closing tag issue
@@ -84,6 +119,30 @@ sed -i 's|<span class="subtitle__separator">~</span> <span class="subtitle__text
 echo "[+] Adding your attribution to the footer..."
 sed -i 's|Generated with <a class="footer__link" href="https://github.com/tanrax/RSSpaper">RSSpaper</a> and a lot of <span class="footer__heard">❤️</span>️|<a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>|' dist/index.html
 
+# Add font preloading for performance
+echo "[+] Adding font preloading for performance..."
+if ! grep -q "preload" dist/index.html; then
+  sed -i '/<head>/a \    <link rel="preconnect" href="https://fonts.googleapis.com">\n    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">' dist/index.html
+fi
+
+# Add article numbers as custom properties for staggered animations
+echo "[+] Adding article indexing for animations..."
+sed -i 's|<article class="feed__article">|<article class="feed__article" style="--article-index: 0">|' dist/index.html
+COUNTER=1
+while read -r line; do
+  if [[ $line == *"<article class="* ]]; then
+    # Replace with incrementing counter
+    sed -i "0,/<article class=\"feed__article\" style=\"--article-index: 0\">/s//<article class=\"feed__article\" style=\"--article-index: $COUNTER\">/" dist/index.html
+    ((COUNTER++))
+  fi
+done < dist/index.html
+
+# Add PWA manifest link
+echo "[+] Adding PWA support..."
+if ! grep -q "manifest.json" dist/index.html; then
+  sed -i '/<link rel="icon"/a \    <link rel="manifest" href="manifest.json">' dist/index.html
+fi
+
 # Make sure the script is inside the body tag
 echo "[+] Ensuring script is inside body tag..."
 # First remove any existing script outside the body
@@ -91,81 +150,34 @@ sed -i '/<\/body>/,/<\/html>/d' dist/index.html
 # Then add the closing body tag with the script inside
 
 cat >> dist/index.html << 'MATRIX_END'
-    <!-- Add Matrix Rain Animation -->
+    <!-- Matrix Animation -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Matrix rain animation
-            const matrixRain = document.getElementById("matrix-rain");
-            const characters = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            const fontSize = 18;
-            const drops = [];
-            
-            // Initialize canvas size
-            function initCanvas() {
-                const canvas = document.createElement("canvas");
-                matrixRain.appendChild(canvas);
-                const ctx = canvas.getContext("2d");
-                
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                
-                const columns = Math.ceil(canvas.width / fontSize);
-                
-                // Initialize drops
-                for (let i = 0; i < columns; i++) {
-                    drops[i] = Math.floor(Math.random() * -canvas.height / fontSize);
-                }
-                
-                return { canvas, ctx, columns };
-            }
-            
-            const { canvas, ctx, columns } = initCanvas();
-            
-            // Draw the Matrix rain
-            function draw() {
-                // Set semi-transparent black background to create fade effect
-                ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                ctx.fillStyle = "#0f0"; // Green text
-                ctx.font = fontSize + "px monospace";
-                
-                // Draw each drop
-                for (let i = 0; i < columns; i++) {
-                    // Choose a random character
-                    const char = characters.charAt(Math.floor(Math.random() * characters.length));
-                    
-                    // Draw the character
-                    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-                    
-                    // Move the drop down
-                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-                    
-                    drops[i]++;
-                }
-            }
-            
-            // Animation loop
-            setInterval(draw, 45);
-            
-            // Resize canvas when window size changes
-            window.addEventListener("resize", function() {
-                const { canvas, ctx, columns } = initCanvas();
-            });
-            
-            // Set dates on terminal headers
-            const terminalDates = document.querySelectorAll('.terminal__date');
-            terminalDates.forEach(element => {
-                const now = new Date();
-                element.textContent = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
-            });
+            // Initialize Matrix theme
+            console.log("🔒 Initializing Hackers-Den Matrix theme...");
         });
     </script>
 </body>
 </html>
 MATRIX_END
 
+# Create VSCode extension recommendation file
+echo "[+] Adding VSCode extension recommendations..."
+mkdir -p .vscode
+cat > .vscode/extensions.json << 'EOL'
+{
+  "recommendations": [
+    "ritwickdey.liveserver",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
+  ]
+}
+EOL
+
 echo "[+] Matrix theme applied successfully!"
 echo "[+] Your Hackers-Den is now ready at ./dist/index.html"
+
+# Add final success message with timestamp
+TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+echo "[+] Build completed at $TIMESTAMP"
+echo "[+] 🔒 SECURITY CLEARANCE GRANTED: ACCESS TO HACKERS-DEN AUTHORIZED 🔒"

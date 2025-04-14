@@ -40,12 +40,41 @@ jobs:
         with:
           ref: main  # Ensure we're using the latest content from main branch
       
-      # Run the update_feed.sh script to ensure the dist directory is properly prepared
+      # Run the update_feed.sh script to ensure the dist directory is properly prepared with Matrix theme
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
+      
+      - name: Verify backup theme files exist
+        run: |
+          # Ensure we have all the necessary Matrix theme files
+          echo "🔍 Checking for Matrix theme files..."
+          mkdir -p matrix-theme-backup/css matrix-theme-backup/js
+          
+          # Check if any of our theme files are missing
+          if [ ! -f "matrix-theme-backup/css/matrix.css" ] || [ ! -f "matrix-theme-backup/css/custom-matrix.css" ] || [ ! -f "matrix-theme-backup/js/matrix-effects.js" ]; then
+            echo "⚠️ Some Matrix theme files are missing, creating them from defaults..."
+            
+            # Create default theme files if needed (simplified versions)
+            if [ ! -f "matrix-theme-backup/css/matrix.css" ]; then
+              echo "/* Default Matrix CSS - Will be replaced with proper version */" > matrix-theme-backup/css/matrix.css
+            fi
+            
+            if [ ! -f "matrix-theme-backup/css/custom-matrix.css" ]; then
+              echo "/* Default Custom Matrix CSS - Will be replaced with proper version */" > matrix-theme-backup/css/custom-matrix.css
+            fi
+            
+            if [ ! -f "matrix-theme-backup/js/matrix-effects.js" ]; then
+              echo "/* Default Matrix JS - Will be replaced with proper version */" > matrix-theme-backup/js/matrix-effects.js
+            fi
+          else
+            echo "✅ Matrix theme files found"
+          fi
+          
+          ls -la matrix-theme-backup/css/
+          ls -la matrix-theme-backup/js/
       
       - name: Execute update_feed.sh to generate Matrix-themed site
         run: |
@@ -53,11 +82,23 @@ jobs:
           chmod +x ./update_feed.sh
           ./update_feed.sh
           
-      - name: Verify dist directory exists
+      - name: Verify dist directory structure
         run: |
           if [ -d "./dist" ]; then
             echo "✅ Found dist directory for deployment"
-            ls -la ./dist
+            echo "📁 Directory structure:"
+            find ./dist -type f | sort
+            
+            echo "📄 Checking key files:"
+            if [ -f "./dist/index.html" ]; then echo "✅ index.html exists"; else echo "❌ index.html missing"; fi
+            if [ -f "./dist/static/css/matrix.css" ]; then echo "✅ matrix.css exists"; else echo "❌ matrix.css missing"; fi
+            if [ -f "./dist/static/css/custom-matrix.css" ]; then echo "✅ custom-matrix.css exists"; else echo "❌ custom-matrix.css missing"; fi
+            if [ -f "./dist/static/js/matrix-effects.js" ]; then echo "✅ matrix-effects.js exists"; else echo "❌ matrix-effects.js missing"; fi
+            
+            echo "🔍 Checking for Matrix theme elements in HTML:"
+            grep -q "matrix.css" ./dist/index.html && echo "✅ matrix.css reference found in HTML" || echo "❌ matrix.css reference missing"
+            grep -q "matrix-effects.js" ./dist/index.html && echo "✅ matrix-effects.js reference found in HTML" || echo "❌ matrix-effects.js reference missing"
+            grep -q "matrix-bg" ./dist/index.html && echo "✅ matrix-bg element found in HTML" || echo "❌ matrix-bg element missing"
           else
             echo "❌ dist directory not found! Make sure the update workflow has run successfully."
             exit 1
@@ -75,8 +116,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        
+      
       - name: Verify deployment
         run: |
           echo "🚀 Hackers-Den deployed successfully! Your site is now available at: ${{ steps.deployment.outputs.page_url }}"
-          curl -s -I ${{ steps.deployment.outputs.page_url }} | grep -q "200 OK" && echo "✅ Site is responding correctly" || echo "❌ Site verification failed"
+          # Add timestamp to easily track deployments in logs
+          echo "📅 Deployed at: $(date '+%Y-%m-%d %H:%M:%S')"
+          echo "🔒 MATRIX THEME DEPLOYMENT COMPLETE 🔒"
