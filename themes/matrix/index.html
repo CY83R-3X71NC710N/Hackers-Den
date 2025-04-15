@@ -3,24 +3,24 @@
 <head>
     <meta charset="utf-8">
     <title>{{ title }}</title>
-    <meta name="description" content="Hackers-Den - Matrix-themed cybersecurity and hacking news aggregator">
+    <meta name="description" content="Hackers-Den - Red hacker-themed cybersecurity and intelligence news aggregator">
     <meta name="generator" content="Hackers-Den">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="static/img/icons/favicon.png">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#0a0000">
     <!-- PWA -->
     <link rel="manifest" href="static/manifest.json" />
     <link rel="apple-touch-icon" href="static/img/icons/apple-icon-180.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- ios support -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#0a0000" />
     <!-- End PWA -->
     <!-- Opengraph -->
     <meta property="og:image" content="img/screenshot.png">
     <meta property="og:title" content="{{ title }}">
     <meta property="og:type" content="website">
-    <meta property="og:description" content="Matrix-themed cybersecurity and hacking news aggregator">
+    <meta property="og:description" content="Red hacker-themed cybersecurity and intelligence news aggregator">
     <!-- End Opengraph -->
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/normalize.css">
@@ -38,11 +38,19 @@
     <div class="matrix-bg">
         <div class="matrix-rain" id="matrix-rain"></div>
     </div>
+    
+    <!-- Confidential watermark for hacker aesthetic -->
+    <div class="confidential-watermark" aria-hidden="true">TOP SECRET</div>
 
     <div class="container">
         <header class="header">
+            <!-- Intelligence briefing style header -->
+            <div class="document-header">
+                <div class="document-stamp">CONFIDENTIAL</div>
+                <div class="document-number">FILE-{{ "now"|date:"Ymd" }}-D</div>
+            </div>
             <h1 class="title">{{ title }}</h1>
-            <h2 class="subtitle"><span class="subtitle__separator">[</span> <span class="subtitle__text">Cybersecurity Intelligence</span> <span class="subtitle__separator">]</span></h2>
+            <h2 class="subtitle"><span class="subtitle__separator">[</span> <span class="subtitle__text">Intelligence Dashboard</span> <span class="subtitle__separator">]</span></h2>
             <hr class="separator">
         </header>
         <main class="main">
@@ -50,7 +58,7 @@
                 <article class="feed__article article">
                     <header class="article__header terminal">
                         <div class="terminal__header">
-                            <span class="terminal__prompt">root@hackers-den:~$ cat article_{{ forloop.counter }}.txt</span>
+                            <span class="terminal__prompt">root@hackers-den:~$ cat intel_{{ forloop.counter }}.dat</span>
                             <span class="terminal__date">{{ article.published-date-formatter }}</span>
                         </div>
                         <div class="article__content-wrapper">
@@ -70,6 +78,7 @@
                                 <h2 class="article__feed"><a target="_blank" href="{{ article.feed.link }}">{{ article.feed.title }}</a> <span class="article__date">{{ article.published-date-formatter }}</span></h2>
                             </div>
                         </div>
+                        <div class="access-bar" aria-hidden="true"></div>
                     </header>
                 </article>
             {% endfor %}
@@ -77,42 +86,260 @@
     </div>
     <footer class="footer">
         <hr class="separator">
-        <p class="footer__text">
-            <a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>
-        </p>
+        <div class="restricted-footer">
+            <div class="restricted-badge">RESTRICTED ACCESS</div>
+            <p class="footer__text">
+                <a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>
+            </p>
+            <div class="footer-warning">Unauthorized access is punishable under 18 U.S.C. § 1030</div>
+        </div>
     </footer>
 
-    <!-- Add Matrix Rain Animation -->
+    <!-- Add advanced Matrix Rain Animation -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Matrix rain animation
-            const matrixRain = document.getElementById('matrix-rain');
-            const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const numDrops = 35;
-
-            // Create matrix drops
-            for (let i = 0; i < numDrops; i++) {
-                const drop = document.createElement('div');
-                drop.className = 'matrix-drop';
-                drop.style.left = `${Math.random() * 100}%`;
-                drop.style.animationDelay = `${Math.random() * 5}s`;
-                drop.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
-                matrixRain.appendChild(drop);
+            // Create surveillance scan line effect
+            const scanline = document.createElement('div');
+            scanline.className = 'surveillance-scanline';
+            scanline.setAttribute('aria-hidden', 'true');
+            document.body.appendChild(scanline);
+            
+            // More advanced Matrix rain animation with canvas for better performance
+            const matrixContainer = document.getElementById('matrix-rain');
+            const canvas = document.createElement('canvas');
+            matrixContainer.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            
+            // Mix of characters for the rain
+            const chars = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789<>/\\[]{}$#@%&ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            
+            // Hacker themed phrases to occasionally insert into the rain
+            const dataPhrases = [
+                "ACCESS_DENIED",
+                "SCANNING...",
+                "ENCRYPTED",
+                "TOP_SECRET",
+                "CLASSIFIED",
+                "INTERCEPTED",
+                "HACKING_SYS",
+                "ROOT_ACCESS",
+                "SYS_BREACH",
+                "OVERRIDE",
+                "SEC_LEVEL_5",
+                "PWN3D"
+            ];
+            
+            // Initialize rain parameters
+            let drops = [];
+            let dataColumns = [];
+            let fontSize = 14;
+            let columns;
+            let speeds = [];
+            let brightness = [];
+            
+            // Set up canvas dimensions and ensure it covers the entire page
+            function adjustMatrixHeight() {
+                // Set full page height
+                const docHeight = Math.max(
+                    document.body.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.clientHeight,
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+                
+                // Ensure matrix container extends to full document height
+                const matrixBg = document.querySelector('.matrix-bg');
+                if (matrixBg) {
+                    matrixBg.style.height = docHeight + 'px';
+                }
+                
+                // Resize canvas
+                canvas.width = window.innerWidth;
+                canvas.height = docHeight;
+                
+                // Reset animation if needed
+                initializeRain();
             }
-
-            // Update matrix drops with new characters periodically
-            setInterval(() => {
-                document.querySelectorAll('.matrix-drop').forEach(drop => {
-                    drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
-                });
-            }, 1000);
+            
+            function initializeRain() {
+                // Calculate columns based on canvas width and font size
+                columns = Math.floor(canvas.width / fontSize);
+                
+                // Reset drops
+                drops = [];
+                speeds = [];
+                brightness = [];
+                dataColumns = [];
+                
+                // Initialize all drops
+                for (let i = 0; i < columns; i++) {
+                    // Random starting position between top of canvas and slightly above
+                    drops[i] = Math.floor(Math.random() * -canvas.height/fontSize);
+                    
+                    // Random speed 
+                    speeds[i] = 0.5 + Math.random() * 1.5;
+                    
+                    // Random brightness
+                    brightness[i] = 0.5 + Math.random() * 0.5;
+                }
+                
+                // Select random columns to show data phrases
+                for (let i = 0; i < columns * 0.05; i++) {
+                    dataColumns.push(Math.floor(Math.random() * columns));
+                }
+            }
+            
+            // Matrix rain drawing function with hacker twist
+            function drawHackerRain() {
+                // Translucent black to create fade effect
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Loop through drops
+                for (let i = 0; i < columns; i++) {
+                    // Determine if this column should show a data phrase
+                    const isDataColumn = dataColumns.includes(i);
+                    let char = chars.charAt(Math.floor(Math.random() * chars.length));
+                    
+                    // Occasionally show a data phrase instead of random chars
+                    if (isDataColumn && Math.random() > 0.97) {
+                        // Select a random data phrase
+                        const phrase = dataPhrases[Math.floor(Math.random() * dataPhrases.length)];
+                        
+                        // Draw the phrase vertically
+                        for (let j = 0; j < phrase.length; j++) {
+                            const y = (drops[i] + j) * fontSize;
+                            
+                            // Only draw if within canvas bounds
+                            if (y > 0 && y < canvas.height) {
+                                // Use red color for data phrases
+                                ctx.fillStyle = `rgba(255, 0, 0, ${brightness[i]})`;
+                                ctx.font = `${fontSize * 0.8}px 'Courier New', monospace`;
+                                ctx.fillText(phrase[j], i * fontSize, y);
+                            }
+                        }
+                    } else {
+                        // Calculate position
+                        const x = i * fontSize;
+                        const y = drops[i] * fontSize;
+                        
+                        // Use red color scheme for hacker feel, vary brightness
+                        let colorR = Math.floor(200 * brightness[i] + 55); // Brighter red
+                        let colorG = Math.floor(20 * brightness[i] * (Math.random() > 0.9 ? 1 : 0));
+                        let colorB = Math.floor(20 * brightness[i] * (Math.random() > 0.95 ? 1 : 0));
+                        
+                        ctx.fillStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${brightness[i]})`;
+                        
+                        // Set font size with slight variation
+                        const actualFontSize = fontSize * (0.9 + Math.random() * 0.2);
+                        ctx.font = `${actualFontSize}px 'Courier New', monospace`;
+                        
+                        // Draw the character
+                        ctx.fillText(char, x, y);
+                        
+                        // Occasionally add binary "1" and "0" characters in brighter red color
+                        if (Math.random() > 0.99) {
+                            ctx.fillStyle = `rgba(255, 30, 30, 0.9)`;
+                            ctx.fillText(Math.random() > 0.5 ? "1" : "0", x, y);
+                        }
+                    }
+                    
+                    // Move the drop down by its speed
+                    drops[i] += speeds[i];
+                    
+                    // Reset drop when it reaches bottom or randomly
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                        
+                        // Occasionally change speed and brightness for variety
+                        if (Math.random() > 0.8) {
+                            speeds[i] = 0.5 + Math.random() * 1.5;
+                            brightness[i] = 0.5 + Math.random() * 0.5;
+                        }
+                    }
+                }
+                
+                // Add horizontal scan lines for hacker effect
+                for (let i = 0; i < canvas.height; i += 100) {
+                    if (Math.random() > 0.985) {
+                        const scanOpacity = 0.1 + Math.random() * 0.2;
+                        ctx.fillStyle = `rgba(255, 0, 0, ${scanOpacity})`;
+                        ctx.fillRect(0, i, canvas.width, 1);
+                    }
+                }
+                
+                // Continue animation
+                requestAnimationFrame(drawHackerRain);
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', adjustMatrixHeight);
+            
+            // Check and adjust height when page content changes
+            window.addEventListener('scroll', function() {
+                // Ensure matrix effect covers the entire scrolling area
+                const matrixBg = document.querySelector('.matrix-bg');
+                if (matrixBg) {
+                    const docHeight = Math.max(
+                        document.body.scrollHeight,
+                        document.body.offsetHeight,
+                        document.documentElement.clientHeight,
+                        document.documentElement.scrollHeight,
+                        document.documentElement.offsetHeight
+                    );
+                    
+                    if (parseInt(matrixBg.style.height) < docHeight) {
+                        adjustMatrixHeight();
+                    }
+                }
+            });
+            
+            // Initial setup and start animation
+            adjustMatrixHeight();
+            drawHackerRain();
 
             // Lazy load images
             document.querySelectorAll('img.lazy-load').forEach(img => {
                 img.onload = function() {
                     this.classList.add('lazy-loaded');
                 }
+            });
+
+            // Add terminal typing effect to article titles
+            document.querySelectorAll('.article__title a').forEach(title => {
+                title.addEventListener('mouseenter', function() {
+                    if (this.dataset.processing) return;
+                    
+                    this.dataset.processing = 'true';
+                    this.originalText = this.textContent;
+                    const cursor = document.createElement('span');
+                    cursor.className = 'terminal-cursor';
+                    cursor.textContent = '█';
+                    cursor.setAttribute('aria-hidden', 'true');
+                    
+                    // Simulate typing effect
+                    this.textContent = '';
+                    let i = 0;
+                    
+                    const typeInterval = setInterval(() => {
+                        if (i < this.originalText.length) {
+                            this.textContent += this.originalText.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typeInterval);
+                            this.appendChild(cursor);
+                            delete this.dataset.processing;
+                        }
+                    }, 20);
+                });
+                
+                title.addEventListener('mouseleave', function() {
+                    if (this.originalText) {
+                        this.textContent = this.originalText;
+                    }
+                    delete this.dataset.processing;
+                });
             });
         });
     </script>

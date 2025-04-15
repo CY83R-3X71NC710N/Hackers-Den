@@ -1,6 +1,5 @@
 /* Custom Matrix Theme with Red Hacker Style
- * FICTIONAL THEME - For entertainment purposes only
- * This theme is not affiliated with any government agency
+ * Enhanced red hacker aesthetic for Hackers-Den
  */
 
 /* Import font for enhanced terminal look */
@@ -38,7 +37,7 @@
   overflow: hidden;
 }
 
-/* Add scanline effect to container - purely CSS, no external URLs */
+/* Add scanline effect to container */
 .container::before {
   content: "";
   position: absolute;
@@ -257,7 +256,7 @@
   box-shadow: 0 10px 20px rgba(100, 0, 0, 0.3);
 }
 
-/* Add paper texture with CSS rather than external URL */
+/* Add paper texture with CSS */
 .article__header::before {
   content: "";
   position: absolute;
@@ -360,14 +359,6 @@
     padding: 1rem;
     margin-top: 0.5rem;
   }
-  
-  /* Make security clearance labels fit better on mobile */
-  .clearance-label {
-    top: 5px;
-    right: 5px;
-    font-size: 0.6rem;
-    padding: 1px 5px;
-  }
 }
 
 /* Title styling with briefing document feel */
@@ -447,27 +438,6 @@ img:hover {
   transform: scale(1.02);
 }
 
-/* Add data bits visualization around images on hover */
-.article__header-img:hover::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 1px dashed var(--alert-red);
-  border-radius: 6px;
-  animation: borderPulse 2s infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes borderPulse {
-  0% { border-color: rgba(255, 0, 0, 0.3); }
-  50% { border-color: rgba(255, 0, 0, 0.8); }
-  100% { border-color: rgba(255, 0, 0, 0.3); }
-}
-
 /* Custom scrollbar for hacker system look */
 ::-webkit-scrollbar {
   width: 10px;
@@ -536,12 +506,6 @@ img:hover {
   100% { background-position: -100% 0; }
 }
 
-/* Main section positioning */
-.main {
-  position: relative;
-  z-index: 2;
-}
-
 /* Link hover effect */
 a {
   transition: all 0.3s ease;
@@ -593,64 +557,6 @@ a:hover {
   letter-spacing: 1px;
 }
 
-/* Clearance strip */
-.clearance-strip {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(40, 0, 0, 0.8);
-  padding: 5px 0;
-  gap: 15px;
-  margin: 10px 0;
-  border: 1px solid var(--terminal-red);
-  color: #ddd;
-  font-family: var(--matrix-font);
-  font-size: 0.75rem;
-  letter-spacing: 1px;
-  box-shadow: 0 0 10px rgba(100, 0, 0, 0.3);
-}
-
-.blinking-dot {
-  width: 8px;
-  height: 8px;
-  background-color: var(--alert-red);
-  border-radius: 50%;
-  animation: blink 1s infinite alternate;
-}
-
-/* System access tracker */
-.access-tracker {
-  margin-top: 30px;
-  background-color: rgba(20, 0, 0, 0.95);
-  border: 1px solid var(--terminal-red);
-  padding: 10px;
-  font-family: var(--matrix-font);
-  font-size: 0.8rem;
-  color: #ddd;
-}
-
-.access-tracker__header {
-  color: var(--alert-red);
-  font-family: var(--matrix-font);
-  border-bottom: 1px solid var(--terminal-red);
-  padding-bottom: 5px;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-
-.access-tracker__item {
-  padding: 3px 0;
-  position: relative;
-  padding-left: 18px;
-}
-
-.access-tracker__item::before {
-  content: ">";
-  position: absolute;
-  left: 5px;
-  color: var(--alert-red);
-}
-
 /* Restricted access footer styling */
 .restricted-footer {
   position: relative;
@@ -682,7 +588,7 @@ a:hover {
   letter-spacing: 0.5px;
 }
 
-/* Confidential watermark with CSS only (no image) */
+/* Confidential watermark */
 .confidential-watermark {
   position: fixed;
   top: 40%;
@@ -698,44 +604,6 @@ a:hover {
   text-transform: uppercase;
   font-weight: 900;
   text-shadow: 0 0 15px rgba(150, 0, 0, 0.1);
-}
-
-/* Redacted text effect */
-.redacted {
-  background: #111;
-  color: transparent !important;
-  border-radius: 2px;
-  padding: 0.1em 0.3em;
-  position: relative;
-  box-shadow: 0 0 1px #000;
-}
-
-/* Clearance labels */
-.clearance-label {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-family: var(--matrix-font);
-  font-size: 0.7rem;
-  color: var(--alert-red);
-  background: rgba(0,0,0,0.7);
-  padding: 2px 8px;
-  border-radius: 2px;
-  border: 1px solid var(--alert-red);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  z-index: 10;
-  transform: rotate(2deg);
-}
-
-/* Fictional disclaimer to avoid any legal issues */
-.fictional-disclaimer {
-  margin-top: 20px;
-  padding: 5px;
-  text-align: center;
-  font-size: 0.7rem;
-  color: #777;
-  font-style: italic;
 }
 
 /* Surveillance scanline */
@@ -758,37 +626,6 @@ a:hover {
   100% { top: 100%; }
 }
 
-/* Dark overlay for the shadowy feel - using CSS only, no external resources */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0,0,0,0.1) 0px,
-    rgba(0,0,0,0.11) 2px,
-    rgba(0,0,0,0.13) 4px,
-    transparent 6px
-  ), 
-  /* Self-generated noise pattern instead of external URL */
-  radial-gradient(rgba(255,0,0,0.03) 1px, transparent 1px);
-  background-size: 100% 6px, 4px 4px;
-  opacity: 0.4;
-}
-
-/* Add special CSS for the timestamps which appear in intelligence briefings */
-.timestamp {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  color: rgba(255, 0, 0, 0.5);
-  font-family: var(--matrix-font);
-  font-size: 0.7rem;
-  z-index: 100;
-}
-
 /* Access bar animation */
 .access-bar {
   position: absolute;
@@ -804,26 +641,6 @@ body::before {
 @keyframes accessData {
   0% { width: 0%; }
   100% { width: 100%; }
-}
-
-/* Surveillance notification banner */
-.surveillance-notification {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: var(--dark-red);
-  color: white;
-  text-align: center;
-  padding: 5px;
-  font-family: var(--matrix-font);
-  font-size: 0.7rem;
-  z-index: 10000;
-  letter-spacing: 2px;
-  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
-  animation: pulse 2s infinite alternate;
-  border-bottom: 1px dashed #600;
-  font-weight: bold;
 }
 
 /* Matrix background enhancements */
@@ -851,4 +668,32 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+/* Terminal cursor effect for hover states */
+.terminal-cursor {
+  display: inline-block;
+  color: var(--alert-red);
+  animation: blink 1s step-end infinite;
+}
+
+/* Binary flash effects in the background */
+.matrix-bg::after {
+  content: "1 0 1";
+  position: absolute;
+  color: rgba(255, 0, 0, 0.2);
+  font-size: 20rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: binary-flash 15s ease-in-out infinite;
+  font-family: monospace;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@keyframes binary-flash {
+  0%, 94%, 100% { opacity: 0; }
+  95%, 97% { opacity: 0.1; }
 }

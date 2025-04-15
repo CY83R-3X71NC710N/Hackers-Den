@@ -1,13 +1,13 @@
 /**
- * Enhanced Matrix Digital Rain Animation with NSA/Surveillance Theme
+ * Enhanced Matrix Digital Rain Animation with Red Hacker Theme
  * For Hackers-Den cybersecurity news aggregator
  * Note: This is fictional and for entertainment purposes only
  */
 
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize the Matrix rain animation with surveillance-themed elements
-  initSurveillanceRain();
+  // Initialize the Matrix rain animation with hacker-themed elements
+  initHackerRain();
   
   // Add cybersecurity-themed interactive effects
   addInteractiveEffects();
@@ -18,17 +18,26 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add terminal date timestamps to all terminal headers
   updateTerminalDates();
   
-  // Add NSA/Surveillance themed elements
+  // Add fictional hacker-themed elements
   addFictionalSurveillanceElements();
   
   // Add disclaimer about fictional nature to ensure no legal issues
   addFictionalDisclaimer();
+
+  // Make sure Matrix effect extends to full page height
+  adjustMatrixHeight();
+  
+  // Add event listener to adjust Matrix height on window resize
+  window.addEventListener('resize', adjustMatrixHeight);
+  
+  // Add event listener to adjust Matrix height when page content changes
+  window.addEventListener('scroll', checkAndAdjustMatrixHeight);
 });
 
 /**
- * Initialize the advanced surveillance-themed digital rain animation
+ * Initialize the advanced hacker-themed digital rain animation
  */
-function initSurveillanceRain() {
+function initHackerRain() {
   const matrixRain = document.getElementById("matrix-rain");
   
   // If there's no canvas container, create one
@@ -53,10 +62,10 @@ function initSurveillanceRain() {
   const ctx = canvas.getContext('2d');
   
   // Mix of katakana, numbers, special symbols, and faux "data" characters
-  // This creates a fictional intelligence-style look without using actual sensitive patterns
+  // This creates a fictional hacker-style look
   const chars = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789<>/\\[]{}$#@%&ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   
-  // Surveillance themed phrases to occasionally insert into the rain
+  // Hacker themed phrases to occasionally insert into the rain
   const dataPhrases = [
     "ACCESS_DENIED",
     "SCANNING...",
@@ -64,56 +73,68 @@ function initSurveillanceRain() {
     "TOP_SECRET",
     "CLASSIFIED",
     "INTERCEPTED",
-    "ANALYZING",
-    "MONITORING",
-    "DECRYPTING",
-    "REDACTED",
+    "HACKING_SYS",
+    "ROOT_ACCESS",
+    "SYS_BREACH",
+    "OVERRIDE",
     "SEC_LEVEL_5",
-    "PASSWORD_REQ"
+    "PWN3D"
   ];
   
   // Set up canvas dimensions
   function resizeCanvas() {
+    // This ensures the canvas covers the entire height of the document, not just the viewport
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = Math.max(window.innerHeight, document.body.scrollHeight);
     
-    // Calculate columns based on font size
-    const fontSize = window.innerWidth < 768 ? 14 : 18; 
-    const columns = Math.ceil(canvas.width / fontSize);
+    // Clear canvas and reset the animation
+    initializeRain();
+  }
+
+  // Initialize rain parameters
+  let drops = [];
+  let fontSize = 14;
+  let columns;
+  let speeds = [];
+  let brightness = [];
+  let dataColumns = [];
+  let animation;
+  
+  function initializeRain() {
+    // Calculate columns based on canvas width and font size
+    columns = Math.floor(canvas.width / fontSize);
     
-    // Initialize drops array
-    const drops = [];
+    // Reset drops
+    drops = [];
+    speeds = [];
+    brightness = [];
+    dataColumns = [];
+    
+    // Initialize all drops
     for (let i = 0; i < columns; i++) {
-      // Random starting position above the screen
-      drops[i] = Math.random() * -canvas.height / fontSize;
-    }
-    
-    // Define varying speeds for more realistic effect
-    const speeds = [];
-    for (let i = 0; i < columns; i++) {
+      // Random starting position between top of canvas and slightly above
+      drops[i] = Math.floor(Math.random() * -canvas.height/fontSize);
+      
+      // Random speed 
       speeds[i] = 0.5 + Math.random() * 1.5;
-    }
-    
-    // Character brightness variation
-    const brightness = [];
-    for (let i = 0; i < columns; i++) {
+      
+      // Random brightness
       brightness[i] = 0.5 + Math.random() * 0.5;
     }
     
-    // For special data streams
-    const dataColumns = [];
-    for (let i = 0; i < Math.floor(columns / 10); i++) { // About 10% of columns will be data streams
+    // Select random columns to show data phrases
+    for (let i = 0; i < columns * 0.05; i++) {
       dataColumns.push(Math.floor(Math.random() * columns));
     }
-
-    return { fontSize, columns, drops, speeds, brightness, dataColumns };
+    
+    // Cancel previous animation if it exists
+    if (animation) {
+      cancelAnimationFrame(animation);
+    }
   }
   
-  let animation;
-  let { fontSize, columns, drops, speeds, brightness, dataColumns } = resizeCanvas();
-  
-  // Matrix rain drawing function with surveillance twist
-  function drawMatrixRain() {
+  // Matrix rain drawing function with hacker twist
+  function drawHackerRain() {
     // Translucent black to create fade effect
     ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -135,8 +156,8 @@ function initSurveillanceRain() {
           
           // Only draw if within canvas bounds
           if (y > 0 && y < canvas.height) {
-            // Use blue color for data phrases
-            ctx.fillStyle = `rgba(0, 100, 255, ${brightness[i]})`;
+            // Use red color for data phrases
+            ctx.fillStyle = `rgba(255, 0, 0, ${brightness[i]})`;
             ctx.font = `${fontSize * 0.8}px 'Source Code Pro', monospace`;
             ctx.fillText(phrase[j], i * fontSize, y);
           }
@@ -146,11 +167,10 @@ function initSurveillanceRain() {
         const x = i * fontSize;
         const y = drops[i] * fontSize;
         
-        // Vary color for more intelligence-agency like effect
-        // Use a mix of blue and green to create a more government-system feel
-        let colorR = 0;
-        let colorG = Math.floor(150 * brightness[i] + 30);
-        let colorB = Math.floor(200 * brightness[i] * (Math.random() > 0.7 ? 1 : 0));
+        // Vary color for more hacker-like effect
+        let colorR = Math.floor(200 * brightness[i] + 50); // More red for hacker theme
+        let colorG = Math.floor(50 * brightness[i] * (Math.random() > 0.8 ? 1 : 0));
+        let colorB = Math.floor(50 * brightness[i] * (Math.random() > 0.9 ? 1 : 0));
         
         ctx.fillStyle = `rgba(${colorR}, ${colorG}, ${colorB}, ${brightness[i]})`;
         
@@ -161,9 +181,9 @@ function initSurveillanceRain() {
         // Draw the character
         ctx.fillText(char, x, y);
         
-        // Occasionally add binary "1" and "0" characters in brighter color to enhance surveillance feel
+        // Occasionally add binary "1" and "0" characters in brighter red color
         if (Math.random() > 0.99) {
-          ctx.fillStyle = `rgba(0, 200, 255, 0.9)`;
+          ctx.fillStyle = `rgba(255, 30, 30, 0.9)`;
           ctx.fillText(Math.random() > 0.5 ? "1" : "0", x, y);
         }
       }
@@ -183,37 +203,75 @@ function initSurveillanceRain() {
       }
     }
     
-    // Add horizontal scan lines for surveillance effect
+    // Add horizontal scan lines for hacker effect
     for (let i = 0; i < canvas.height; i += 100) {
       if (Math.random() > 0.985) {
         const scanOpacity = 0.1 + Math.random() * 0.2;
-        ctx.fillStyle = `rgba(0, 100, 200, ${scanOpacity})`;
+        ctx.fillStyle = `rgba(255, 0, 0, ${scanOpacity})`;
         ctx.fillRect(0, i, canvas.width, 1);
       }
     }
     
     // Continue animation
-    animation = requestAnimationFrame(drawMatrixRain);
+    animation = requestAnimationFrame(drawHackerRain);
   }
-  
-  // Start animation
-  drawMatrixRain();
   
   // Handle window resize
   window.addEventListener('resize', function() {
-    cancelAnimationFrame(animation);
-    ({ fontSize, columns, drops, speeds, brightness, dataColumns } = resizeCanvas());
-    drawMatrixRain();
+    resizeCanvas();
   });
   
-  // Performance optimization - pause animation when tab is not visible
-  document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-      cancelAnimationFrame(animation);
-    } else {
-      drawMatrixRain();
+  // Initial setup
+  resizeCanvas();
+  
+  // Check document ready state and start animation
+  if (document.readyState === 'complete') {
+    drawHackerRain();
+  } else {
+    window.addEventListener('load', function() {
+      drawHackerRain();
+    });
+  }
+}
+
+// Ensure Matrix rain container extends to full page height
+function adjustMatrixHeight() {
+  const matrixBg = document.querySelector('.matrix-bg');
+  if (matrixBg) {
+    // Set the height to match the document height, ensuring it covers everything
+    const docHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    matrixBg.style.height = docHeight + 'px';
+    
+    // Also adjust any canvas elements
+    const canvas = matrixBg.querySelector('canvas');
+    if (canvas) {
+      canvas.height = docHeight;
     }
-  });
+  }
+}
+
+// Check and adjust height periodically to account for dynamic content
+function checkAndAdjustMatrixHeight() {
+  const matrixBg = document.querySelector('.matrix-bg');
+  if (matrixBg) {
+    const docHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    
+    if (parseInt(matrixBg.style.height) < docHeight) {
+      adjustMatrixHeight();
+    }
+  }
 }
 
 /**
