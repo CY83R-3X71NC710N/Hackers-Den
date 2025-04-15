@@ -88,6 +88,12 @@ if ! grep -q "matrix-bg" dist/index.html; then
   sed -i '/<body>/a \    <!-- Matrix Background -->\n    <div class="matrix-bg">\n        <div class="matrix-rain" id="matrix-rain"></div>\n    </div>' dist/index.html
 fi
 
+# Add surveillance notification banner
+echo "[+] Adding surveillance notification banner..."
+if ! grep -q "surveillance-notification" dist/index.html; then
+  sed -i '/<body>/a \    <!-- Surveillance Notification -->\n    <div class="surveillance-notification">THIS CONNECTION IS BEING MONITORED</div>' dist/index.html
+fi
+
 # Add terminal classes to all article headers
 echo "[+] Adding terminal styling to articles..."
 sed -i 's|<header class="article__header">|<header class="article__header terminal">|g' dist/index.html

@@ -1,34 +1,43 @@
-/* Custom Matrix Theme Additional Styles - Enhanced Edition */
+/* Custom Matrix Theme with Dark Intelligence Agency Style
+ * FICTIONAL THEME - For entertainment purposes only
+ * This theme is not affiliated with any government agency
+ */
 
-/* Import font for enhanced terminal look - add @font-face if you have a custom font */
+/* Import font for enhanced terminal look */
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
 
-/* Custom cyberpunk font variables */
+/* Custom font variables */
 :root {
   --matrix-font: 'Source Code Pro', 'Courier New', monospace;
-  --matrix-green: #00ff00;
+  --matrix-green: #00cc00;
   --matrix-dark-green: #003300;
   --matrix-bright-green: #66ff66;
   --matrix-blue-green: #00cc99;
-  --matrix-header-glow: 0 0 10px rgba(0, 255, 0, 0.7);
-  --scanner-effect: rgba(0, 255, 0, 0.15);
+  
+  /* Government surveillance colors */
+  --agency-blue: #003366;
+  --dark-blue: #001830;
+  --terminal-blue: #005588;
+  --amber: #ffbf00;
+  --dark-amber: #cc9900;
+  --classified-red: #990000;
 }
 
-/* Overall container improvements with enhanced glowing effect */
+/* Overall container with intelligence system feel */
 .container {
-  background-color: rgba(0, 5, 0, 0.85);
-  border: 1px solid rgba(0, 255, 0, 0.25);
-  box-shadow: 0 0 30px rgba(0, 255, 0, 0.2), inset 0 0 30px rgba(0, 255, 0, 0.05);
+  background-color: rgba(0, 5, 15, 0.92);
+  border: 1px solid rgba(0, 100, 200, 0.15);
+  box-shadow: 0 0 30px rgba(0, 20, 40, 0.4), inset 0 0 30px rgba(0, 10, 30, 0.3);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   padding: 2rem;
   margin-top: 1rem;
-  border-radius: 8px;
+  border-radius: 2px;
   position: relative;
   overflow: hidden;
 }
 
-/* Add scanline effect to container */
+/* Add scanline effect to container - purely CSS, no external URLs */
 .container::before {
   content: "";
   position: absolute;
@@ -40,42 +49,42 @@
     to bottom,
     transparent,
     transparent 2px,
-    var(--scanner-effect) 3px,
+    rgba(0, 30, 60, 0.2) 3px,
     transparent 3px
   );
   pointer-events: none;
   z-index: 1;
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
-/* Enhanced terminal header styling with circuit board pattern */
+/* Enhanced terminal header with data visualization pattern */
 .terminal__header {
-  background-color: rgba(0, 20, 0, 0.9);
+  background-color: rgba(0, 15, 30, 0.95);
   background-image: 
-    radial-gradient(rgba(0, 255, 0, 0.1) 2px, transparent 2px),
-    linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 0);
+    radial-gradient(rgba(0, 100, 200, 0.05) 2px, transparent 2px),
+    linear-gradient(rgba(0, 100, 200, 0.03) 1px, transparent 0);
   background-size: 20px 20px, 100% 4px;
   padding: 10px 14px;
-  border-radius: 5px 5px 0 0;
+  border-radius: 0;
   position: relative;
-  border-bottom: 1px solid var(--matrix-green);
-  box-shadow: 0 1px 5px rgba(0, 255, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 100, 200, 0.3);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .terminal__header::before {
-  content: "• • •";
+  content: "● ● ●";
   position: absolute;
   right: 12px;
   top: 8px;
-  color: rgba(0, 255, 0, 0.6);
+  color: rgba(0, 100, 200, 0.6);
   letter-spacing: 2px;
 }
 
-/* Enhanced terminal prompt styling */
+/* Terminal prompt styling with intelligence agency look */
 .terminal__prompt {
   font-family: var(--matrix-font);
-  color: var(--matrix-green);
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  color: var(--amber);
+  text-shadow: 0 0 5px rgba(255, 200, 0, 0.3);
   font-size: 0.9rem;
   position: relative;
   padding-left: 5px;
@@ -84,29 +93,29 @@
 .terminal__prompt::before {
   content: ">";
   margin-right: 5px;
-  color: var(--matrix-bright-green);
+  color: var(--dark-amber);
   animation: pulse 2s infinite;
 }
 
-/* Style for article titles to look like computer terminal output with improved readability */
+/* Article titles with classified document feel */
 .article__title a {
   font-family: var(--matrix-font);
   letter-spacing: 0.5px;
   display: inline-block;
-  border-bottom: 1px dotted var(--matrix-green);
+  border-bottom: 1px dotted var(--agency-blue);
   padding-bottom: 2px;
   font-weight: 700;
   font-size: 1.2rem;
   line-height: 1.5;
   color: #fff;
-  text-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+  text-shadow: 0 0 8px rgba(0, 100, 200, 0.5);
   transition: all 0.3s ease;
 }
 
 .article__title a:hover {
   color: #fff;
-  text-shadow: 0 0 10px var(--matrix-green), 0 0 20px var(--matrix-green);
-  border-bottom: 1px solid var(--matrix-green);
+  text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
+  border-bottom: 1px solid var(--agency-blue);
   transform: translateX(5px);
 }
 
@@ -124,7 +133,7 @@
   flex: 0 0 200px;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(0, 255, 0, 0.3);
+  border: 1px solid rgba(0, 100, 200, 0.3);
   border-radius: 4px;
 }
 
@@ -137,9 +146,9 @@
   width: 100%;
   height: 50%;
   background: linear-gradient(to bottom, 
-    rgba(0, 255, 0, 0), 
-    rgba(0, 255, 0, 0.2), 
-    rgba(0, 255, 0, 0));
+    rgba(0, 100, 255, 0), 
+    rgba(0, 100, 255, 0.1), 
+    rgba(0, 100, 255, 0));
   animation: scanning 3s ease-in-out infinite;
   pointer-events: none;
 }
@@ -171,7 +180,7 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.8rem;
-  color: var(--matrix-bright-green);
+  color: var(--amber);
   animation: pulse 2s infinite alternate;
 }
 
@@ -180,7 +189,7 @@
   100% { opacity: 1; }
 }
 
-/* Enhanced article box with security rating indicator */
+/* Enhanced article box with security clearance indicators */
 .feed__article {
   position: relative;
   margin-bottom: 3rem;
@@ -188,28 +197,40 @@
 }
 
 .feed__article::before {
-  content: "[SECURITY LEVEL " counter(article) "]";
+  content: "[ACCESS LEVEL " counter(article) "]";
   position: absolute;
   top: -20px;
   left: 10px;
-  color: var(--matrix-green);
+  color: var(--amber);
   font-size: 0.8rem;
   font-family: var(--matrix-font);
-  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+  text-shadow: 0 0 5px rgba(255, 200, 0, 0.3);
   z-index: 10;
   letter-spacing: 1px;
-  background-color: rgba(0, 15, 0, 0.8);
+  background-color: rgba(0, 15, 30, 0.9);
   padding: 2px 8px;
   border-radius: 2px;
-  border-left: 3px solid var(--matrix-green);
+  border-left: 3px solid var(--amber);
 }
 
-/* Enhanced blinking cursor effect */
+/* First article priority styling */
+.feed__article:first-child .article__header {
+  border: 1px solid var(--amber);
+  box-shadow: 0 0 15px rgba(255, 200, 0, 0.15);
+}
+
+.feed__article:first-child::before {
+  content: "[PRIORITY BRIEFING]";
+  color: var(--amber);
+  text-shadow: 0 0 5px rgba(255, 200, 0, 0.5);
+}
+
+/* Blinking cursor effect */
 .title::after {
   content: "_";
   animation: blink 1s step-end infinite;
   display: inline-block;
-  color: var(--matrix-bright-green);
+  color: var(--amber);
 }
 
 @keyframes blink {
@@ -217,24 +238,25 @@
   50% { opacity: 0; }
 }
 
-/* Superior article styling with data visualization effect */
+/* Article styling with intelligence database look */
 .article__header {
   transition: all 0.3s ease;
   overflow: visible;
-  border-radius: 8px;
+  border-radius: 2px;
   position: relative;
-  background-color: rgba(0, 10, 0, 0.9);
+  background-color: rgba(0, 15, 30, 0.9);
   padding-bottom: 0.5rem;
-  background: linear-gradient(120deg, rgba(0,0,0,0.95) 80%, rgba(30,30,30,0.95) 100%);
-  border: 1.5px solid #222;
-  box-shadow: 0 0 20px #000a, 0 0 2px #0f0a;
+  background: linear-gradient(120deg, rgba(0,5,15,0.97) 80%, rgba(0,15,30,0.97) 100%);
+  border: 1.5px solid #111;
+  box-shadow: 0 0 20px #000a, 0 0 2px rgba(0, 100, 200, 0.3);
 }
 
 .article__header:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 50, 100, 0.3);
 }
 
+/* Add paper texture with CSS rather than external URL */
 .article__header::before {
   content: "";
   position: absolute;
@@ -243,62 +265,37 @@
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px);
   background-size: 20px 20px;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.3;
-  border-radius: 8px;
+  opacity: 0.1;
+  border-radius: 2px;
 }
 
+/* Document corner marks */
 .article__header::after {
-  content: "";
+  content: "╝";
   position: absolute;
-  bottom: -10px;
-  left: calc(50% - 25px);
-  width: 50px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+  bottom: 5px;
+  right: 5px;
+  color: rgba(0, 150, 255, 0.2);
+  font-size: 1.5rem;
+  z-index: 1;
 }
 
-/* Article date with better formatting */
+/* Article date with clearance styling */
 .article__date {
   font-family: var(--matrix-font);
   font-size: 0.8rem;
   color: var(--matrix-blue-green);
-  background-color: rgba(0, 20, 0, 0.5);
+  background-color: rgba(0, 15, 30, 0.5);
   padding: 2px 6px;
-  border-radius: 3px;
+  border-radius: 2px;
   margin-left: 8px;
   display: inline-block;
-  border-left: 2px solid var(--matrix-green);
-}
-
-/* Code formatting within articles */
-code, pre {
-  font-family: var(--matrix-font);
-  background-color: rgba(0, 20, 0, 0.5);
-  border-left: 3px solid var(--matrix-green);
-  padding: 12px;
-  overflow-x: auto;
-  border-radius: 0 4px 4px 0;
-  margin: 1rem 0;
-  color: #ddd;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-/* Add a 'code' indicator */
-pre::before {
-  content: "< code >";
-  display: block;
-  color: var(--matrix-green);
-  margin-bottom: 5px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  border-bottom: 1px dashed rgba(0, 255, 0, 0.3);
-  padding-bottom: 5px;
+  border-left: 2px solid var(--amber);
 }
 
 /* Footer enhancements */
@@ -309,7 +306,7 @@ pre::before {
 }
 
 .footer__text {
-  border-top: 1px dotted var(--matrix-green);
+  border-top: 1px dotted var(--amber);
   padding-top: 15px;
   font-size: 0.9rem;
   opacity: 0.9;
@@ -319,7 +316,7 @@ pre::before {
 }
 
 .footer__link {
-  color: var(--matrix-bright-green);
+  color: var(--amber);
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
@@ -327,17 +324,17 @@ pre::before {
 
 .footer__link:hover {
   color: white;
-  text-shadow: 0 0 10px var(--matrix-green);
+  text-shadow: 0 0 10px var(--amber);
 }
 
-/* Add hacker footer icon */
+/* Add footer icon */
 .footer__link::before {
   content: "⚡";
   margin-right: 5px;
   font-size: 0.9rem;
 }
 
-/* Fix headers, especially on mobile */
+/* Fix headers on mobile */
 @media (max-width: 768px) {
   .article__content-wrapper {
     flex-direction: column;
@@ -362,16 +359,25 @@ pre::before {
     padding: 1rem;
     margin-top: 0.5rem;
   }
+  
+  /* Make security clearance labels fit better on mobile */
+  .clearance-label {
+    top: 5px;
+    right: 5px;
+    font-size: 0.6rem;
+    padding: 1px 5px;
+  }
 }
 
-/* Improved title styling */
+/* Title styling with briefing document feel */
 .title {
   font-size: 2.8rem;
   letter-spacing: 3px;
   margin: 1rem 0;
   font-family: var(--matrix-font);
-  text-shadow: 0 0 10px var(--matrix-green), 0 0 20px var(--matrix-green);
+  text-shadow: 0 0 10px rgba(0, 100, 255, 0.5);
   position: relative;
+  color: #eee;
 }
 
 /* Add a glitch effect to the title on hover */
@@ -381,29 +387,29 @@ pre::before {
 
 @keyframes glitch {
   0% {
-    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.5), -0.05em -0.025em 0 rgba(0, 255, 255, 0.5), -0.025em 0.05em 0 rgba(0, 0, 255, 0.5);
   }
   14% {
-    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.05em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.5), -0.05em -0.025em 0 rgba(0, 255, 255, 0.5), -0.025em 0.05em 0 rgba(0, 0, 255, 0.5);
   }
   15% {
-    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.5), 0.025em 0.025em 0 rgba(0, 255, 255, 0.5), -0.05em -0.05em 0 rgba(0, 0, 255, 0.5);
   }
   49% {
-    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75), 0.025em 0.025em 0 rgba(0, 255, 0, 0.75), -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.5), 0.025em 0.025em 0 rgba(0, 255, 255, 0.5), -0.05em -0.05em 0 rgba(0, 0, 255, 0.5);
   }
   50% {
-    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.5), 0.05em 0 0 rgba(0, 255, 255, 0.5), 0 -0.05em 0 rgba(0, 0, 255, 0.5);
   }
   99% {
-    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75), 0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.5), 0.05em 0 0 rgba(0, 255, 255, 0.5), 0 -0.05em 0 rgba(0, 0, 255, 0.5);
   }
   100% {
-    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.025em 0 rgba(0, 255, 0, 0.75), -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.5), -0.025em -0.025em 0 rgba(0, 255, 255, 0.5), -0.025em -0.05em 0 rgba(0, 0, 255, 0.5);
   }
 }
 
-/* Enhanced subtitle */
+/* Enhanced subtitle as intelligence briefing */
 .subtitle {
   margin-bottom: 1.5rem;
   position: relative;
@@ -414,29 +420,29 @@ pre::before {
   font-size: 1.1rem;
   letter-spacing: 2px;
   font-family: var(--matrix-font);
-  color: var(--matrix-bright-green);
+  color: #eee;
   text-transform: uppercase;
 }
 
 .subtitle__separator {
-  color: var(--matrix-green);
+  color: var(--amber);
   font-weight: bold;
   margin: 0 10px;
   font-size: 1.2rem;
 }
 
-/* Improved image styling with data visualization effect */
+/* Image styling with classified photo feel */
 img {
-  filter: sepia(20%) hue-rotate(75deg) brightness(0.9) contrast(1.2);
-  border: 1px solid var(--matrix-green);
+  filter: sepia(10%) brightness(0.9) contrast(1.2);
+  border: 1px solid var(--agency-blue);
   transition: all 0.3s ease;
-  border-radius: 4px;
+  border-radius: 2px;
   position: relative;
 }
 
 img:hover {
-  filter: sepia(10%) hue-rotate(85deg) brightness(1.2) contrast(1.3);
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+  filter: sepia(5%) brightness(1.1) contrast(1.3);
+  box-shadow: 0 0 15px rgba(0, 100, 200, 0.4);
   transform: scale(1.02);
 }
 
@@ -448,7 +454,7 @@ img:hover {
   left: -5px;
   right: -5px;
   bottom: -5px;
-  border: 1px dashed var(--matrix-green);
+  border: 1px dashed var(--amber);
   border-radius: 6px;
   animation: borderPulse 2s infinite;
   pointer-events: none;
@@ -456,34 +462,34 @@ img:hover {
 }
 
 @keyframes borderPulse {
-  0% { border-color: rgba(0, 255, 0, 0.3); }
-  50% { border-color: rgba(0, 255, 0, 0.8); }
-  100% { border-color: rgba(0, 255, 0, 0.3); }
+  0% { border-color: rgba(255, 191, 0, 0.3); }
+  50% { border-color: rgba(255, 191, 0, 0.8); }
+  100% { border-color: rgba(255, 191, 0, 0.3); }
 }
 
-/* Enhanced scrollbar customization */
+/* Custom scrollbar for intelligence system look */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgba(0, 20, 0, 0.7);
+  background-color: rgba(0, 15, 30, 0.7);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 255, 0, 0.5);
+  background-color: rgba(0, 100, 200, 0.5);
   border-radius: 5px;
-  border: 2px solid rgba(0, 20, 0, 0.7);
+  border: 2px solid rgba(0, 15, 30, 0.7);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 255, 0, 0.8);
-  border: 1px solid rgba(0, 255, 0, 0.5);
+  background-color: rgba(0, 100, 200, 0.8);
+  border: 1px solid rgba(0, 100, 200, 0.5);
 }
 
-/* Terminal decoration with enhanced effect */
+/* Terminal decoration for access bars */
 .terminal::before {
   content: "";
   position: absolute;
@@ -493,7 +499,7 @@ img:hover {
   height: 2px;
   background: linear-gradient(90deg, 
     transparent, 
-    var(--matrix-green), 
+    var(--amber), 
     transparent
   );
   animation: borderGlow 4s infinite;
@@ -505,24 +511,21 @@ img:hover {
   100% { opacity: 0.3; }
 }
 
-/* Add loading bars to enhance cyber feel */
+/* Access loading bar */
 .header::after {
   content: "";
   display: block;
   width: 100%;
-  height: 4px;
+  height: 2px;
   background: linear-gradient(90deg, 
-    var(--matrix-dark-green), 
-    var(--matrix-green), 
-    var(--matrix-dark-green)
+    var(--dark-blue), 
+    var(--amber), 
+    var(--dark-blue)
   );
   position: relative;
   margin-top: 10px;
-  border-radius: 2px;
+  border-radius: 0;
   overflow: hidden;
-}
-
-.header::after {
   background-size: 200% 100%;
   animation: loadingBar 2s linear infinite;
 }
@@ -532,80 +535,228 @@ img:hover {
   100% { background-position: -100% 0; }
 }
 
-/* Main section enhancements */
+/* Main section positioning */
 .main {
   position: relative;
   z-index: 2;
 }
 
-/* First article highlight */
-.feed__article:first-child .article__header {
-  border: 1px solid var(--matrix-green);
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.25);
-}
-
-.feed__article:first-child::before {
-  content: "[PRIORITY SIGNAL]";
-  color: #ff0;
-  text-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
-}
-
-/* Links with improved hover effect */
+/* Link hover effect */
 a {
   transition: all 0.3s ease;
 }
 
 a:hover {
-  text-shadow: 0 0 5px var(--matrix-green);
+  text-shadow: 0 0 5px rgba(0, 150, 255, 0.5);
 }
 
-/* Selection styling */
+/* Text selection styling */
 ::selection {
-  background-color: rgba(0, 255, 0, 0.3);
+  background-color: rgba(0, 100, 200, 0.3);
   color: #fff;
 }
 
-/* Add article perspective effect for 3D feel on hover */
+/* 3D hover effect for desktop */
 @media (min-width: 768px) {
   .article__header:hover {
-    transform: perspective(1000px) rotateX(2deg) translateY(-5px);
+    transform: perspective(1000px) rotateX(1deg) translateY(-5px);
     transition: all 0.5s ease;
   }
 }
 
-/* Add typewriter animation for the subtitle */
-.subtitle__text {
-  overflow: hidden;
-  white-space: nowrap;
-  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-  display: inline-block;
+/* Intelligence briefing elements */
+.document-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: rgba(0, 10, 30, 0.9);
+  border-bottom: 2px solid var(--agency-blue);
+  margin-bottom: 20px;
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+.document-stamp {
+  color: var(--amber);
+  font-family: var(--matrix-font);
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border: 1px dashed var(--amber);
+  border-radius: 2px;
 }
 
-/* Enhance article category visualization */
-.article__feed {
-  margin-bottom: 5px;
+.document-number {
+  color: rgba(200, 200, 200, 0.7);
+  font-family: var(--matrix-font);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
 }
 
-/* Optimize article spacing */
-article {
-  margin-bottom: 3rem;
+/* Clearance strip */
+.clearance-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 20, 40, 0.8);
+  padding: 5px 0;
+  gap: 15px;
+  margin: 10px 0;
+  border: 1px solid var(--agency-blue);
+  color: #ddd;
+  font-family: var(--matrix-font);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(0, 50, 100, 0.3);
 }
 
-/* Enhance overall text readability */
-body {
-  font-size: 16px;
-  line-height: 1.6;
-  letter-spacing: 0.3px;
+.blinking-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--amber);
+  border-radius: 50%;
+  animation: blink 1s infinite alternate;
 }
 
-/* === NSA/Conspiracy/Shadowy Enhancements === */
+/* System access tracker */
+.access-tracker {
+  margin-top: 30px;
+  background-color: rgba(0, 10, 20, 0.95);
+  border: 1px solid var(--agency-blue);
+  padding: 10px;
+  font-family: var(--matrix-font);
+  font-size: 0.8rem;
+  color: #ddd;
+}
 
-/* Shadowy overlay for the whole site */
+.access-tracker__header {
+  color: var(--amber);
+  border-bottom: 1px solid var(--agency-blue);
+  padding-bottom: 5px;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.access-tracker__item {
+  padding: 3px 0;
+  position: relative;
+  padding-left: 18px;
+}
+
+.access-tracker__item::before {
+  content: ">";
+  position: absolute;
+  left: 5px;
+  color: var(--amber);
+}
+
+/* Restricted access footer styling */
+.restricted-footer {
+  position: relative;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.restricted-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--classified-red);
+  color: white;
+  font-family: var(--matrix-font);
+  font-size: 0.7rem;
+  padding: 2px 10px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  border: 1px solid #600;
+  font-weight: bold;
+}
+
+.footer-warning {
+  margin-top: 10px;
+  color: rgba(255, 100, 100, 0.7);
+  font-size: 0.7rem;
+  font-family: var(--matrix-font);
+  letter-spacing: 0.5px;
+}
+
+/* Confidential watermark with CSS only (no image) */
+.confidential-watermark {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 10vw;
+  color: rgba(150, 0, 0, 0.05);
+  font-family: var(--matrix-font);
+  letter-spacing: 0.2em;
+  z-index: 999;
+  pointer-events: none;
+  user-select: none;
+  text-transform: uppercase;
+  font-weight: 900;
+  text-shadow: 0 0 15px rgba(150, 0, 0, 0.1);
+}
+
+/* Redacted text effect */
+.redacted {
+  background: #111;
+  color: transparent !important;
+  border-radius: 2px;
+  padding: 0.1em 0.3em;
+  position: relative;
+  box-shadow: 0 0 1px #000;
+}
+
+/* Clearance labels */
+.clearance-label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--matrix-font);
+  font-size: 0.7rem;
+  color: var(--amber);
+  background: rgba(0,0,0,0.7);
+  padding: 2px 8px;
+  border-radius: 2px;
+  border: 1px solid var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 10;
+  transform: rotate(2deg);
+}
+
+/* Fictional disclaimer to avoid any legal issues */
+.fictional-disclaimer {
+  margin-top: 20px;
+  padding: 5px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #777;
+  font-style: italic;
+}
+
+/* Surveillance scanline */
+.surveillance-scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(0, 150, 255, 0.15);
+  box-shadow: 0 0 5px rgba(0, 100, 255, 0.2);
+  opacity: 0.7;
+  z-index: 9999;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% { top: -5px; }
+  100% { top: 100%; }
+}
+
+/* Dark overlay for the shadowy feel - using CSS only, no external resources */
 body::before {
   content: "";
   position: fixed;
@@ -618,70 +769,57 @@ body::before {
     rgba(0,0,0,0.72) 2px,
     rgba(0,0,0,0.75) 4px,
     transparent 6px
-  ), url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
-  opacity: 0.7;
+  ), 
+  /* Self-generated noise pattern instead of external URL */
+  radial-gradient(rgba(0,0,0,0.2) 1px, transparent 1px);
+  background-size: 100% 6px, 4px 4px;
+  opacity: 0.5;
 }
 
-/* Subtle static/noise overlay */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: 9998;
-  background: url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif');
-  opacity: 0.04;
-  mix-blend-mode: screen;
-}
-
-/* Confidential watermark */
-body .confidential-watermark {
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-20deg);
-  font-size: 7vw;
-  color: rgba(255,0,0,0.08);
-  font-family: 'Source Code Pro', monospace;
-  letter-spacing: 0.2em;
-  z-index: 99999;
-  pointer-events: none;
-  user-select: none;
-  text-transform: uppercase;
-  font-weight: 900;
-  text-shadow: 0 0 8px rgba(255,0,0,0.2);
-}
-
-/* Redacted text effect */
-.redacted {
-  background: linear-gradient(90deg, #111 60%, #222 100%);
-  color: transparent !important;
-  border-radius: 2px;
-  padding: 0.1em 0.5em;
-  position: relative;
-  box-shadow: 0 0 2px #000, 0 0 8px #000;
-}
-
-/* Classified label for articles */
-.classified-label {
-  display: inline-block;
-  background: repeating-linear-gradient(135deg, #900 0 8px, #222 8px 16px);
-  color: #fff;
+/* Add special CSS for the timestamps which appear in intelligence briefings */
+.timestamp {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: rgba(0, 200, 255, 0.5);
   font-family: var(--matrix-font);
-  font-size: 0.8rem;
-  font-weight: bold;
-  letter-spacing: 0.15em;
-  padding: 2px 10px;
-  border-radius: 3px;
-  box-shadow: 0 0 8px #900a;
-  text-transform: uppercase;
-  margin-bottom: 0.5em;
-  margin-right: 0.5em;
-  opacity: 0.85;
+  font-size: 0.7rem;
+  z-index: 100;
 }
 
-/* Ominous red glow for high-severity alerts */
-.security-alert, .classified-label {
-  border: 1px solid #900;
-  box-shadow: 0 0 10px #900a, 0 0 2px #000;
+/* Access bar animation */
+.access-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--amber);
+  animation: accessData 2s forwards;
+  z-index: 999;
+}
+
+@keyframes accessData {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* Surveillance notification banner */
+.surveillance-notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--classified-red);
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-family: var(--matrix-font);
+  font-size: 0.7rem;
+  z-index: 10000;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+  animation: pulse 2s infinite alternate;
+  border-bottom: 1px dashed #600;
+  font-weight: bold;
 }

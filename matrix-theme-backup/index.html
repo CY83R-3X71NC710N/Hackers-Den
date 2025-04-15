@@ -2,23 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Hacker&#39;s Den</title>
+    <title>Hacker&#39;s Den // EYES ONLY</title>
     <meta name="description" content="Hackers-Den - Matrix-themed cybersecurity and hacking news aggregator">
     <meta name="generator" content="Hackers-Den">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="static/img/icons/favicon.png">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#000033">
     <!-- PWA -->
     <link rel="manifest" href="static/manifest.json" />
     <link rel="apple-touch-icon" href="static/img/icons/apple-icon-180.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- ios support -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#00ff00" />
+    <meta name="theme-color" content="#003366" />
     <!-- End PWA -->
+    <meta name="security-clearance" content="top-secret">
+    <meta name="surveillance-status" content="monitored">
+    <meta name="intel-source" content="classified">
     <!-- Opengraph -->
     <meta property="og:image" content="img/screenshot.png">
-    <meta property="og:title" content="Hacker&#39;s Den">
+    <meta property="og:title" content="Hacker&#39;s Den // CLASSIFIED">
     <meta property="og:type" content="website">
     <!-- End Opengraph -->
     <!-- CSS -->
@@ -31,18 +34,47 @@
     <!-- End CSS -->
 </head>
 <body>
+    <!-- NSA Surveillance Notification -->
+    <div class="surveillance-notification">THIS CONNECTION IS BEING MONITORED</div>
+    
     <!-- Matrix Background -->
     <div class="matrix-bg">
         <div class="matrix-rain" id="matrix-rain"></div>
     </div>
-    <!-- Confidential Watermark -->
-    <div class="confidential-watermark">CONFIDENTIAL</div>
+    
+    <!-- NSA Watermark -->
+    <div class="confidential-watermark">TOP SECRET</div>
+    
+    <!-- Surveillance Camera Effect -->
+    <div class="surveillance-cam"></div>
+    
     <div class="container">
+        <div class="document-header">
+            <div class="document-stamp">TOP SECRET//COMINT//NOFORN</div>
+            <div class="document-number">NSA-342-8A-X27</div>
+        </div>
+        
         <header class="header">
             <h1 class="title">Hacker&#39;s Den</h1>
-            <h2 class="subtitle"><span class="subtitle__separator">[</span> <span class="subtitle__text">Cybersecurity Intelligence</span> <span class="subtitle__separator">]</span></h2>
+            <h2 class="subtitle">
+                <span class="subtitle__separator">[</span> 
+                <span class="subtitle__text">INTELLIGENCE BRIEFING</span> 
+                <span class="subtitle__separator">]</span>
+            </h2>
+            <div class="clearance-strip">
+                <span>AUTHORIZED PERSONNEL ONLY</span>
+                <span class="blinking-dot"></span>
+                <span>ACCESS LEVEL 5</span>
+            </div>
             <hr class="separator">
         </header>
+        
+        <div class="terminal__header">
+            <span class="terminal__prompt">system@nsa.gov:~$</span>
+            <span class="terminal__command">access --intel-feed --clearance=ts_sci</span>
+            <span class="terminal__date"></span>
+        </div>
+        
         <main class="main">
             
                 <article class="feed__article article">
@@ -51,13 +83,13 @@
                         <p class="article__header-img">
                             <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/regulatory-non-compliance-penalties/">
                                 
-                                <img loading="lazy" src="https://img.helpnetsecurity.com/wp-content/uploads/2023/09/26142115/compliance.jpg" alt="Organizations can’t afford to be non-compliant">
+                                <img loading="lazy" src="https://img.helpnetsecurity.com/wp-content/uploads/2023/09/26142115/compliance.jpg" alt="Organizations can't afford to be non-compliant">
                                 
                             </a>
                         </p>
                         <div class="article__titles">
                             <h1 class="article__title">
-                                <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/regulatory-non-compliance-penalties/">Organizations can’t afford to be <span class="redacted">non-compliant</span></a>
+                                <a target="_blank" href="https://www.helpnetsecurity.com/2025/04/14/regulatory-non-compliance-penalties/">Organizations can't afford to be <span class="redacted">non-compliant</span></a>
                             </h1>
                             <h2 class="article__feed"><a target="_blank" href="https://www.helpnetsecurity.com/">Help Net Security</a> <span class="article__date">14 04 2025</span></h2>
                         </div>
@@ -104,49 +136,28 @@
                 </article>
             
         </main>
+        
+        <div class="access-tracker">
+            <div class="access-tracker__header">SYSTEM ACTIVITY LOG</div>
+            <div class="access-tracker__item">User authenticated</div>
+            <div class="access-tracker__item">Network secured</div>
+            <div class="access-tracker__item">Accessing classified database...</div>
+            <div class="access-tracker__item blinking">Recording session</div>
+        </div>
     </div>
+    
     <footer class="footer">
         <hr class="separator">
-        <p class="footer__text">
-            <a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>
-        </p>
+        <div class="restricted-footer">
+            <div class="restricted-badge">RESTRICTED ACCESS</div>
+            <p class="footer__text">
+                <a class="footer__link" href="https://github.com/CY83R-3X71NC710N/Hackers-Den">Hackers-Den By CY83R-3X71NC710N</a>
+            </p>
+            <div class="footer-warning">Unauthorized access is punishable under 18 U.S.C. § 1030</div>
+        </div>
     </footer>
+    
     <!-- Add Matrix Rain Animation -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Matrix rain animation
-            const matrixRain = document.getElementById("matrix-rain");
-            const characters = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            const numDrops = 35;
-
-            // Create matrix drops
-            for (let i = 0; i < numDrops; i++) {
-                const drop = document.createElement("div");
-                drop.className = "matrix-drop";
-                drop.style.left = `${Math.random() * 100}%`;
-                drop.style.animationDelay = `${Math.random() * 5}s`;
-                drop.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
-                matrixRain.appendChild(drop);
-            }
-
-            // Update matrix drops with new characters periodically
-            setInterval(() => {
-                document.querySelectorAll(".matrix-drop").forEach(drop => {
-                    drop.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
-                });
-            }, 1000);
-
-            // Lazy load images
-            document.querySelectorAll("img").forEach(img => {
-                if(!img.classList.contains("lazy-load")) {
-                    img.classList.add("lazy-load");
-                }
-                img.onload = function() {
-                    this.classList.add("lazy-loaded");
-                }
-            });
-        });
-    </script>
+    <script src="js/matrix-effects.js"></script>
 </body>
 </html>
