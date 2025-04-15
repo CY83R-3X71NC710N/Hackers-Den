@@ -225,6 +225,9 @@
   position: relative;
   background-color: rgba(0, 10, 0, 0.9);
   padding-bottom: 0.5rem;
+  background: linear-gradient(120deg, rgba(0,0,0,0.95) 80%, rgba(30,30,30,0.95) 100%);
+  border: 1.5px solid #222;
+  box-shadow: 0 0 20px #000a, 0 0 2px #0f0a;
 }
 
 .article__header:hover {
@@ -598,4 +601,87 @@ body {
   font-size: 16px;
   line-height: 1.6;
   letter-spacing: 0.3px;
+}
+
+/* === NSA/Conspiracy/Shadowy Enhancements === */
+
+/* Shadowy overlay for the whole site */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.7) 0px,
+    rgba(0,0,0,0.72) 2px,
+    rgba(0,0,0,0.75) 4px,
+    transparent 6px
+  ), url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  opacity: 0.7;
+}
+
+/* Subtle static/noise overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif');
+  opacity: 0.04;
+  mix-blend-mode: screen;
+}
+
+/* Confidential watermark */
+body .confidential-watermark {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-20deg);
+  font-size: 7vw;
+  color: rgba(255,0,0,0.08);
+  font-family: 'Source Code Pro', monospace;
+  letter-spacing: 0.2em;
+  z-index: 99999;
+  pointer-events: none;
+  user-select: none;
+  text-transform: uppercase;
+  font-weight: 900;
+  text-shadow: 0 0 8px rgba(255,0,0,0.2);
+}
+
+/* Redacted text effect */
+.redacted {
+  background: linear-gradient(90deg, #111 60%, #222 100%);
+  color: transparent !important;
+  border-radius: 2px;
+  padding: 0.1em 0.5em;
+  position: relative;
+  box-shadow: 0 0 2px #000, 0 0 8px #000;
+}
+
+/* Classified label for articles */
+.classified-label {
+  display: inline-block;
+  background: repeating-linear-gradient(135deg, #900 0 8px, #222 8px 16px);
+  color: #fff;
+  font-family: var(--matrix-font);
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  padding: 2px 10px;
+  border-radius: 3px;
+  box-shadow: 0 0 8px #900a;
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+  margin-right: 0.5em;
+  opacity: 0.85;
+}
+
+/* Ominous red glow for high-severity alerts */
+.security-alert, .classified-label {
+  border: 1px solid #900;
+  box-shadow: 0 0 10px #900a, 0 0 2px #000;
 }
