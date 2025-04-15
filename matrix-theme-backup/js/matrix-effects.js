@@ -32,134 +32,117 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Add event listener to adjust Matrix height when page content changes
   window.addEventListener('scroll', checkAndAdjustMatrixHeight);
+  
+  // Add data overlay to make sure content is readable
+  addDynamicStyles();
 });
 
 /**
  * Initialize the advanced hacker-themed digital rain animation
  */
 function initHackerRain() {
-  const matrixRain = document.getElementById("matrix-rain");
+  // Get the container element for the Matrix rain
+  const matrixContainer = document.getElementById('matrix-rain');
+  if (!matrixContainer) return;
   
-  // If there's no canvas container, create one
-  if (!matrixRain) {
-    console.warn("Matrix rain container not found, creating one");
-    const matrixBg = document.createElement('div');
-    matrixBg.className = 'matrix-bg';
-    
-    const rainContainer = document.createElement('div');
-    rainContainer.id = 'matrix-rain';
-    rainContainer.className = 'matrix-rain';
-    
-    matrixBg.appendChild(rainContainer);
-    document.body.prepend(matrixBg);
-    
-    matrixRain = rainContainer;
-  }
-  
-  // Create matrix canvas
+  // Create a canvas element for the Matrix rain
   const canvas = document.createElement('canvas');
-  matrixRain.appendChild(canvas);
+  matrixContainer.appendChild(canvas);
+  
+  // Get the 2D context of the canvas
   const ctx = canvas.getContext('2d');
   
-  // Mix of katakana, numbers, special symbols, and faux "data" characters
-  // This creates a fictional hacker-style look
-  const chars = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789<>/\\[]{}$#@%&ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  // Set canvas dimensions to match the window
+  canvas.width = window.innerWidth;
+  canvas.height = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.clientHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  ) + 200; // Add extra height to ensure it covers the entire page
   
-  // Hacker themed phrases to occasionally insert into the rain
-  const dataPhrases = [
-    "ACCESS_DENIED",
-    "SCANNING...",
-    "ENCRYPTED",
-    "TOP_SECRET",
-    "CLASSIFIED",
-    "INTERCEPTED",
-    "HACKING_SYS",
-    "ROOT_ACCESS",
-    "SYS_BREACH",
-    "OVERRIDE",
-    "SEC_LEVEL_5",
-    "PWN3D"
+  // Set the font for the Matrix rain characters
+  const fontSize = 14;
+  
+  // Calculate the number of drops based on canvas width
+  const drops = [];
+  const columns = Math.ceil(canvas.width / fontSize);
+  
+  // Initialize drops at random positions
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.floor(Math.random() * -canvas.height / fontSize);
+  }
+  
+  // Create array for text brightness
+  const brightness = [];
+  for (let i = 0; i < columns; i++) {
+    brightness[i] = 0.5 + Math.random() * 0.5;
+  }
+  
+  // Create array for drop speeds
+  const speeds = [];
+  for (let i = 0; i < columns; i++) {
+    speeds[i] = 0.5 + Math.random() * 1.5;
+  }
+  
+  // Hacker-themed characters
+  const hackerChars = [
+    '0', '1', '0', '0', '1', // More binary for hacker feel
+    'a', 'b', 'c', 'd', 'e', 'f', 
+    'A', 'B', 'C', 'D', 'E', 'F',
+    '!', '@', '#', '$', '%', '^', '&', '*',
+    '[', ']', '{', '}', '<', '>', '/',
+    '⌘', '⌥', '⇧', '⌃', '⎋', '⏏', '⏎',
+    '░', '▒', '▓', '█', '▄', '▀', '■', '▪', '●',
+    'α', 'β', 'Δ', 'π', 'μ', 'Ω', 'λ',
+    '0', '1', '0', '1', '0', '1' // Extra binary for the hacker look
   ];
   
-  // Set up canvas dimensions
-  function resizeCanvas() {
-    // This ensures the canvas covers the entire height of the document, not just the viewport
-    canvas.width = window.innerWidth;
-    canvas.height = Math.max(window.innerHeight, document.body.scrollHeight);
-    
-    // Clear canvas and reset the animation
-    initializeRain();
-  }
-
-  // Initialize rain parameters
-  let drops = [];
-  let fontSize = 14;
-  let columns;
-  let speeds = [];
-  let brightness = [];
-  let dataColumns = [];
-  let animation;
-  
-  function initializeRain() {
-    // Calculate columns based on canvas width and font size
-    columns = Math.floor(canvas.width / fontSize);
-    
-    // Reset drops
-    drops = [];
-    speeds = [];
-    brightness = [];
-    dataColumns = [];
-    
-    // Initialize all drops
-    for (let i = 0; i < columns; i++) {
-      // Random starting position between top of canvas and slightly above
-      drops[i] = Math.floor(Math.random() * -canvas.height/fontSize);
-      
-      // Random speed 
-      speeds[i] = 0.5 + Math.random() * 1.5;
-      
-      // Random brightness
-      brightness[i] = 0.5 + Math.random() * 0.5;
-    }
-    
-    // Select random columns to show data phrases
-    for (let i = 0; i < columns * 0.05; i++) {
-      dataColumns.push(Math.floor(Math.random() * columns));
-    }
-    
-    // Cancel previous animation if it exists
-    if (animation) {
-      cancelAnimationFrame(animation);
-    }
-  }
+  // Special hacker phrases to occasionally insert
+  const hackerPhrases = [
+    "BREACH",
+    "ACCESS",
+    "DENIED",
+    "ROOT",
+    "ADMIN",
+    "HACK",
+    "SECURE",
+    "CRYPTO",
+    "SYSTEM",
+    "KERNEL"
+  ];
   
   // Matrix rain drawing function with hacker twist
   function drawHackerRain() {
-    // Translucent black to create fade effect
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    // Add a semi-transparent black rectangle to create the fade effect
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Loop through drops
-    for (let i = 0; i < columns; i++) {
-      // Determine if this column should show a data phrase
-      const isDataColumn = dataColumns.includes(i);
-      let char = chars.charAt(Math.floor(Math.random() * chars.length));
+    // Random chance to flash a hacker phrase across the screen
+    if (Math.random() > 0.997) {
+      const phrase = hackerPhrases[Math.floor(Math.random() * hackerPhrases.length)];
+      const x = Math.random() * (canvas.width - 200);
+      const y = Math.random() * canvas.height;
       
-      // Occasionally show a data phrase instead of random chars
-      if (isDataColumn && Math.random() > 0.97) {
-        // Select a random data phrase
-        const phrase = dataPhrases[Math.floor(Math.random() * dataPhrases.length)];
-        
-        // Draw the phrase vertically
-        for (let j = 0; j < phrase.length; j++) {
-          const y = (drops[i] + j) * fontSize;
-          
-          // Only draw if within canvas bounds
-          if (y > 0 && y < canvas.height) {
-            // Use red color for data phrases
-            ctx.fillStyle = `rgba(255, 0, 0, ${brightness[i]})`;
-            ctx.font = `${fontSize * 0.8}px 'Source Code Pro', monospace`;
-            ctx.fillText(phrase[j], i * fontSize, y);
+      ctx.font = "bold 24px 'Source Code Pro', monospace";
+      ctx.fillStyle = `rgba(255, 0, 0, 0.7)`;
+      ctx.fillText(phrase, x, y);
+    }
+    
+    // Loop through each column to draw characters
+    for (let i = 0; i < drops.length; i++) {
+      // Random chance to display a hacker phrase vertically
+      if (Math.random() > 0.99 && Math.random() > 0.8) {
+        const phrase = hackerPhrases[Math.floor(Math.random() * hackerPhrases.length)];
+        if (drops[i] * fontSize > 0) {
+          for (let j = 0; j < phrase.length; j++) {
+            if (drops[i] * fontSize + j * fontSize < canvas.height) {
+              // Red color theme for hacker feel
+              ctx.fillStyle = `rgba(255, 0, 0, ${brightness[i] * 0.8})`;
+              ctx.font = `${fontSize * 0.8}px 'Source Code Pro', monospace`;
+              ctx.fillText(phrase[j], i * fontSize, drops[i] * fontSize + j * fontSize);
+            }
           }
         }
       } else {
@@ -167,7 +150,7 @@ function initHackerRain() {
         const x = i * fontSize;
         const y = drops[i] * fontSize;
         
-        // Vary color for more hacker-like effect
+        // Use red color scheme for hacker feel, vary brightness
         let colorR = Math.floor(200 * brightness[i] + 50); // More red for hacker theme
         let colorG = Math.floor(50 * brightness[i] * (Math.random() > 0.8 ? 1 : 0));
         let colorB = Math.floor(50 * brightness[i] * (Math.random() > 0.9 ? 1 : 0));
@@ -179,27 +162,20 @@ function initHackerRain() {
         ctx.font = `${actualFontSize}px 'Source Code Pro', monospace`;
         
         // Draw the character
+        const char = hackerChars[Math.floor(Math.random() * hackerChars.length)];
         ctx.fillText(char, x, y);
         
-        // Occasionally add binary "1" and "0" characters in brighter red color
-        if (Math.random() > 0.99) {
-          ctx.fillStyle = `rgba(255, 30, 30, 0.9)`;
-          ctx.fillText(Math.random() > 0.5 ? "1" : "0", x, y);
-        }
-      }
-      
-      // Move the drop down by its speed
-      drops[i] += speeds[i];
-      
-      // Reset drop when it reaches bottom or randomly
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-        
-        // Occasionally change speed and brightness for variety
-        if (Math.random() > 0.8) {
-          speeds[i] = 0.5 + Math.random() * 1.5;
+        // Reset drop position if it's at the bottom of the screen
+        if (y > canvas.height && Math.random() > 0.99) {
+          drops[i] = 0;
+          
+          // Randomize brightness and speed for variety
           brightness[i] = 0.5 + Math.random() * 0.5;
+          speeds[i] = 0.5 + Math.random() * 1.5;
         }
+        
+        // Increment drop position based on speed
+        drops[i] += speeds[i];
       }
     }
     
@@ -213,25 +189,11 @@ function initHackerRain() {
     }
     
     // Continue animation
-    animation = requestAnimationFrame(drawHackerRain);
+    requestAnimationFrame(drawHackerRain);
   }
   
-  // Handle window resize
-  window.addEventListener('resize', function() {
-    resizeCanvas();
-  });
-  
-  // Initial setup
-  resizeCanvas();
-  
-  // Check document ready state and start animation
-  if (document.readyState === 'complete') {
-    drawHackerRain();
-  } else {
-    window.addEventListener('load', function() {
-      drawHackerRain();
-    });
-  }
+  // Start the animation
+  drawHackerRain();
 }
 
 // Ensure Matrix rain container extends to full page height
@@ -258,19 +220,13 @@ function adjustMatrixHeight() {
 
 // Check and adjust height periodically to account for dynamic content
 function checkAndAdjustMatrixHeight() {
-  const matrixBg = document.querySelector('.matrix-bg');
-  if (matrixBg) {
-    const docHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    
-    if (parseInt(matrixBg.style.height) < docHeight) {
+  // Use requestAnimationFrame to avoid excessive height recalculations
+  if (!window.matrixHeightRAF) {
+    window.matrixHeightRAF = true;
+    requestAnimationFrame(() => {
       adjustMatrixHeight();
-    }
+      window.matrixHeightRAF = false;
+    });
   }
 }
 
@@ -279,122 +235,63 @@ function checkAndAdjustMatrixHeight() {
  * Note: This is entirely fictional and for entertainment purposes only
  */
 function addFictionalSurveillanceElements() {
-  // Add fictional "TOP SECRET" watermark
-  const watermark = document.createElement('div');
-  watermark.className = 'confidential-watermark';
-  watermark.textContent = 'TOP SECRET';
-  watermark.setAttribute('aria-hidden', 'true'); // Accessibility attribute to indicate decorative
-  document.body.appendChild(watermark);
-  
-  // Add fictional header elements to articles
-  const articles = document.querySelectorAll('.feed__article');
-  articles.forEach((article, index) => {
-    // Create security clearance label
-    const securityLevel = ['UNCLASSIFIED', 'CONFIDENTIAL', 'SECRET', 'TOP SECRET', 'RESTRICTED'];
-    const clearanceLabel = document.createElement('div');
-    clearanceLabel.className = 'clearance-label';
-    clearanceLabel.textContent = securityLevel[Math.floor(Math.random() * securityLevel.length)];
-    clearanceLabel.setAttribute('aria-hidden', 'true'); // Accessibility attribute
-    
-    // Try to find the article header, if it exists
-    const header = article.querySelector('.article__header');
-    if (header) {
-      header.appendChild(clearanceLabel);
-    }
-    
-    // Add redacted text effect randomly to some content
-    const paragraphs = article.querySelectorAll('p');
-    if (paragraphs.length > 0) {
-      const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
-      const text = randomParagraph.textContent;
-      if (text && text.length > 20) {
-        const words = text.split(' ');
-        for (let i = 0; i < words.length; i++) {
-          if (Math.random() < 0.1 && words[i].length > 3) {
-            words[i] = `<span class="redacted">${words[i]}</span>`;
-          }
-        }
-        randomParagraph.innerHTML = words.join(' ');
-      }
-    }
-  });
-
-  // Add fictional timestamps to articles
-  const articleHeaders = document.querySelectorAll('.terminal__header');
-  articleHeaders.forEach(header => {
-    const timestamp = document.createElement('div');
-    timestamp.className = 'timestamp';
-    
-    // Generate a pseudo-random past date
-    const date = new Date();
-    date.setDate(date.getDate() - Math.floor(Math.random() * 30)); // Random day in the past month
-    const hours = String(Math.floor(Math.random() * 24)).padStart(2, '0');
-    const mins = String(Math.floor(Math.random() * 60)).padStart(2, '0');
-    const secs = String(Math.floor(Math.random() * 60)).padStart(2, '0');
-    
-    timestamp.textContent = `${date.toISOString().split('T')[0]} ${hours}:${mins}:${secs} UTC-5`;
-    timestamp.setAttribute('aria-hidden', 'true'); // Accessibility attribute
-    header.appendChild(timestamp);
-    
-    // Add access data animation when article comes into view
-    const accessBar = document.createElement('div');
-    accessBar.className = 'access-bar';
-    accessBar.setAttribute('aria-hidden', 'true'); // Accessibility attribute
-    header.appendChild(accessBar);
-  });
-
-  // Add surveillance camera movement effect (simulated)
-  let moveActive = true;
-  let lastMoveTime = Date.now();
-  
-  function simulateCameraMovement() {
-    if (!moveActive) return;
-    
-    const now = Date.now();
-    if (now - lastMoveTime > 5000) { // Move every 5 seconds
-      const intensity = 0.2 + Math.random() * 0.4; // Subtle movement
-      const duration = 500 + Math.random() * 500;
-      
-      document.documentElement.style.setProperty('--camera-x', (Math.random() * 2 - 1) * intensity + 'px');
-      document.documentElement.style.setProperty('--camera-y', (Math.random() * 2 - 1) * intensity + 'px');
-      
-      lastMoveTime = now;
-      
-      // Reset after movement
-      setTimeout(() => {
-        document.documentElement.style.setProperty('--camera-x', '0px');
-        document.documentElement.style.setProperty('--camera-y', '0px');
-      }, duration);
-    }
-    
-    requestAnimationFrame(simulateCameraMovement);
-  }
-  
-  // Start surveillance camera movement simulation
-  simulateCameraMovement();
-  
-  // Add scan line effect
+  // Add scanline effect
   const scanline = document.createElement('div');
   scanline.className = 'surveillance-scanline';
-  scanline.setAttribute('aria-hidden', 'true');
+  scanline.setAttribute('aria-hidden', 'true'); // This is decorative
   document.body.appendChild(scanline);
+  
+  // Add simulated surveillance camera effect in the corner
+  const surveillanceCam = document.querySelector('.surveillance-cam');
+  if (!surveillanceCam) {
+    const camEffect = document.createElement('div');
+    camEffect.className = 'surveillance-cam';
+    camEffect.setAttribute('aria-hidden', 'true'); // This is decorative
+    document.body.appendChild(camEffect);
+    
+    // Create the red recording dot
+    const recDot = document.createElement('div');
+    recDot.className = 'recording-dot';
+    recDot.setAttribute('aria-hidden', 'true'); // This is decorative
+    camEffect.appendChild(recDot);
+    
+    // Create camera text
+    const camText = document.createElement('div');
+    camText.className = 'camera-text';
+    camText.textContent = '[ RECORDING ]';
+    camText.setAttribute('aria-hidden', 'true'); // This is decorative
+    camEffect.appendChild(camText);
+  }
+  
+  // Add access tracker at bottom
+  const accessTracker = document.createElement('div');
+  accessTracker.className = 'access-tracker';
+  accessTracker.innerHTML = `
+    <div class="access-tracker__header">SYSTEM ACCESS LOG:</div>
+    <div class="access-tracker__item">Login from IP ${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}</div>
+    <div class="access-tracker__item">Data files accessed: ${Math.floor(Math.random() * 100) + 20}</div>
+    <div class="access-tracker__item blinking">Recording session</div>
+  `;
+  
+  // Add to end of main content before footer
+  const footer = document.querySelector('.footer');
+  if (footer && !document.querySelector('.access-tracker')) {
+    footer.parentNode.insertBefore(accessTracker, footer);
+  }
 }
 
 /**
  * Add fictional disclaimer to ensure no legal issues
  */
 function addFictionalDisclaimer() {
-  // Create a small, unintrusive disclaimer in the footer
-  const footer = document.querySelector('.footer');
+  // Create fictional disclaimer to avoid any legal issues
+  const disclaimer = document.createElement('div');
+  disclaimer.className = 'fictional-disclaimer';
+  disclaimer.innerHTML = "NOTE: This is a fictional cybersecurity-themed design for entertainment purposes only. No actual surveillance, monitoring, or hacking is taking place.";
   
-  if (footer) {
-    const disclaimer = document.createElement('div');
-    disclaimer.className = 'fictional-disclaimer';
-    disclaimer.textContent = 'Theme is fictional and for entertainment purposes only. No affiliation with any agency.';
-    disclaimer.style.fontSize = '0.7rem';
-    disclaimer.style.opacity = '0.7';
-    disclaimer.style.marginTop = '10px';
-    disclaimer.style.fontStyle = 'italic';
+  // Add at page bottom in footer
+  const footer = document.querySelector('.footer');
+  if (footer && !document.querySelector('.fictional-disclaimer')) {
     footer.appendChild(disclaimer);
   }
 }
@@ -478,20 +375,14 @@ function addInteractiveEffects() {
  * Update all terminal headers with current date and time
  */
 function updateTerminalDates() {
-  const terminalDates = document.querySelectorAll('.terminal__date');
+  const dateElements = document.querySelectorAll('.terminal__date');
   const now = new Date();
   
   // Format: YYYY-MM-DD HH:MM:SS
-  const dateString = now.toISOString().replace('T', ' ').split('.')[0];
+  const timestamp = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
   
-  terminalDates.forEach(element => {
-    element.textContent = dateString;
-    
-    // Update the time every minute
-    setInterval(() => {
-      const now = new Date();
-      element.textContent = now.toISOString().replace('T', ' ').split('.')[0];
-    }, 60000);
+  dateElements.forEach(element => {
+    element.textContent = timestamp;
   });
 }
 
@@ -525,15 +416,20 @@ function addDynamicStyles() {
   style.textContent = `
     /* Surveillance theme CSS */
     :root {
-      --nsa-blue: #003366;
-      --nsa-dark-blue: #001830;
+      --nsa-blue: #660000;
+      --nsa-dark-blue: #330000;
       --surveillance-amber: #ffbf00;
-      --terminal-green: #00aa00;
+      --terminal-green: #cc0000;
     }
     
     body {
       transform: translate3d(var(--camera-x, 0), var(--camera-y, 0), 0);
       transition: transform 1s ease-out;
+      background-color: #0a0000;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      position: relative;
     }
     
     .surveillance-scanline {
@@ -542,8 +438,8 @@ function addDynamicStyles() {
       left: 0;
       width: 100%;
       height: 3px;
-      background: rgba(0, 150, 255, 0.15);
-      box-shadow: 0 0 5px rgba(0, 100, 255, 0.2);
+      background: rgba(255, 0, 0, 0.15);
+      box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
       opacity: 0.7;
       z-index: 9999;
       pointer-events: none;
@@ -570,23 +466,6 @@ function addDynamicStyles() {
       text-transform: uppercase;
       font-weight: 900;
       text-shadow: 0 0 15px rgba(150, 0, 0, 0.1);
-    }
-    
-    .clearance-label {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-family: var(--matrix-font, 'Source Code Pro', monospace);
-      font-size: 0.7rem;
-      color: var(--surveillance-amber);
-      background: rgba(0,0,0,0.7);
-      padding: 2px 8px;
-      border-radius: 2px;
-      border: 1px solid var(--surveillance-amber);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      z-index: 10;
-      transform: rotate(2deg);
     }
     
     .document-header {
@@ -652,8 +531,8 @@ function addDynamicStyles() {
     }
     
     .terminal__header {
-      background-color: rgba(0, 15, 30, 0.95) !important;
-      border-bottom: 1px solid rgba(0, 70, 150, 0.3) !important;
+      background-color: rgba(30, 0, 0, 0.95) !important;
+      border-bottom: 1px solid rgba(200, 0, 0, 0.3) !important;
     }
     
     .terminal__prompt {
@@ -679,9 +558,9 @@ function addDynamicStyles() {
       z-index: 9999;
       background: repeating-linear-gradient(
         0deg,
-        rgba(0,0,0,0.7) 0px,
-        rgba(0,0,0,0.72) 2px,
-        rgba(0,0,0,0.75) 4px,
+        rgba(0,0,0,0.1) 0px,
+        rgba(0,0,0,0.11) 2px,
+        rgba(0,0,0,0.13) 4px,
         transparent 6px
       ), 
       /* Self-generated noise pattern instead of external URL */
@@ -689,39 +568,39 @@ function addDynamicStyles() {
       background-size: 100% 6px, 4px 4px;
       opacity: 0.6;
     }
+    
+    /* Create an SVG favicon */
+    link[rel="icon"] {
+      href: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000000'/%3E%3Ctext x='50' y='50' font-family='monospace' font-size='80' fill='%23ff0000' text-anchor='middle' dominant-baseline='middle'%3E1%3C/text%3E%3Ctext x='50' y='80' font-family='monospace' font-size='12' fill='%23ff0000' text-anchor='middle' dominant-baseline='middle'%3EHACKERS%3C/text%3E%3C/svg%3E";
+    }
+    
+    /* Fix scrollbar issues */
+    html, body {
+      overflow-x: hidden;
+    }
+    
+    .feed__article {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    
+    .article-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .container {
+      min-height: calc(100vh - 100px);
+    }
   `;
   
   document.head.appendChild(style);
+  
+  // Create SVG favicon
+  const favicon = document.createElement('link');
+  favicon.rel = 'icon';
+  favicon.type = 'image/svg+xml';
+  favicon.href = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000000'/%3E%3Ctext x='50' y='50' font-family='monospace' font-size='80' fill='%23ff0000' text-anchor='middle' dominant-baseline='middle'%3E1%3C/text%3E%3Ctext x='50' y='80' font-family='monospace' font-size='12' fill='%23ff0000' text-anchor='middle' dominant-baseline='middle'%3EHACKERS%3C/text%3E%3C/svg%3E";
+  document.head.appendChild(favicon);
 }
-
-// Call dynamic styles function 
-addDynamicStyles();
-
-// Create and add a favicon if it doesn't exist
-function createFavicon() {
-  if (!document.querySelector('link[rel="icon"]')) {
-    const canvas = document.createElement('canvas');
-    canvas.width = 32;
-    canvas.height = 32;
-    const ctx = canvas.getContext('2d');
-    
-    // Draw a simple dark blue background
-    ctx.fillStyle = '#001830';
-    ctx.fillRect(0, 0, 32, 32);
-    
-    // Draw a matrix-like "HD" for Hackers-Den
-    ctx.font = '20px monospace';
-    ctx.fillStyle = '#00ff00';
-    ctx.fillText('HD', 4, 22);
-    
-    // Create the favicon link element
-    const favicon = document.createElement('link');
-    favicon.rel = 'icon';
-    favicon.type = 'image/png';
-    favicon.href = canvas.toDataURL();
-    document.head.appendChild(favicon);
-  }
-}
-
-// Call favicon creation function
-createFavicon();

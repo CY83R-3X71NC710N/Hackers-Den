@@ -31,13 +31,13 @@ echo "[+] Running RSSPAPER jar to generate fresh content..."
 java -jar rsspaper-1.2.4-standalone.jar
 
 # Create necessary directories
-mkdir -p dist/static/js
+mkdir -p dist/static/js dist/static/img
 
 # Step 2: Apply Matrix theme customizations
 echo "[+] Applying Matrix theme customizations..."
 
 # Ensure static directories exist
-mkdir -p dist/static/css dist/static/js dist/static/fonts
+mkdir -p dist/static/css dist/static/js dist/static/fonts dist/static/img
 
 # Copy matrix.css to dist folder
 cp -f matrix-theme-backup/css/matrix.css dist/static/css/
@@ -50,6 +50,11 @@ echo "[+] Custom matrix theme CSS copied"
 # Copy matrix-effects.js to dist folder
 cp -f matrix-theme-backup/js/matrix-effects.js dist/static/js/
 echo "[+] Matrix theme JavaScript effects copied"
+
+# Copy the newsreader-not-cover.png to the static/img directory
+echo "[+] Copying newsreader-not-cover.png fallback image..."
+cp -f newsreader-not-cover.png dist/static/img/
+echo "[+] Image copied to dist/static/img/newsreader-not-cover.png"
 
 # Extract and install Source Code Pro font if needed
 if [ ! -d "dist/static/fonts/source-code-pro" ]; then
