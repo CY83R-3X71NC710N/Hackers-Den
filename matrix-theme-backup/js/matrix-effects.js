@@ -241,11 +241,16 @@ function addFictionalSurveillanceElements() {
   scanline.setAttribute('aria-hidden', 'true'); // This is decorative
   document.body.appendChild(scanline);
   
-  // Add simulated surveillance camera effect in the corner
+  // Add simulated surveillance camera effect in the bottom center
   const surveillanceCam = document.querySelector('.surveillance-cam');
   if (!surveillanceCam) {
     const camEffect = document.createElement('div');
     camEffect.className = 'surveillance-cam';
+    camEffect.style.top = 'auto'; // Override the default top position
+    camEffect.style.bottom = '15px'; // Position at bottom
+    camEffect.style.right = '50%'; // Center horizontally
+    camEffect.style.transform = 'translateX(50%)'; // Center adjustment
+    camEffect.style.zIndex = '10001'; // Ensure it's above other elements
     camEffect.setAttribute('aria-hidden', 'true'); // This is decorative
     document.body.appendChild(camEffect);
     
