@@ -31,8 +31,8 @@
   box-shadow: 0 0 30px rgba(40, 0, 0, 0.4), inset 0 0 30px rgba(30, 0, 0, 0.3);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  padding: 1.5rem;  /* Reduced padding from 2rem */
-  margin-top: 0.5rem;  /* Reduced margin from 1rem */
+  padding: 1rem 1.5rem; /* Further reduced top/bottom padding */
+  margin-top: 0.5rem;
   border-radius: 2px;
   position: relative;
   overflow: hidden;
@@ -299,6 +299,13 @@
   border-left: 2px solid var(--alert-red);
 }
 
+/* Separator line styling */
+.separator {
+  margin: 0.3rem 0;
+  border-color: rgba(255, 0, 0, 0.3);
+  opacity: 0.7;
+}
+
 /* Footer enhancements */
 .footer {
   position: relative;
@@ -372,9 +379,9 @@
 
 /* Title styling with briefing document feel */
 .title {
-  font-size: 2.8rem;
-  letter-spacing: 3px;
-  margin: 0.5rem 0; /* Reduced from 1rem */
+  font-size: 2.4rem; /* Reduced from 2.8rem */
+  letter-spacing: 2px; /* Reduced from 3px */
+  margin: 0.2rem 0; /* Further reduced margin */
   font-family: var(--matrix-font);
   text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
   position: relative;
@@ -412,14 +419,14 @@
 
 /* Enhanced subtitle as intelligence briefing */
 .subtitle {
-  margin-bottom: 1rem; /* Reduced from 1.5rem */
+  margin-bottom: 0.5rem; /* Further reduced from 1rem */
   position: relative;
   text-align: center;
 }
 
 .subtitle__text {
-  font-size: 1.1rem;
-  letter-spacing: 2px;
+  font-size: 0.9rem; /* Reduced from 1.1rem */
+  letter-spacing: 1px; /* Reduced from 2px */
   font-family: var(--matrix-font);
   color: #eee;
   text-transform: uppercase;
@@ -428,8 +435,8 @@
 .subtitle__separator {
   color: var(--alert-red);
   font-weight: bold;
-  margin: 0 10px;
-  font-size: 1.2rem;
+  margin: 0 5px; /* Reduced from 10px */
+  font-size: 1rem; /* Reduced from 1.2rem */
 }
 
 /* Image styling with classified photo feel */
@@ -569,10 +576,10 @@ a:hover {
 .document-header {
   display: flex;
   justify-content: space-between;
-  padding: 8px;
+  padding: 4px 8px; /* Reduced padding */
   background-color: rgba(30, 0, 0, 0.9);
-  border-bottom: 2px solid var(--terminal-red);
-  margin-bottom: 10px; /* Reduced from 20px */
+  border-bottom: 1px solid var(--terminal-red); /* Reduced border */
+  margin-bottom: 5px; /* Further reduced margin */
 }
 
 .document-stamp {
